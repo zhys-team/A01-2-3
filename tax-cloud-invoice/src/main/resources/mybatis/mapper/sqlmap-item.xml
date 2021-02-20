@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="item">
+
+    <!--
+  - ===============================================
+  - 返回 Head Entity
+  - @author wenjie
+  - @date 2020-12-25
+  - ===============================================
+-->
+    <resultMap  type="com.invoice.po.Item"	   id="RM_Item">
+        <id     property="client"          column="client"           jdbcType="VARCHAR"     javaType="java.lang.String"     />
+        <id     property="stno"        column="stno"         jdbcType="VARCHAR"       javaType="java.lang.String"   />
+        <id     property="stni"        column="stni"         jdbcType="VARCHAR"       javaType="java.lang.String"   />
+        <result property="fot"        column="fot"         jdbcType="VARCHAR"       javaType="java.lang.String"   />
+        <result property="matar"        column="matar"         jdbcType="VARCHAR"       javaType="java.lang.String"   />
+        <result property="matax"        column="matax"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="belnrm"        column="belnrm"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="gjahr"        column="gjahr"         jdbcType="VARCHAR"       javaType="java.lang.String"      />
+        <result property="beite"         column="beite"          jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="budat"        column="budat"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="quantity"       column="quantity"        jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="zprice_wsj"      column="zprice_wsj"       jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="zamountHzws"     column="zamount_hzws"      jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="zamountWsj"     column="zamount_wsj"      jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="unitName"       column="unit_name"        jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="unitC"      column="unit_c"       jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="itemSpec"     column="item_spec"      jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="trate"     column="trate"      jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="zamountHsj"        column="zamount_hsj"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+    </resultMap>
+
+    <!-- sql查询语句-->
+    <sql id="sql">
+		client,
+			stno,
+			stni,
+			fot,
+			matar,
+			matax,
+			belnrm,
+			gjahr,
+			beite,
+			budat,
+			quantity,
+			zprice_wsj,
+			zamount_hzws,
+			zamount_wsj,
+			unit_name,
+			unit_c,
+			item_spec,
+			trate,
+			zamount_hsj
+	</sql>
+
+    <!-- sql查询条件-->
+    <sql id="where">
+        <if test="client != null and ''!=client" >
+            and client = #{client}
+        </if>
+        <if test="stno != null and ''!=stno" >
+            and stno = #{stno}
+        </if>
+        <if test="stni != null and ''!=stni" >
+            and stni = #{stni}
+        </if>
+        <if test="fot != null and ''!=fot" >
+            and fot = #{fot}
+        </if>
+        <if test="matar != null and ''!=matar" >
+            and matar = #{matar}
+        </if>
+        <if test="matax != null and ''!=matax" >
+            and matax = #{matax}
+        </if>
+        <if test="belnrm != null and ''!=belnrm" >
+            and belnrm = #{belnrm}
+        </if>
+        <if test="gjahr != null and ''!=gjahr" >
+            and  gjahr = #{gjahr}
+        </if>
+        <if test="beite != null and ''!=beite" >
+            and beite = #{beite}
+        </if>
+        <if test="budat != null and ''!=budat" >
+            and budat = #{budat}
+        </if>
+        <if test="quantity != null and ''!=quantity" >
+            and quantity = #{quantity}
+        </if>
+        <if test="zprice_wsj != null and ''!=zprice_wsj" >
+            and zprice_wsj = #{zpriceWsj}
+        </if>
+        <if test="zamount_hzws != null and ''!=zamount_hzws" >
+            and zamount_hzws = #{zamountHzws}
+        </if>
+        <if test="zamount_wsj != null and ''!=zamount_wsj" >
+            and  zamount_wsj =#{zamountWsj}
+        </if>
+        <if test="unit_name != null and ''!=unit_name" >
+            and  unit_name =#{unitName}
+        </if>
+        <if test="unit_c != null and ''!=unit_c" >
+            and unit_c = #{unitC}
+        </if>
+        <if test="item_spec != null and ''!=item_spec" >
+            and item_spec = #{itemSpec}
+        </if>
+        <if test="trate != null and ''!=trate" >
+            and  trate =#{trate}
+        </if>
+        <if test="zamount_hsj != null and ''!=zamount_hsj" >
+            and  zamount_hsj =#{zamountHsj}
+        </if>
+        order by stno desc
+    </sql>
+    <!--
+      - ===============================================
+      - 新增 InvoiceHead
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+    <insert id="create" parameterType="com.invoice.po.Item" useGeneratedKeys="true" keyProperty="id">
+        insert into item (
+        <include refid="sql"/>
+        ) values (
+        "800",
+        #{stno},
+        #{stni},
+        #{fot},
+        #{matar},
+        #{matax},
+        #{belnrm},
+        #{gjahr},
+        #{beite},
+        #{budat},
+        #{quantity},
+        #{zpriceWsj},
+        #{zamountHzws},
+        #{zamountWsj},
+        #{unitName},
+        #{unitC},
+        #{itemSpec},
+        #{trate},
+        #{zamountHsj}
+        )
+    </insert>
+
+
+    <!--
+      - ===============================================
+      - 修改 Head
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+    <update id="update" parameterType="com.invoice.po.Item">
+        update item
+        <set>
+            <if test="client != null and ''!=client" >
+                and client = #{client}
+            </if>
+            <if test="stno != null and ''!=stno" >
+                and stno = #{stno}
+            </if>
+            <if test="stni != null and ''!=stni" >
+                and stni = #{stni}
+            </if>
+            <if test="fot != null and ''!=fot" >
+                and fot = #{fot}
+            </if>
+            <if test="matar != null and ''!=matar" >
+                and matar = #{matar}
+            </if>
+            <if test="matax != null and ''!=matax" >
+                and matax = #{matax}
+            </if>
+            <if test="belnrm != null and ''!=belnrm" >
+                and belnrm = #{belnrm}
+            </if>
+            <if test="gjahr != null and ''!=gjahr" >
+                and  gjahr = #{gjahr}
+            </if>
+            <if test="beite != null and ''!=beite" >
+                and beite = #{beite}
+            </if>
+            <if test="budat != null and ''!=budat" >
+                and budat = #{budat}
+            </if>
+            <if test="quantity != null and ''!=quantity" >
+                and quantity = #{quantity}
+            </if>
+            <if test="zprice_wsj != null and ''!=zprice_wsj" >
+                and zprice_wsj = #{zpriceWsj}
+            </if>
+            <if test="zamount_hzws != null and ''!=zamount_hzws" >
+                and zamount_hzws = #{zamountHzws}
+            </if>
+            <if test="zamount_wsj != null and ''!=zamount_wsj" >
+                and  zamount_wsj =#{zamountWsj}
+            </if>
+            <if test="unit_name != null and ''!=unit_name" >
+                and  unit_name =#{unitName}
+            </if>
+            <if test="unit_c != null and ''!=unit_c" >
+                and unit_c = #{unitC}
+            </if>
+            <if test="item_spec != null and ''!=item_spec" >
+                and item_spec = #{itemSpec}
+            </if>
+            <if test="trate != null and ''!=trate" >
+                and  trate =#{trate}
+            </if>
+            <if test="zamount_hsj != null and ''!=zamount_hsj" >
+                and  zamount_hsj =#{zamountHsj}
+            </if>
+        </set>
+        where stno = #{stno}
+    </update>
+
+    <!--
+      - ===============================================
+      - 查询 Head 总数
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+    <select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.Item">
+		select count(*)
+		from item
+	</select>
+
+    <!--
+      - ===============================================
+      - 查询 Head 信息
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+    <select id="query" resultMap="RM_Item" parameterType="com.invoice.po.Item">
+        select
+        <include refid="sql"/>
+        from item
+        where stno = #{stno}
+    </select>
+
+
+    <!--
+  - ===============================================
+  - 查询 列表InvoiceHead 信息
+  - @author 11734
+  - @date 2018-05-25
+  - ===============================================
+-->
+    <select id="queryList" resultMap="RM_Item" parameterType="com.invoice.po.Item">
+        select
+        <include refid="sql"/>
+        from item
+        <where>
+            <include refid="where"/>
+        </where>
+    </select>
+
+    <!--
+      - ===============================================
+      - 查询 InvoiceHead 分页信息
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+    <select id="page" resultMap="RM_Item" parameterType="java.util.HashMap">
+        select
+        <include refid="sql"/>
+        from item
+        <where>
+            <include refid="where"/>
+        </where>
+    </select>
+
+
+    <!--
+      - ===============================================
+      - 查询 InvoiceHead 手机端各人票夹
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+    <select id="pageForMobile" resultMap="RM_Item" parameterType="java.util.HashMap">
+		select
+		client,
+			stno,
+			stni,
+			fot,
+			matar,
+			matax,
+			belnrm,
+			gjahr,
+			beite,
+			budat,
+			quantity,
+			zprice_wsj,
+			zamount_hzws,
+			zamount_wsj,
+			unit_name,
+			unit_c,
+			item_spec,
+			trate,
+			zamount_hsj
+		from item
+      order by stno desc
+	</select>
+</mapper>

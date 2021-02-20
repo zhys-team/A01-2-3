@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="customer_supplier">
+
+	<!--
+      - ===============================================
+      - 返回 CustomerSupplier Entity
+      - @author 11734
+      - @date 2018-07-07
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.CustomerSupplier"	   id="RM_CustomerSupplier">
+		<id     property="id"          column="id"           jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="name"        column="name"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="isCustomer"  column="is_customer"  jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="isSupplier"  column="is_supplier"  jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="isInside"    column="is_inside"    jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="erpId"       column="erp_id"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="delState"    column="del_state"    jdbcType="CHAR"     javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			name, 
+    			is_customer, 
+    			is_supplier, 
+    			is_inside, 
+    			erp_id, 
+    			del_state
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="name != null and ''!=name" >
+			         and  name = #{name}
+			      </if>
+			                                 <if test="isCustomer != null and ''!=isCustomer" >
+			         and  is_customer = #{isCustomer}
+			      </if>
+			                                 <if test="isSupplier != null and ''!=isSupplier" >
+			         and  is_supplier = #{isSupplier}
+			      </if>
+			                                 <if test="isInside != null and ''!=isInside" >
+			         and  is_inside = #{isInside}
+			      </if>
+			                                 <if test="erpId != null and ''!=erpId" >
+			         and  erp_id = #{erpId}
+			      </if>
+			                                 <if test="delState != null and ''!=delState" >
+			         and  del_state = #{delState}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 CustomerSupplier
+      - @author 11734
+      - @date 2018-07-07
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.CustomerSupplier" useGeneratedKeys="true" keyProperty="id">
+		insert into customer_supplier (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{name}, 
+		    #{isCustomer}, 
+		    #{isSupplier}, 
+		    #{isInside}, 
+		    #{erpId}, 
+		    #{delState}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 CustomerSupplier
+      - @author 11734
+      - @date 2018-07-07
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.CustomerSupplier">
+	      update customer_supplier
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="name != null and ''!=name" >
+			        name = #{name},
+			      </if>
+			                        <if test="isCustomer != null and ''!=isCustomer" >
+			        is_customer = #{isCustomer},
+			      </if>
+			                        <if test="isSupplier != null and ''!=isSupplier" >
+			        is_supplier = #{isSupplier},
+			      </if>
+			                        <if test="isInside != null and ''!=isInside" >
+			        is_inside = #{isInside},
+			      </if>
+			                        <if test="erpId != null and ''!=erpId" >
+			        erp_id = #{erpId},
+			      </if>
+			                        <if test="delState != null and ''!=delState" >
+			        del_state = #{delState},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 CustomerSupplier 总数
+      - @author 11734
+      - @date 2018-07-07
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.CustomerSupplier">
+		select count(*)
+		from customer_supplier
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 CustomerSupplier 信息
+      - @author 11734
+      - @date 2018-07-07
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_CustomerSupplier" parameterType="com.invoice.po.CustomerSupplier">
+		select 
+        <include refid="sql"/>
+		from customer_supplier
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表CustomerSupplier 信息
+      - @author 11734
+      - @date 2018-07-07
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_CustomerSupplier" parameterType="com.invoice.po.CustomerSupplier">
+		select 
+        <include refid="sql"/>
+		from customer_supplier
+		
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 CustomerSupplier 分页信息
+      - @author 11734
+      - @date 2018-07-07
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_CustomerSupplier" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from customer_supplier
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeStateById" parameterType="com.invoice.po.CustomerSupplier">
+	 update customer_supplier set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeStateByIds" parameterType="java.util.HashMap">
+	 update customer_supplier set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

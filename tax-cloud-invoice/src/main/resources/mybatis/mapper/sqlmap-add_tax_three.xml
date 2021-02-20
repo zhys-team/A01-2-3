@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="add_tax_three">
+
+	<!--
+      - ===============================================
+      - 返回 AddTaxThree Entity
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.AddTaxThree"	   id="RM_AddTaxThree">
+		<id     property="id"        column="id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="parentId"  column="parent_id"  jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="lc"        column="lc"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqhje"     column="bqhje"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qcye"      column="qcye"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqfse"     column="bqfse"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqykcje"   column="bqykcje"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqsjkcje"  column="bqsjkcje"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qmye"      column="qmye"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			parent_id, 
+    			lc, 
+    			bqhje, 
+    			qcye, 
+    			bqfse, 
+    			bqykcje, 
+    			bqsjkcje, 
+    			qmye
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="lc != null and ''!=lc" >
+			         and  lc = #{lc}
+			      </if>
+			                                 <if test="bqhje != null and ''!=bqhje" >
+			         and  bqhje = #{bqhje}
+			      </if>
+			                                 <if test="qcye != null and ''!=qcye" >
+			         and  qcye = #{qcye}
+			      </if>
+			                                 <if test="bqfse != null and ''!=bqfse" >
+			         and  bqfse = #{bqfse}
+			      </if>
+			                                 <if test="bqykcje != null and ''!=bqykcje" >
+			         and  bqykcje = #{bqykcje}
+			      </if>
+			                                 <if test="bqsjkcje != null and ''!=bqsjkcje" >
+			         and  bqsjkcje = #{bqsjkcje}
+			      </if>
+			                                 <if test="qmye != null and ''!=qmye" >
+			         and  qmye = #{qmye}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 AddTaxThree
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.AddTaxThree" useGeneratedKeys="true" keyProperty="id">
+		insert into add_tax_three (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{parentId}, 
+		    #{lc}, 
+		    #{bqhje}, 
+		    #{qcye}, 
+		    #{bqfse}, 
+		    #{bqykcje}, 
+		    #{bqsjkcje}, 
+		    #{qmye}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 AddTaxThree
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.AddTaxThree">
+	      update add_tax_three
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="lc != null and ''!=lc" >
+			        lc = #{lc},
+			      </if>
+			                        <if test="bqhje != null and ''!=bqhje" >
+			        bqhje = #{bqhje},
+			      </if>
+			                        <if test="qcye != null and ''!=qcye" >
+			        qcye = #{qcye},
+			      </if>
+			                        <if test="bqfse != null and ''!=bqfse" >
+			        bqfse = #{bqfse},
+			      </if>
+			                        <if test="bqykcje != null and ''!=bqykcje" >
+			        bqykcje = #{bqykcje},
+			      </if>
+			                        <if test="bqsjkcje != null and ''!=bqsjkcje" >
+			        bqsjkcje = #{bqsjkcje},
+			      </if>
+			                        <if test="qmye != null and ''!=qmye" >
+			        qmye = #{qmye},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxThree 总数
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.AddTaxThree">
+		select count(*)
+		from add_tax_three
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxThree 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_AddTaxThree" parameterType="com.invoice.po.AddTaxThree">
+		select 
+        <include refid="sql"/>
+		from add_tax_three
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表AddTaxThree 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_AddTaxThree" parameterType="com.invoice.po.AddTaxThree">
+		select 
+        <include refid="sql"/>
+		from add_tax_three
+		
+	</select>
+	
+	<select id="queryList1" resultMap="RM_AddTaxThree" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from add_tax_three
+		where parent_id=#{id}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxThree 分页信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_AddTaxThree" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from add_tax_three
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.AddTaxThree">
+	 update add_tax_three set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update add_tax_three set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	<delete id="del" parameterType="com.invoice.po.AddTaxMain">
+	 delete from  add_tax_three where parent_id=#{id}
+	</delete>
+</mapper>

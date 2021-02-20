@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sys_roles">
+
+	<!--
+      - ===============================================
+      - 返回 SysRoles Entity
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.user.po.SysRoles"	   id="RM_SysRoles">
+		<id     property="id"    column="id"    jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="name"  column="name"  jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="no"    column="no"    jdbcType="VARCHAR"  javaType="java.lang.String"   />
+	</resultMap>
+
+	<!--
+      - ===============================================
+      - 新增 SysRoles
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.user.po.SysRoles" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_roles (
+			name, 
+			no
+		) values (
+		    #{name}, 
+		    #{no}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 SysRoles
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.user.po.SysRoles">
+	      update sys_roles
+	         <set >
+	         	        
+			   
+			      		      <if test="name != null and ''!=name" >
+			        name = #{name},
+			      </if>
+			      		      <if test="no != null and ''!=no" >
+			        no = #{no},
+			      </if>
+			      		      		    </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 SysRoles 总数
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.user.po.SysRoles">
+		select count(*)
+		from sys_roles
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysRoles 信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_SysRoles" parameterType="com.zhys.user.po.SysRoles">
+		select 
+		    id, 
+		    name, 
+		    no
+		from sys_roles
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表SysRoles 信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_SysRoles" parameterType="com.zhys.user.po.SysRoles">
+		select 
+		    id, 
+		    name, 
+		    no
+		from sys_roles
+		
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysRoles 分页信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_SysRoles" parameterType="java.util.HashMap">
+		select 
+		    id, 
+		    name, 
+		    no
+		from sys_roles
+	</select>
+	
+	<delete id="delete" parameterType="com.zhys.user.po.SysRoles">
+	 delete from sys_roles where id in (${ids})
+	</delete>
+</mapper>

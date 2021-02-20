@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ea_body">
+
+	<!--
+      - ===============================================
+      - 返回 EaBody Entity
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.ea.po.EaBody"	   id="RM_EaBody">
+		<id     property="id"             column="id"               jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="parentId"       column="parent_id"        jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="startAddr"      column="start_addr"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="endAddr"        column="end_addr"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="workStartDate"  column="work_start_date"  jdbcType="DATE"     javaType="java.sql.Date"     />
+		<result property="workEndDate"    column="work_end_date"    jdbcType="DATE"     javaType="java.sql.Date"     />
+		<result property="workDays"       column="work_days"        jdbcType="FLOAT"    javaType="java.lang.Float"   />
+		<result property="delState"       column="del_state"        jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="detailType"      column="detail_type"      jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="vehicle"         column="vehicle"          jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="cast"            column="cast"             jdbcType="FLOAT"    javaType="java.lang.Float"   />
+		<result property="currency"        column="currency"         jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="exchangeRate"    column="exchange_rate"    jdbcType="FLOAT"    javaType="java.lang.Float"   />
+		<result property="currencyAmount"  column="currency_amount"  jdbcType="FLOAT"    javaType="java.lang.Float"   />
+		<result property="mark"            column="mark"             jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="mxsx"            column="mxsx"             jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="invoiceId"       column="invoice_id"             jdbcType="BIGINT"  javaType="java.lang.Long"  />
+	</resultMap>
+
+    
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			parent_id, 
+    			start_addr, 
+    			end_addr, 
+    			work_start_date, 
+    			work_end_date, 
+    			work_days, 
+    			del_state, 
+    			detail_type, 
+    			vehicle, 
+    			cast, 
+    			currency, 
+    			exchange_rate, 
+    			currency_amount, 
+    			mark,
+    			mxsx,
+    			invoice_id
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="startAddr != null and ''!=startAddr" >
+			         and  start_addr = #{startAddr}
+			      </if>
+			                                 <if test="endAddr != null and ''!=endAddr" >
+			         and  end_addr = #{endAddr}
+			      </if>
+			                                 <if test="workStartDate != null and ''!=workStartDate" >
+			         and  work_start_date = #{workStartDate}
+			      </if>
+			                                 <if test="workEndDate != null and ''!=workEndDate" >
+			         and  work_end_date = #{workEndDate}
+			      </if>
+			                                 <if test="workDays != null and ''!=workDays" >
+			         and  work_days = #{workDays}
+			      </if>
+			                                 <if test="delState != null and ''!=delState" >
+			         and  del_state = #{delState}
+			      </if>
+			      <if test="detailType != null and ''!=detailType" >
+			         and  detail_type = #{detailType}
+			      </if>
+			                                 <if test="vehicle != null and ''!=vehicle" >
+			         and  vehicle = #{vehicle}
+			      </if>
+			                                 <if test="cast != null and ''!=cast" >
+			         and  cast = #{cast}
+			      </if>
+			                                 <if test="currency != null and ''!=currency" >
+			         and  currency = #{currency}
+			      </if>
+			                                 <if test="exchangeRate != null and ''!=exchangeRate" >
+			         and  exchange_rate = #{exchangeRate}
+			      </if>
+			                                 <if test="currencyAmount != null and ''!=currencyAmount" >
+			         and  currency_amount = #{currencyAmount}
+			      </if>
+			                                 <if test="mark != null and ''!=mark" >
+			         and  mark = #{mark}
+			         </if>
+			         <if test="mxsx != null and ''!=mxsx" >
+				         and  mxsx = #{mxsx}
+				      </if>
+			</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 EaBody
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.ea.po.EaBody" useGeneratedKeys="true" keyProperty="id">
+		insert into ea_body (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{parentId}, 
+		    #{startAddr}, 
+		    #{endAddr}, 
+		    #{workStartDate}, 
+		    #{workEndDate}, 
+		    #{workDays}, 
+		    #{delState}, 
+		    #{detailType}, 
+		    #{vehicle}, 
+		    #{cast}, 
+		    #{currency}, 
+		    #{exchangeRate}, 
+		    #{currencyAmount}, 
+		    #{mark},
+		    #{mxsx},
+		    #{invoiceId}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 EaBody
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.ea.po.EaBody">
+	      update ea_body
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="startAddr != null and ''!=startAddr" >
+			        start_addr = #{startAddr},
+			      </if>
+			                        <if test="endAddr != null and ''!=endAddr" >
+			        end_addr = #{endAddr},
+			      </if>
+			                        <if test="workStartDate != null and ''!=workStartDate" >
+			        work_start_date = #{workStartDate},
+			      </if>
+			                        <if test="workEndDate != null and ''!=workEndDate" >
+			        work_end_date = #{workEndDate},
+			      </if>
+			                        <if test="workDays != null and ''!=workDays" >
+			        work_days = #{workDays},
+			      </if>
+			                        <if test="delState != null and ''!=delState" >
+			        del_state = #{delState},
+			      </if>
+			      <if test="detailType != null and ''!=detailType" >
+			        detail_type = #{detailType},
+			      </if>
+			                        <if test="vehicle != null and ''!=vehicle" >
+			        vehicle = #{vehicle},
+			      </if>
+			                        <if test="cast != null and ''!=cast" >
+			        cast = #{cast},
+			      </if>
+			                        <if test="currency != null and ''!=currency" >
+			        currency = #{currency},
+			      </if>
+			                        <if test="exchangeRate != null and ''!=exchangeRate" >
+			        exchange_rate = #{exchangeRate},
+			      </if>
+			                        <if test="currencyAmount != null and ''!=currencyAmount" >
+			        currency_amount = #{currencyAmount},
+			      </if>
+			                        <if test="mark != null and ''!=mark" >
+			        mark = #{mark},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 EaBody 总数
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.ea.po.EaBody">
+		select count(*)
+		from ea_body
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 EaBody 信息
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_EaBody" parameterType="com.zhys.ea.po.EaBody">
+		select 
+        <include refid="sql"/>
+		from ea_body
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表EaBody 信息
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_EaBody" parameterType="com.zhys.ea.po.EaBody">
+		select 
+        <include refid="sql"/>
+		from ea_body
+		where parent_id =#{parentId}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 EaBody 分页信息
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_EaBody" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from ea_body
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeStateById" parameterType="com.zhys.ea.po.EaBody">
+	 delete from  ea_body  where parent_id=#{parentId}
+	</update>
+	
+	<update id="changeStateByIds" parameterType="java.util.HashMap">
+	 update ea_body set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

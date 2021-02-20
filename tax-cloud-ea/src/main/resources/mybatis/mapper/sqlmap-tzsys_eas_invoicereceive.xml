@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="tzsys_eas_invoicereceive">
+
+	<!--
+      - ===============================================
+      - 返回 TzsysEasInvoicereceive Entity
+      - @author 11734
+      - @date 2020-03-19
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.po.TzsysEasInvoicereceive"	   id="RM_TzsysEasInvoicereceive">
+		<result property="invoiceId"   column="invoice_id"   jdbcType="BIGINT"     javaType="java.lang.Long"    />
+		<result property="fpzl"        column="fpzl"         jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="fpdm"        column="fpdm"         jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="fphm"        column="fphm"         jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="kprq"        column="kprq"         jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="jym"         column="jym"          jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="hsje"        column="hsje"         jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="wsje"        column="wsje"         jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="se"          column="se"           jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="rzState"     column="rz_state"     jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="bxState"     column="bx_state"     jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="bxTime"      column="bx_time"      jdbcType="TIMESTAMP"  javaType="java.util.Date"    />
+		<result property="fylb"        column="fylb"         jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="ywms"        column="ywms"         jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="userNo"      column="user_no"      jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="businessId"  column="business_id"  jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="dept"        column="dept"         jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="eaUserNo"    column="ea_user_no"   jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="imgUrl"      column="img_url"      jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="docMaker"    column="doc_maker"    jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="docType"     column="doc_type"     jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="docNo"       column="doc_no"       jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="docName"     column="doc_name"     jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="change"      column="change"       jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="salesParty"  column="sales_party"  jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="buyer"       column="buyer"        jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="isSyn"       column="is_syn"       jdbcType="CHAR"       javaType="java.lang.String"  />
+		<result property="spTime"      column="sp_time"      jdbcType="TIMESTAMP"  javaType="java.util.Date"    />
+		<result property="lock"       column="lock"       jdbcType="CHAR"       javaType="java.lang.String"  />
+		<result property="dcState"       column="dc_state"       jdbcType="CHAR"       javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				invoice_id, 
+    			fpzl, 
+    			fpdm, 
+    			fphm, 
+    			kprq, 
+    			jym, 
+    			hsje, 
+    			wsje, 
+    			se, 
+    			rz_state, 
+    			bx_state, 
+    			bx_time, 
+    			fylb, 
+    			ywms, 
+    			user_no, 
+    			business_id, 
+    			dept, 
+    			ea_user_no, 
+    			img_url, 
+    			doc_maker, 
+    			doc_type, 
+    			doc_no, 
+    			doc_name, 
+    			change, 
+    			sales_party, 
+    			buyer, 
+    			is_syn,
+    			sp_time,
+    			lock,
+    			dc_state
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="invoiceId != null and ''!=invoiceId" >
+			         and  invoice_id = #{invoiceId}
+			      </if>
+			                                 <if test="fpzl != null and ''!=fpzl" >
+			         and  fpzl = #{fpzl}
+			      </if>
+			                                 <if test="fpdm != null and ''!=fpdm" >
+			         and  fpdm = #{fpdm}
+			      </if>
+			                                 <if test="fphm != null and ''!=fphm" >
+			         and  fphm = #{fphm}
+			      </if>
+			                                 <if test="kprq != null" >
+			         and  kprq = #{kprq}
+			      </if>
+			                                 <if test="jym != null and ''!=jym" >
+			         and  jym = #{jym}
+			      </if>
+			                                 <if test="hsje != null and ''!=hsje" >
+			         and  hsje = #{hsje}
+			      </if>
+			                                 <if test="wsje != null and ''!=wsje" >
+			         and  wsje = #{wsje}
+			      </if>
+			                                 <if test="se != null and ''!=se" >
+			         and  se = #{se}
+			      </if>
+			                                 <if test="rzState != null and ''!=rzState" >
+			         and  rz_state = #{rzState}
+			      </if>
+			                                 <if test="bxState != null and ''!=bxState" >
+			         and  bx_state = #{bxState}
+			      </if>
+			                                 <if test="bxTime != null" >
+			         and  bx_time = #{bxTime}
+			      </if>
+			                                 <if test="fylb != null and ''!=fylb" >
+			         and  fylb = #{fylb}
+			      </if>
+			                                 <if test="ywms != null and ''!=ywms" >
+			         and  ywms = #{ywms}
+			      </if>
+			                                 <if test="userNo != null and ''!=userNo" >
+			         and  user_no = #{userNo}
+			      </if>
+			                                 <if test="businessId != null and ''!=businessId" >
+			         and  business_id = #{businessId}
+			      </if>
+			                                 <if test="dept != null and ''!=dept" >
+			         and  dept = #{dept}
+			      </if>
+			                                 <if test="eaUserNo != null and ''!=eaUserNo" >
+			         and  ea_user_no = #{eaUserNo}
+			      </if>
+			                                 <if test="imgUrl != null and ''!=imgUrl" >
+			         and  img_url = #{imgUrl}
+			      </if>
+			                                 <if test="docMaker != null and ''!=docMaker" >
+			         and  doc_maker = #{docMaker}
+			      </if>
+			                                 <if test="docType != null and ''!=docType" >
+			         and  doc_type = #{docType}
+			      </if>
+			                                 <if test="docNo != null and ''!=docNo" >
+			         and  doc_no = #{docNo}
+			      </if>
+			                                 <if test="docName != null and ''!=docName" >
+			         and  doc_name = #{docName}
+			      </if>
+			                                 <if test="change != null and ''!=change" >
+			         and  change = #{change}
+			      </if>
+			                                 <if test="salesParty != null and ''!=salesParty" >
+			         and  sales_party = #{salesParty}
+			      </if>
+			                                 <if test="buyer != null and ''!=buyer" >
+			         and  buyer = #{buyer}
+			      </if>
+			                                 <if test="isSyn != null and ''!=isSyn" >
+			         and  is_syn = #{isSyn}
+			      </if>
+			      <if test="spTime != null" >
+			         and  sp_time = #{spTime}
+			      </if>
+			      <if test="lock != null and ''!=lock" >
+			         and  lock = #{lock}
+			      </if>
+			      
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 TzsysEasInvoicereceive
+      - @author 11734
+      - @date 2020-03-19
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.po.TzsysEasInvoicereceive">
+		insert into TZsys_Eas_InvoiceReceive (
+         <include refid="sql"/>
+		) values (
+		    #{invoiceId}, 
+		    #{fpzl}, 
+		    #{fpdm}, 
+		    #{fphm}, 
+		    #{kprq}, 
+		    #{jym}, 
+		    #{hsje}, 
+		    #{wsje}, 
+		    #{se}, 
+		    #{rzState}, 
+		    #{bxState}, 
+		    #{bxTime}, 
+		    #{fylb}, 
+		    #{ywms}, 
+		    #{userNo}, 
+		    #{businessId}, 
+		    #{dept}, 
+		    #{eaUserNo}, 
+		    #{imgUrl}, 
+		    #{docMaker}, 
+		    #{docType}, 
+		    #{docNo}, 
+		    #{docName}, 
+		    #{change}, 
+		    #{salesParty}, 
+		    #{buyer}, 
+		    #{isSyn}, 
+		    #{spTime},
+		    '1',
+		    #{dcState}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 TzsysEasInvoicereceive
+      - @author 11734
+      - @date 2020-03-19
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.po.TzsysEasInvoicereceive">
+	      update TZsys_Eas_InvoiceReceive
+	           <set>
+	                             <if test="invoiceId != null and ''!=invoiceId" >
+			        invoice_id = #{invoiceId},
+			      </if>
+			                        <if test="fpzl != null and ''!=fpzl" >
+			        fpzl = #{fpzl},
+			      </if>
+			                        <if test="fpdm != null and ''!=fpdm" >
+			        fpdm = #{fpdm},
+			      </if>
+			                        <if test="fphm != null and ''!=fphm" >
+			        fphm = #{fphm},
+			      </if>
+			                        <if test="kprq != null" >
+			        kprq = #{kprq},
+			      </if>
+			                        <if test="jym != null and ''!=jym" >
+			        jym = #{jym},
+			      </if>
+			                        <if test="hsje != null and ''!=hsje" >
+			        hsje = #{hsje},
+			      </if>
+			                        <if test="wsje != null and ''!=wsje" >
+			        wsje = #{wsje},
+			      </if>
+			                        <if test="se != null and ''!=se" >
+			        se = #{se},
+			      </if>
+			                        <if test="rzState != null and ''!=rzState" >
+			        rz_state = #{rzState},
+			      </if>
+			                        <if test="bxState != null and ''!=bxState" >
+			        bx_state = #{bxState},
+			      </if>
+			                        <if test="bxTime != null" >
+			        bx_time = #{bxTime},
+			      </if>
+			                        <if test="fylb != null and ''!=fylb" >
+			        fylb = #{fylb},
+			      </if>
+			                        <if test="ywms != null and ''!=ywms" >
+			        ywms = #{ywms},
+			      </if>
+			                        <if test="userNo != null and ''!=userNo" >
+			        user_no = #{userNo},
+			      </if>
+			                        <if test="businessId != null and ''!=businessId" >
+			        business_id = #{businessId},
+			      </if>
+			                        <if test="dept != null and ''!=dept" >
+			        dept = #{dept},
+			      </if>
+			                        <if test="eaUserNo != null and ''!=eaUserNo" >
+			        ea_user_no = #{eaUserNo},
+			      </if>
+			                        <if test="imgUrl != null and ''!=imgUrl" >
+			        img_url = #{imgUrl},
+			      </if>
+			                        <if test="docMaker != null and ''!=docMaker" >
+			        doc_maker = #{docMaker},
+			      </if>
+			                        <if test="docType != null and ''!=docType" >
+			        doc_type = #{docType},
+			      </if>
+			                        <if test="docNo != null and ''!=docNo" >
+			        doc_no = #{docNo},
+			      </if>
+			                        <if test="docName != null and ''!=docName" >
+			        doc_name = #{docName},
+			      </if>
+			                        <if test="change != null and ''!=change" >
+			        change = #{change},
+			      </if>
+			                        <if test="salesParty != null and ''!=salesParty" >
+			        sales_party = #{salesParty},
+			      </if>
+			                        <if test="buyer != null and ''!=buyer" >
+			        buyer = #{buyer},
+			      </if>
+			                        <if test="isSyn != null and ''!=isSyn" >
+			        is_syn = #{isSyn},
+			      </if>
+			      <if test="lock != null and ''!=lock" >
+			        lock = #{lock},
+			      </if>
+			                     </set>
+		    where  invoice_id = #{invoiceId}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 TzsysEasInvoicereceive 总数
+      - @author 11734
+      - @date 2020-03-19
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.po.TzsysEasInvoicereceive">
+		select count(*)
+		from TZsys_Eas_InvoiceReceive
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 TzsysEasInvoicereceive 信息
+      - @author 11734
+      - @date 2020-03-19
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_TzsysEasInvoicereceive" parameterType="com.zhys.po.TzsysEasInvoicereceive">
+		select 
+        <include refid="sql"/>
+		from TZsys_Eas_InvoiceReceive
+		where  invoice_id = #{invoiceId}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表TzsysEasInvoicereceive 信息
+      - @author 11734
+      - @date 2020-03-19
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_TzsysEasInvoicereceive" parameterType="com.zhys.po.TzsysEasInvoicereceive">
+		select 
+        <include refid="sql"/>
+		from TZsys_Eas_InvoiceReceive
+		<where>
+			<include refid="where"/>
+		</where>
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 TzsysEasInvoicereceive 分页信息
+      - @author 11734
+      - @date 2020-03-19
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_TzsysEasInvoicereceive" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from TZsys_Eas_InvoiceReceive
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.zhys.po.TzsysEasInvoicereceive">
+	 delete from  TZsys_Eas_InvoiceReceive  where invoice_id = #{invoiceId}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update TZsys_Eas_InvoiceReceive set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	<update id="delete" parameterType="com.zhys.po.TzsysEasInvoicereceive">
+	 delete from  TZsys_Eas_InvoiceReceive  where invoice_id = #{invoiceId}
+	</update>
+	
+	<update id="update_status" >
+		update TZsys_Eas_InvoiceReceive set is_syn='1', lock='2' where 
+		invoice_id in (select invoice_id from view_TZsys_Eas_Invoice1)  and lock='1';
+		
+		update TZsys_Eas_InvoiceReceive set is_syn='1', lock='1' where 
+		invoice_id not in (select invoice_id from view_TZsys_Eas_Invoice1)  and lock='2';
+		
+	</update>
+	
+	<select id="queryView" resultMap="RM_TzsysEasInvoicereceive" parameterType="com.zhys.po.TzsysEasInvoicereceive">
+		select 
+        invoice_id, 
+    			fpdm, 
+    			fphm
+		from view_TZsys_Eas_Invoice1
+		where  invoice_id = #{invoiceId}
+	</select>
+	
+	<update id="updatePdfUrl" parameterType="com.zhys.po.TzsysEasInvoicereceive">
+	update TZsys_Eas_InvoiceReceive set img_url = #{imgUrl}
+	where  invoice_id = #{invoiceId} 
+	</update>
+	
+	
+	<select id="queryRzrqList" resultMap="RM_TzsysEasInvoicereceive" >
+		select 
+        <include refid="sql"/>
+		from TZsys_Eas_InvoiceReceive
+		where bx_time is not null
+	</select>
+	
+	
+</mapper>

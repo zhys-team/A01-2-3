@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="goods">
+
+	<!--
+      - ===============================================
+      - 返回 Goods Entity
+      - @author 11734
+      - @date 2018-09-12
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.user.po.Goods"	   id="RM_Goods">
+		<id     property="id"            column="id"              jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="name"          column="name"            jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="code"          column="code"            jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="rateCode"      column="rate_code"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="rateCodeName"  column="rate_code_name"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="simpleCode"    column="simple_code"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="price"         column="price"           jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="rate"          column="rate"            jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="spec"          column="spec"            jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="unit"          column="unit"            jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="delState"      column="del_state"       jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="orgId"         column="org_id"          jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="goodsType"     column="goods_type"      jdbcType="BIGINT"  javaType="java.lang.Long"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			name, 
+    			code, 
+    			rate_code, 
+    			rate_code_name, 
+    			simple_code, 
+    			price, 
+    			rate, 
+    			spec, 
+    			unit, 
+    			del_state, 
+    			org_id,
+    			goods_type
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     del_state=0
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="name != null and ''!=name" >
+			         and  name = #{name}
+			      </if>
+			                                 <if test="code != null and ''!=code" >
+			         and  code = #{code}
+			      </if>
+			                                 <if test="rateCode != null and ''!=rateCode" >
+			         and  rate_code = #{rateCode}
+			      </if>
+			                                 <if test="rateCodeName != null and ''!=rateCodeName" >
+			         and  rate_code_name = #{rateCodeName}
+			      </if>
+			                                 <if test="simpleCode != null and ''!=simpleCode" >
+			         and  simple_code = #{simpleCode}
+			      </if>
+			                                 <if test="price != null and ''!=price" >
+			         and  price = #{price}
+			      </if>
+			                                 <if test="rate != null and ''!=rate" >
+			         and  rate = #{rate}
+			      </if>
+			                                 <if test="spec != null and ''!=spec" >
+			         and  spec = #{spec}
+			      </if>
+			                                 <if test="unit != null and ''!=unit" >
+			         and  unit = #{unit}
+			      </if>
+			                                 <if test="delState != null and ''!=delState" >
+			         and  del_state = #{delState}
+			      </if>
+			                                 <if test="orgId != null and ''!=orgId" >
+			         and  org_id = #{orgId}
+			      </if>
+			      <if test="goodsType != null and ''!=goodsType" >
+			         and  goods_type = #{goodsType}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 Goods
+      - @author 11734
+      - @date 2018-09-12
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.user.po.Goods" useGeneratedKeys="true" keyProperty="id">
+		insert into goods (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{name}, 
+		    #{code}, 
+		    #{rateCode}, 
+		    #{rateCodeName}, 
+		    #{simpleCode}, 
+		    #{price}, 
+		    #{rate}, 
+		    #{spec}, 
+		    #{unit}, 
+		    '0', 
+		    #{orgId},
+		    #{goodsType}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 Goods
+      - @author 11734
+      - @date 2018-09-12
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.user.po.Goods">
+	      update goods
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="name != null and ''!=name" >
+			        name = #{name},
+			      </if>
+			                        <if test="code != null and ''!=code" >
+			        code = #{code},
+			      </if>
+			                        <if test="rateCode != null and ''!=rateCode" >
+			        rate_code = #{rateCode},
+			      </if>
+			                        <if test="rateCodeName != null and ''!=rateCodeName" >
+			        rate_code_name = #{rateCodeName},
+			      </if>
+			                        <if test="simpleCode != null and ''!=simpleCode" >
+			        simple_code = #{simpleCode},
+			      </if>
+			                        <if test="price != null and ''!=price" >
+			        price = #{price},
+			      </if>
+			                        <if test="rate != null and ''!=rate" >
+			        rate = #{rate},
+			      </if>
+			                        <if test="spec != null and ''!=spec" >
+			        spec = #{spec},
+			      </if>
+			                        <if test="unit != null and ''!=unit" >
+			        unit = #{unit},
+			      </if>
+			                        <if test="delState != null and ''!=delState" >
+			        del_state = #{delState},
+			      </if>
+			                        <if test="orgId != null and ''!=orgId" >
+			        org_id = #{orgId},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 Goods 总数
+      - @author 11734
+      - @date 2018-09-12
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.user.po.Goods">
+		select count(*)
+		from goods
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 Goods 信息
+      - @author 11734
+      - @date 2018-09-12
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_Goods" parameterType="com.zhys.user.po.Goods">
+		select 
+        <include refid="sql"/>
+		from goods
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表Goods 信息
+      - @author 11734
+      - @date 2018-09-12
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_Goods" parameterType="com.zhys.user.po.Goods">
+		select 
+        <include refid="sql"/>
+		from goods
+		<where>
+		  <include refid="where"/>
+		</where>
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 Goods 分页信息
+      - @author 11734
+      - @date 2018-09-12
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_Goods" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from goods
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.zhys.user.po.Goods">
+	 update goods set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update goods set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

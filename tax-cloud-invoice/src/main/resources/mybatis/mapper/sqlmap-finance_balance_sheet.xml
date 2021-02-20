@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="finance_balance_sheet">
+
+	<!--
+      - ===============================================
+      - 返回 FinanceBalanceSheet Entity
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.FinanceBalanceSheet"	   id="RM_FinanceBalanceSheet">
+		<id     property="id"        column="id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="parentId"  column="parent_id"  jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="hh"        column="hh"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="zcxmmc"    column="zcxmmc"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qmyeZc"    column="qmye_zc"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="ncyeZc"    column="ncye_zc"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qyxmmc"    column="qyxmmc"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qmyeQy"    column="qmye_qy"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="ncyeQy"    column="ncye_qy"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			parent_id, 
+    			hh, 
+    			zcxmmc, 
+    			qmye_zc, 
+    			ncye_zc, 
+    			qyxmmc, 
+    			qmye_qy, 
+    			ncye_qy
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="hh != null and ''!=hh" >
+			         and  hh = #{hh}
+			      </if>
+			                                 <if test="zcxmmc != null and ''!=zcxmmc" >
+			         and  zcxmmc = #{zcxmmc}
+			      </if>
+			                                 <if test="qmyeZc != null and ''!=qmyeZc" >
+			         and  qmye_zc = #{qmyeZc}
+			      </if>
+			                                 <if test="ncyeZc != null and ''!=ncyeZc" >
+			         and  ncye_zc = #{ncyeZc}
+			      </if>
+			                                 <if test="qyxmmc != null and ''!=qyxmmc" >
+			         and  qyxmmc = #{qyxmmc}
+			      </if>
+			                                 <if test="qmyeQy != null and ''!=qmyeQy" >
+			         and  qmye_qy = #{qmyeQy}
+			      </if>
+			                                 <if test="ncyeQy != null and ''!=ncyeQy" >
+			         and  ncye_qy = #{ncyeQy}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 FinanceBalanceSheet
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.FinanceBalanceSheet" useGeneratedKeys="true" keyProperty="id">
+		insert into finance_balance_sheet (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{parentId}, 
+		    #{hh}, 
+		    #{zcxmmc}, 
+		    #{qmyeZc}, 
+		    #{ncyeZc}, 
+		    #{qyxmmc}, 
+		    #{qmyeQy}, 
+		    #{ncyeQy}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 FinanceBalanceSheet
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.FinanceBalanceSheet">
+	      update finance_balance_sheet
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="hh != null and ''!=hh" >
+			        hh = #{hh},
+			      </if>
+			                        <if test="zcxmmc != null and ''!=zcxmmc" >
+			        zcxmmc = #{zcxmmc},
+			      </if>
+			                        <if test="qmyeZc != null and ''!=qmyeZc" >
+			        qmye_zc = #{qmyeZc},
+			      </if>
+			                        <if test="ncyeZc != null and ''!=ncyeZc" >
+			        ncye_zc = #{ncyeZc},
+			      </if>
+			                        <if test="qyxmmc != null and ''!=qyxmmc" >
+			        qyxmmc = #{qyxmmc},
+			      </if>
+			                        <if test="qmyeQy != null and ''!=qmyeQy" >
+			        qmye_qy = #{qmyeQy},
+			      </if>
+			                        <if test="ncyeQy != null and ''!=ncyeQy" >
+			        ncye_qy = #{ncyeQy},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 FinanceBalanceSheet 总数
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.FinanceBalanceSheet">
+		select count(*)
+		from finance_balance_sheet
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 FinanceBalanceSheet 信息
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_FinanceBalanceSheet" parameterType="com.invoice.po.FinanceBalanceSheet">
+		select 
+        <include refid="sql"/>
+		from finance_balance_sheet
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表FinanceBalanceSheet 信息
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_FinanceBalanceSheet" parameterType="com.invoice.po.FinanceBalanceSheet">
+		select 
+        <include refid="sql"/>
+		from finance_balance_sheet
+		
+	</select>
+	
+	<select id="queryList1" resultMap="RM_FinanceBalanceSheet" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from finance_balance_sheet
+		where parent_id=#{id}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 FinanceBalanceSheet 分页信息
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_FinanceBalanceSheet" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from finance_balance_sheet
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.FinanceBalanceSheet">
+	 update finance_balance_sheet set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update finance_balance_sheet set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	<delete id="del" parameterType="com.invoice.po.FinanceSheet">
+	 delete from  finance_balance_sheet where parent_id=#{id}
+	</delete>
+</mapper>

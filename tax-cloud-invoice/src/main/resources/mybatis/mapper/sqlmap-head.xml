@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="head">
+
+    <!--
+  - ===============================================
+  - 返回 Head Entity
+  - @author wenjie
+  - @date 2020-12-25
+  - ===============================================
+-->
+    <resultMap  type="com.invoice.po.Head"	   id="RM_Head">
+        <id     property="client"          column="client"           jdbcType="VARCHAR"     javaType="java.lang.String"     />
+        <result property="stno"        column="stno"         jdbcType="VARCHAR"       javaType="java.lang.String"   />
+        <result property="ssta"        column="ssta"         jdbcType="VARCHAR"       javaType="java.lang.String"   />
+        <result property="tsta"        column="tsta"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="bukrs"        column="bukrs"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="bname"        column="bname"         jdbcType="VARCHAR"       javaType="java.lang.String"      />
+        <result property="plant"         column="plant"          jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="taxno"        column="taxno"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="trate"       column="trate"        jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="vender"      column="vender"       jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="vname"     column="vname"      jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="fdate"     column="fdate"      jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="tdate"       column="tdate"        jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="wsje"      column="wsje"       jdbcType="VARCHAR"    javaType="java.lang.String"   />
+        <result property="hsje"     column="hsje"      jdbcType="VARCHAR"    javaType="java.lang.String"   />
+    </resultMap>
+
+
+    <!-- sql查询语句-->
+    <sql id="sql">
+		client,
+			stno,
+			ssta,
+			tsta,
+			bukrs,
+			bname,
+			plant,
+			taxno,
+			trate,
+			vender,
+			vname,
+			fdate,
+			tdate,
+			wsje,
+			hsje
+	</sql>
+
+    <!-- sql查询条件-->
+    <sql id="where">
+        <if test="client != null and ''!=client" >
+            and client = #{client}
+        </if>
+        <if test="stno != null and ''!=stno" >
+            and stno = #{stno}
+        </if>
+        <if test="ssta != null and ''!=ssta" >
+            and ssta = #{ssta}
+        </if>
+        <if test="tsta != null and ''!=tsta" >
+            and tsta = #{tsta}
+        </if>
+        <if test="bukrs != null and ''!=bukrs" >
+            and bukrs = #{bukrs}
+        </if>
+        <if test="bname != null and ''!=bname" >
+            and bname = #{bname}
+        </if>
+        <if test="plant != null and ''!=plant" >
+            and plant = #{plant}
+        </if>
+        <if test="taxno != null and ''!=taxno" >
+            and  taxno = #{taxno}
+        </if>
+        <if test="trate != null and ''!=trate" >
+            and trate = #{trate}
+        </if>
+        <if test="vender != null and ''!=vender" >
+            and vender = #{vender}
+        </if>
+        <if test="vname != null and ''!=vname" >
+            and vname = #{vname}
+        </if>
+        <if test="fdate != null and ''!=fdate" >
+            and fdate = #{fdate}
+        </if>
+        <if test="tdate != null and ''!=tdate" >
+            and tdate = #{tdate}
+        </if>
+        <if test="wsje != null and ''!=wsje" >
+            and  wsje =#{wsje}
+        </if>
+        <if test="hsje != null and ''!=hsje" >
+            and  hsje =#{hsje}
+        </if>
+        order by stno desc
+    </sql>
+    <!--
+      - ===============================================
+      - 新增 InvoiceHead
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+    <insert id="create" parameterType="com.invoice.po.Head" useGeneratedKeys="true" keyProperty="id">
+        insert into head (
+        <include refid="sql"/>
+        ) values (
+        "800",
+        #{stno},
+        #{ssta},
+        #{tsta},
+        #{bukrs},
+        #{bname},
+        #{plant},
+        #{taxno},
+        #{trate},
+        #{vender},
+        #{vname},
+        #{fdate},
+        #{tdate},
+        #{wsje},
+        #{hsje}
+        )
+    </insert>
+
+    <!--
+      - ===============================================
+      - 修改 Head
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+    <update id="update" parameterType="com.invoice.po.InvoiceHead">
+        update head
+        <set>
+            <if test="client != null and ''!=client" >
+                and client = #{client}
+            </if>
+            <if test="stno != null and ''!=stno" >
+                and stno = #{stno}
+            </if>
+            <if test="ssta != null and ''!=ssta" >
+                and ssta = #{ssta}
+            </if>
+            <if test="tsta != null and ''!=tsta" >
+                and tsta = #{tsta}
+            </if>
+            <if test="bukrs != null and ''!=bukrs" >
+                and bukrs = #{bukrs}
+            </if>
+            <if test="bname != null and ''!=bname" >
+                and bname = #{bname}
+            </if>
+            <if test="plant != null and ''!=plant" >
+                and plant = #{plant}
+            </if>
+            <if test="taxno != null and ''!=taxno" >
+                and  taxno = #{taxno}
+            </if>
+            <if test="trate != null and ''!=trate" >
+                and trate = #{trate}
+            </if>
+            <if test="vender != null and ''!=vender" >
+                and vender = #{vender}
+            </if>
+            <if test="vname != null and ''!=vname" >
+                and vname = #{vname}
+            </if>
+            <if test="fdate != null and ''!=fdate" >
+                and fdate = #{fdate}
+            </if>
+            <if test="tdate != null and ''!=tdate" >
+                and tdate = #{tdate}
+            </if>
+            <if test="wsje != null and ''!=wsje" >
+                and  wsje =#{wsje}
+            </if>
+            <if test="hsje != null and ''!=hsje" >
+                and  hsje =#{hsje}
+            </if>
+
+        </set>
+        where stno = #{stno}
+    </update>
+
+    <!--
+      - ===============================================
+      - 查询 Head 总数
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+    <select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.Head">
+		select count(*)
+		from head
+	</select>
+
+    <!--
+      - ===============================================
+      - 查询 Head 信息
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+    <select id="query" resultMap="RM_Head" parameterType="com.invoice.po.Head">
+        select
+        <include refid="sql"/>
+        from head
+        where stno = #{stno}
+    </select>
+
+
+    <!--
+  - ===============================================
+  - 查询 列表InvoiceHead 信息
+  - @author 11734
+  - @date 2018-05-25
+  - ===============================================
+-->
+    <select id="queryList" resultMap="RM_Head" parameterType="com.invoice.po.Head">
+        select
+        <include refid="sql"/>
+        from head
+        <where>
+            <include refid="where"/>
+        </where>
+    </select>
+
+    <!--
+      - ===============================================
+      - 查询 InvoiceHead 分页信息
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+    <select id="page" resultMap="RM_Head" parameterType="java.util.HashMap">
+        select
+        <include refid="sql"/>
+        from head
+        <where>
+            <include refid="where"/>
+        </where>
+    </select>
+
+
+    <!--
+      - ===============================================
+      - 查询 InvoiceHead 手机端各人票夹
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+    <select id="pageForMobile" resultMap="RM_Head" parameterType="java.util.HashMap">
+		select
+		    client,
+			stno,
+			ssta,
+			tsta,
+			bukrs,
+			bname,
+			plant,
+			taxno,
+			trate,
+			vender,
+			vname,
+			fdate,
+			tdate,
+			wsje,
+			hsje
+		from head
+      order by stno asc
+	</select>
+</mapper>

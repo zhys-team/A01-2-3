@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: pc-web
+  profiles:
+    active: dev
+  #数据库连接信息
+  datasource:
+    name: test
+#    url: jdbc:mysql://192.168.1.26:3307/tax-cloud?useUnicode=true&characterEncoding=utf-8&&allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:3306/tax-cloud?useUnicode=true&characterEncoding=utf-8&&allowMultiQueries=true
+    username: root
+    password: 123456
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+
+server:
+#  port: 8070
+  port: 8099
+#  context-path: /tax-web
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:20002/eureka/
+#      defaultZone: http://192.168.0.127:20001/eureka/
+feign:
+   hystrix:
+     enabled: true
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+hystrix:
+   command:
+     default:
+       execution:
+        isolation:
+         thread:
+          timeoutInMilliseconds: 40000
+
+
+
+#日志
+logging:
+  config: classpath:logback-${spring.profiles.active}.xml
+  level:
+     com.example.demo.dao : debug
+
+
+pdfUrl: /image/
+

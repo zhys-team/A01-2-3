@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="add_tax_first">
+
+	<!--
+      - ===============================================
+      - 返回 AddTaxFirst Entity
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.AddTaxFirst"	   id="RM_AddTaxFirst">
+		<id     property="id"        column="id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="parentId"  column="parent_id"  jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="lc"        column="lc"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="zzxse"     column="zzxse"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="zzxxse"    column="zzxxse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="kqtxse"    column="kqtxse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="kqtxxse"   column="kqtxxse"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="wkxse"     column="wkxse"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="wkxxse"    column="wkxxse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="nsxse"     column="nsxse"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="nsxxse"    column="nsxxse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="hjxse"     column="hjxse"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="hjxxse"    column="hjxxse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="hjjshj"    column="hjjshj"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="fwsjkcje"  column="fwsjkcje"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="kcxse"     column="kcxse"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="kcxxse"    column="kcxxse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			parent_id, 
+    			lc, 
+    			zzxse, 
+    			zzxxse, 
+    			kqtxse, 
+    			kqtxxse, 
+    			wkxse, 
+    			wkxxse, 
+    			nsxse, 
+    			nsxxse, 
+    			hjxse, 
+    			hjxxse, 
+    			hjjshj, 
+    			fwsjkcje, 
+    			kcxse, 
+    			kcxxse
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="lc != null and ''!=lc" >
+			         and  lc = #{lc}
+			      </if>
+			                                 <if test="zzxse != null and ''!=zzxse" >
+			         and  zzxse = #{zzxse}
+			      </if>
+			                                 <if test="zzxxse != null and ''!=zzxxse" >
+			         and  zzxxse = #{zzxxse}
+			      </if>
+			                                 <if test="kqtxse != null and ''!=kqtxse" >
+			         and  kqtxse = #{kqtxse}
+			      </if>
+			                                 <if test="kqtxxse != null and ''!=kqtxxse" >
+			         and  kqtxxse = #{kqtxxse}
+			      </if>
+			                                 <if test="wkxse != null and ''!=wkxse" >
+			         and  wkxse = #{wkxse}
+			      </if>
+			                                 <if test="wkxxse != null and ''!=wkxxse" >
+			         and  wkxxse = #{wkxxse}
+			      </if>
+			                                 <if test="nsxse != null and ''!=nsxse" >
+			         and  nsxse = #{nsxse}
+			      </if>
+			                                 <if test="nsxxse != null and ''!=nsxxse" >
+			         and  nsxxse = #{nsxxse}
+			      </if>
+			                                 <if test="hjxse != null and ''!=hjxse" >
+			         and  hjxse = #{hjxse}
+			      </if>
+			                                 <if test="hjxxse != null and ''!=hjxxse" >
+			         and  hjxxse = #{hjxxse}
+			      </if>
+			                                 <if test="hjjshj != null and ''!=hjjshj" >
+			         and  hjjshj = #{hjjshj}
+			      </if>
+			                                 <if test="fwsjkcje != null and ''!=fwsjkcje" >
+			         and  fwsjkcje = #{fwsjkcje}
+			      </if>
+			                                 <if test="kcxse != null and ''!=kcxse" >
+			         and  kcxse = #{kcxse}
+			      </if>
+			                                 <if test="kcxxse != null and ''!=kcxxse" >
+			         and  kcxxse = #{kcxxse}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 AddTaxFirst
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.AddTaxFirst" useGeneratedKeys="true" keyProperty="id">
+		insert into add_tax_first (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{parentId}, 
+		    #{lc}, 
+		    #{zzxse}, 
+		    #{zzxxse}, 
+		    #{kqtxse}, 
+		    #{kqtxxse}, 
+		    #{wkxse}, 
+		    #{wkxxse}, 
+		    #{nsxse}, 
+		    #{nsxxse}, 
+		    #{hjxse}, 
+		    #{hjxxse}, 
+		    #{hjjshj}, 
+		    #{fwsjkcje}, 
+		    #{kcxse}, 
+		    #{kcxxse}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 AddTaxFirst
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.AddTaxFirst">
+	      update add_tax_first
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="lc != null and ''!=lc" >
+			        lc = #{lc},
+			      </if>
+			                        <if test="zzxse != null and ''!=zzxse" >
+			        zzxse = #{zzxse},
+			      </if>
+			                        <if test="zzxxse != null and ''!=zzxxse" >
+			        zzxxse = #{zzxxse},
+			      </if>
+			                        <if test="kqtxse != null and ''!=kqtxse" >
+			        kqtxse = #{kqtxse},
+			      </if>
+			                        <if test="kqtxxse != null and ''!=kqtxxse" >
+			        kqtxxse = #{kqtxxse},
+			      </if>
+			                        <if test="wkxse != null and ''!=wkxse" >
+			        wkxse = #{wkxse},
+			      </if>
+			                        <if test="wkxxse != null and ''!=wkxxse" >
+			        wkxxse = #{wkxxse},
+			      </if>
+			                        <if test="nsxse != null and ''!=nsxse" >
+			        nsxse = #{nsxse},
+			      </if>
+			                        <if test="nsxxse != null and ''!=nsxxse" >
+			        nsxxse = #{nsxxse},
+			      </if>
+			                        <if test="hjxse != null and ''!=hjxse" >
+			        hjxse = #{hjxse},
+			      </if>
+			                        <if test="hjxxse != null and ''!=hjxxse" >
+			        hjxxse = #{hjxxse},
+			      </if>
+			                        <if test="hjjshj != null and ''!=hjjshj" >
+			        hjjshj = #{hjjshj},
+			      </if>
+			                        <if test="fwsjkcje != null and ''!=fwsjkcje" >
+			        fwsjkcje = #{fwsjkcje},
+			      </if>
+			                        <if test="kcxse != null and ''!=kcxse" >
+			        kcxse = #{kcxse},
+			      </if>
+			                        <if test="kcxxse != null and ''!=kcxxse" >
+			        kcxxse = #{kcxxse},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxFirst 总数
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.AddTaxFirst">
+		select count(*)
+		from add_tax_first
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxFirst 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_AddTaxFirst" parameterType="com.invoice.po.AddTaxFirst">
+		select 
+        <include refid="sql"/>
+		from add_tax_first
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表AddTaxFirst 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_AddTaxFirst" parameterType="com.invoice.po.AddTaxFirst">
+		select 
+        <include refid="sql"/>
+		from add_tax_first
+		
+	</select>
+	
+	<select id="queryList1" resultMap="RM_AddTaxFirst" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from add_tax_first
+		where parent_id=#{id}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxFirst 分页信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_AddTaxFirst" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from add_tax_first
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.AddTaxFirst">
+	 update add_tax_first set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update add_tax_first set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	<delete id="del" parameterType="com.invoice.po.AddTaxMain">
+	 delete from  add_tax_first where parent_id=#{id}
+	</delete>
+</mapper>

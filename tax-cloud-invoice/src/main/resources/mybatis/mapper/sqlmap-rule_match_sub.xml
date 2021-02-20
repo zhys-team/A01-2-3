@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rule_match_sub">
+
+	<!--
+      - ===============================================
+      - 返回 RuleMatchSub Entity
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.RuleMatchSub"	   id="RM_RuleMatchSub">
+		<id     property="id"                    column="id"                      jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="invoiceType"           column="invoice_type"            jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="isEnable"              column="is_enable"               jdbcType="CHAR"     javaType="java.lang.String"   />
+		<result property="isDetailJudue"         column="is_detail_judue"         jdbcType="CHAR"     javaType="java.lang.String"   />
+		<result property="detailField"           column="detail_field"            jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="exclusionOrSelection"  column="exclusion_or_selection"  jdbcType="CHAR"     javaType="java.lang.String"   />
+		<result property="taxCalMethod"          column="tax_cal_method"          jdbcType="CHAR"     javaType="java.lang.String"   />
+		<result property="taxRate"               column="tax_rate"                jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="isSpecialBill"         column="is_special_bill"         jdbcType="CHAR"     javaType="java.lang.String"   />
+		<result property="specialNo"             column="special_no"              jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="ruleId"                column="rule_id"                 jdbcType="BIGINT"   javaType="java.lang.Long"     />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			invoice_type, 
+    			is_enable, 
+    			is_detail_judue, 
+    			detail_field, 
+    			exclusion_or_selection, 
+    			tax_cal_method, 
+    			tax_rate, 
+    			is_special_bill, 
+    			special_no, 
+    			rule_id
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="invoiceType != null and ''!=invoiceType" >
+			         and  invoice_type = #{invoiceType}
+			      </if>
+			                                 <if test="isEnable != null and ''!=isEnable" >
+			         and  is_enable = #{isEnable}
+			      </if>
+			                                 <if test="isDetailJudue != null and ''!=isDetailJudue" >
+			         and  is_detail_judue = #{isDetailJudue}
+			      </if>
+			                                 <if test="detailField != null and ''!=detailField" >
+			         and  detail_field = #{detailField}
+			      </if>
+			                                 <if test="exclusionOrSelection != null and ''!=exclusionOrSelection" >
+			         and  exclusion_or_selection = #{exclusionOrSelection}
+			      </if>
+			                                 <if test="taxCalMethod != null and ''!=taxCalMethod" >
+			         and  tax_cal_method = #{taxCalMethod}
+			      </if>
+			                                 <if test="taxRate != null and ''!=taxRate" >
+			         and  tax_rate = #{taxRate}
+			      </if>
+			                                 <if test="isSpecialBill != null and ''!=isSpecialBill" >
+			         and  is_special_bill = #{isSpecialBill}
+			      </if>
+			                                 <if test="specialNo != null and ''!=specialNo" >
+			         and  special_no = #{specialNo}
+			      </if>
+			                                 <if test="ruleId != null and ''!=ruleId" >
+			         and  rule_id = #{ruleId}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 RuleMatchSub
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.RuleMatchSub" useGeneratedKeys="true" keyProperty="id">
+		insert into rule_match_sub (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{invoiceType}, 
+		    #{isEnable}, 
+		    #{isDetailJudue}, 
+		    #{detailField}, 
+		    #{exclusionOrSelection}, 
+		    #{taxCalMethod}, 
+		    #{taxRate}, 
+		    #{isSpecialBill}, 
+		    #{specialNo}, 
+		    #{ruleId}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 RuleMatchSub
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.RuleMatchSub">
+	      update rule_match_sub
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="invoiceType != null and ''!=invoiceType" >
+			        invoice_type = #{invoiceType},
+			      </if>
+			                        <if test="isEnable != null and ''!=isEnable" >
+			        is_enable = #{isEnable},
+			      </if>
+			                        <if test="isDetailJudue != null and ''!=isDetailJudue" >
+			        is_detail_judue = #{isDetailJudue},
+			      </if>
+			                        <if test="detailField != null and ''!=detailField" >
+			        detail_field = #{detailField},
+			      </if>
+			                        <if test="exclusionOrSelection != null and ''!=exclusionOrSelection" >
+			        exclusion_or_selection = #{exclusionOrSelection},
+			      </if>
+			                        <if test="taxCalMethod != null and ''!=taxCalMethod" >
+			        tax_cal_method = #{taxCalMethod},
+			      </if>
+			                        <if test="taxRate != null and ''!=taxRate" >
+			        tax_rate = #{taxRate},
+			      </if>
+			                        <if test="isSpecialBill != null and ''!=isSpecialBill" >
+			        is_special_bill = #{isSpecialBill},
+			      </if>
+			                        <if test="specialNo != null and ''!=specialNo" >
+			        special_no = #{specialNo},
+			      </if>
+			                        <if test="ruleId != null and ''!=ruleId" >
+			        rule_id = #{ruleId},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 RuleMatchSub 总数
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.RuleMatchSub">
+		select count(*)
+		from rule_match_sub
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 RuleMatchSub 信息
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_RuleMatchSub" parameterType="com.invoice.po.RuleMatchSub">
+		select 
+        <include refid="sql"/>
+		from rule_match_sub
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表RuleMatchSub 信息
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_RuleMatchSub" parameterType="com.invoice.po.RuleMatchSub">
+		select 
+        <include refid="sql"/>
+		from rule_match_sub
+		
+	</select>
+	
+	<select id="queryList1" resultMap="RM_RuleMatchSub" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from rule_match_sub
+		where rule_id = #{id}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 RuleMatchSub 分页信息
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_RuleMatchSub" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from rule_match_sub
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.RuleMatchSub">
+	 update rule_match_sub set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update rule_match_sub set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	<delete id="del" parameterType="com.invoice.po.RuleMatch">
+	 delete from  rule_match_sub where rule_id=#{id}
+	</delete>
+</mapper>

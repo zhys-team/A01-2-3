@@ -1,0 +1,32 @@
+server:
+  port: 8772
+  max-http-header-size: 10000000
+#  context-path: /invoice
+eureka:
+  client:
+    serviceUrl:
+      #defaultZone: http://192.168.1.44:20001/eureka/,http://localhost:20002/eureka/
+#      defaultZone: http://192.168.1.44:20001/eureka/
+      defaultZone: http://localhost:20002/eureka/
+spring:
+  application:
+    name: imaging
+  profiles:
+    #指定读取配置文件:dev(开发环境),prod(生产环境),qa(测试环境)
+    active: dev
+
+
+#日志
+logging:
+  config: classpath:logback-${spring.profiles.active}.xml
+
+file-addr: D:\image
+
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+multipart:
+  maxRequestSize: 2000MB
+  maxFileSize: 2000MB

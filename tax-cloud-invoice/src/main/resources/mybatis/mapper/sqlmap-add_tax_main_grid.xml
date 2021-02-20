@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="add_tax_main_grid">
+
+	<!--
+      - ===============================================
+      - 返回 AddTaxMainGrid Entity
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.AddTaxMainGrid"	   id="RM_AddTaxMainGrid">
+		<id     property="id"           column="id"           jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="parentId"     column="parent_id"    jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="asysljsxse"   column="asysljsxse"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="yshwxse"      column="yshwxse"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="yslwxse"      column="yslwxse"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="nsjctzxse"    column="nsjctzxse"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="ajjybfjsxse"  column="ajjybfjsxse"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qznsjctzxse"  column="qznsjctzxse"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="mdtckxse"     column="mdtckxse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="msxse"        column="msxse"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="mshwxse"      column="mshwxse"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="mslwxse"      column="mslwxse"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="xsse"         column="xsse"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="jxse"         column="jxse"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="sqldse"       column="sqldse"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="jxsezc"       column="jxsezc"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="mdtytse"      column="mdtytse"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="asysljsbjse"  column="asysljsbjse"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="ydksehj"      column="ydksehj"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="sjdkse"       column="sjdkse"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="ynse"         column="ynse"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qmldse"       column="qmldse"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="jyjsynse"     column="jyjsynse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="ajyjsybjse"   column="ajyjsybjse"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="ynsejze"      column="ynsejze"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="ynsehj"       column="ynsehj"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qcwjse"       column="qcwjse"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="ssckkjtse"    column="ssckkjtse"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqyjse"       column="bqyjse"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="fqyjse"       column="fqyjse"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="ckkjyjse"     column="ckkjyjse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqjnyjse"     column="bqjnyjse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqjnqjse"     column="bqjnqjse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qmwjse"       column="qmwjse"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qzqjse"       column="qzqjse"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqybse"       column="bqybse"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="jzjtsjtse"    column="jzjtsjtse"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qcwjcbse"     column="qcwjcbse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqrkcbse"     column="bqrkcbse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qmwjcbse"     column="qmwjcbse"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			parent_id, 
+    			asysljsxse, 
+    			yshwxse, 
+    			yslwxse, 
+    			nsjctzxse, 
+    			ajjybfjsxse, 
+    			qznsjctzxse, 
+    			mdtckxse, 
+    			msxse, 
+    			mshwxse, 
+    			mslwxse, 
+    			xsse, 
+    			jxse, 
+    			sqldse, 
+    			jxsezc, 
+    			mdtytse, 
+    			asysljsbjse, 
+    			ydksehj, 
+    			sjdkse, 
+    			ynse, 
+    			qmldse, 
+    			jyjsynse, 
+    			ajyjsybjse, 
+    			ynsejze, 
+    			ynsehj, 
+    			qcwjse, 
+    			ssckkjtse, 
+    			bqyjse, 
+    			fqyjse, 
+    			ckkjyjse, 
+    			bqjnyjse, 
+    			bqjnqjse, 
+    			qmwjse, 
+    			qzqjse, 
+    			bqybse, 
+    			jzjtsjtse, 
+    			qcwjcbse, 
+    			bqrkcbse, 
+    			qmwjcbse
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="asysljsxse != null and ''!=asysljsxse" >
+			         and  asysljsxse = #{asysljsxse}
+			      </if>
+			                                 <if test="yshwxse != null and ''!=yshwxse" >
+			         and  yshwxse = #{yshwxse}
+			      </if>
+			                                 <if test="yslwxse != null and ''!=yslwxse" >
+			         and  yslwxse = #{yslwxse}
+			      </if>
+			                                 <if test="nsjctzxse != null and ''!=nsjctzxse" >
+			         and  nsjctzxse = #{nsjctzxse}
+			      </if>
+			                                 <if test="ajjybfjsxse != null and ''!=ajjybfjsxse" >
+			         and  ajjybfjsxse = #{ajjybfjsxse}
+			      </if>
+			                                 <if test="qznsjctzxse != null and ''!=qznsjctzxse" >
+			         and  qznsjctzxse = #{qznsjctzxse}
+			      </if>
+			                                 <if test="mdtckxse != null and ''!=mdtckxse" >
+			         and  mdtckxse = #{mdtckxse}
+			      </if>
+			                                 <if test="msxse != null and ''!=msxse" >
+			         and  msxse = #{msxse}
+			      </if>
+			                                 <if test="mshwxse != null and ''!=mshwxse" >
+			         and  mshwxse = #{mshwxse}
+			      </if>
+			                                 <if test="mslwxse != null and ''!=mslwxse" >
+			         and  mslwxse = #{mslwxse}
+			      </if>
+			                                 <if test="xsse != null and ''!=xsse" >
+			         and  xsse = #{xsse}
+			      </if>
+			                                 <if test="jxse != null and ''!=jxse" >
+			         and  jxse = #{jxse}
+			      </if>
+			                                 <if test="sqldse != null and ''!=sqldse" >
+			         and  sqldse = #{sqldse}
+			      </if>
+			                                 <if test="jxsezc != null and ''!=jxsezc" >
+			         and  jxsezc = #{jxsezc}
+			      </if>
+			                                 <if test="mdtytse != null and ''!=mdtytse" >
+			         and  mdtytse = #{mdtytse}
+			      </if>
+			                                 <if test="asysljsbjse != null and ''!=asysljsbjse" >
+			         and  asysljsbjse = #{asysljsbjse}
+			      </if>
+			                                 <if test="ydksehj != null and ''!=ydksehj" >
+			         and  ydksehj = #{ydksehj}
+			      </if>
+			                                 <if test="sjdkse != null and ''!=sjdkse" >
+			         and  sjdkse = #{sjdkse}
+			      </if>
+			                                 <if test="ynse != null and ''!=ynse" >
+			         and  ynse = #{ynse}
+			      </if>
+			                                 <if test="qmldse != null and ''!=qmldse" >
+			         and  qmldse = #{qmldse}
+			      </if>
+			                                 <if test="jyjsynse != null and ''!=jyjsynse" >
+			         and  jyjsynse = #{jyjsynse}
+			      </if>
+			                                 <if test="ajyjsybjse != null and ''!=ajyjsybjse" >
+			         and  ajyjsybjse = #{ajyjsybjse}
+			      </if>
+			                                 <if test="ynsejze != null and ''!=ynsejze" >
+			         and  ynsejze = #{ynsejze}
+			      </if>
+			                                 <if test="ynsehj != null and ''!=ynsehj" >
+			         and  ynsehj = #{ynsehj}
+			      </if>
+			                                 <if test="qcwjse != null and ''!=qcwjse" >
+			         and  qcwjse = #{qcwjse}
+			      </if>
+			                                 <if test="ssckkjtse != null and ''!=ssckkjtse" >
+			         and  ssckkjtse = #{ssckkjtse}
+			      </if>
+			                                 <if test="bqyjse != null and ''!=bqyjse" >
+			         and  bqyjse = #{bqyjse}
+			      </if>
+			                                 <if test="fqyjse != null and ''!=fqyjse" >
+			         and  fqyjse = #{fqyjse}
+			      </if>
+			                                 <if test="ckkjyjse != null and ''!=ckkjyjse" >
+			         and  ckkjyjse = #{ckkjyjse}
+			      </if>
+			                                 <if test="bqjnyjse != null and ''!=bqjnyjse" >
+			         and  bqjnyjse = #{bqjnyjse}
+			      </if>
+			                                 <if test="bqjnqjse != null and ''!=bqjnqjse" >
+			         and  bqjnqjse = #{bqjnqjse}
+			      </if>
+			                                 <if test="qmwjse != null and ''!=qmwjse" >
+			         and  qmwjse = #{qmwjse}
+			      </if>
+			                                 <if test="qzqjse != null and ''!=qzqjse" >
+			         and  qzqjse = #{qzqjse}
+			      </if>
+			                                 <if test="bqybse != null and ''!=bqybse" >
+			         and  bqybse = #{bqybse}
+			      </if>
+			                                 <if test="jzjtsjtse != null and ''!=jzjtsjtse" >
+			         and  jzjtsjtse = #{jzjtsjtse}
+			      </if>
+			                                 <if test="qcwjcbse != null and ''!=qcwjcbse" >
+			         and  qcwjcbse = #{qcwjcbse}
+			      </if>
+			                                 <if test="bqrkcbse != null and ''!=bqrkcbse" >
+			         and  bqrkcbse = #{bqrkcbse}
+			      </if>
+			                                 <if test="qmwjcbse != null and ''!=qmwjcbse" >
+			         and  qmwjcbse = #{qmwjcbse}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 AddTaxMainGrid
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.AddTaxMainGrid" useGeneratedKeys="true" keyProperty="id">
+		insert into add_tax_main_grid (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{parentId}, 
+		    #{asysljsxse}, 
+		    #{yshwxse}, 
+		    #{yslwxse}, 
+		    #{nsjctzxse}, 
+		    #{ajjybfjsxse}, 
+		    #{qznsjctzxse}, 
+		    #{mdtckxse}, 
+		    #{msxse}, 
+		    #{mshwxse}, 
+		    #{mslwxse}, 
+		    #{xsse}, 
+		    #{jxse}, 
+		    #{sqldse}, 
+		    #{jxsezc}, 
+		    #{mdtytse}, 
+		    #{asysljsbjse}, 
+		    #{ydksehj}, 
+		    #{sjdkse}, 
+		    #{ynse}, 
+		    #{qmldse}, 
+		    #{jyjsynse}, 
+		    #{ajyjsybjse}, 
+		    #{ynsejze}, 
+		    #{ynsehj}, 
+		    #{qcwjse}, 
+		    #{ssckkjtse}, 
+		    #{bqyjse}, 
+		    #{fqyjse}, 
+		    #{ckkjyjse}, 
+		    #{bqjnyjse}, 
+		    #{bqjnqjse}, 
+		    #{qmwjse}, 
+		    #{qzqjse}, 
+		    #{bqybse}, 
+		    #{jzjtsjtse}, 
+		    #{qcwjcbse}, 
+		    #{bqrkcbse}, 
+		    #{qmwjcbse}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 AddTaxMainGrid
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.AddTaxMainGrid">
+	      update add_tax_main_grid
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="asysljsxse != null and ''!=asysljsxse" >
+			        asysljsxse = #{asysljsxse},
+			      </if>
+			                        <if test="yshwxse != null and ''!=yshwxse" >
+			        yshwxse = #{yshwxse},
+			      </if>
+			                        <if test="yslwxse != null and ''!=yslwxse" >
+			        yslwxse = #{yslwxse},
+			      </if>
+			                        <if test="nsjctzxse != null and ''!=nsjctzxse" >
+			        nsjctzxse = #{nsjctzxse},
+			      </if>
+			                        <if test="ajjybfjsxse != null and ''!=ajjybfjsxse" >
+			        ajjybfjsxse = #{ajjybfjsxse},
+			      </if>
+			                        <if test="qznsjctzxse != null and ''!=qznsjctzxse" >
+			        qznsjctzxse = #{qznsjctzxse},
+			      </if>
+			                        <if test="mdtckxse != null and ''!=mdtckxse" >
+			        mdtckxse = #{mdtckxse},
+			      </if>
+			                        <if test="msxse != null and ''!=msxse" >
+			        msxse = #{msxse},
+			      </if>
+			                        <if test="mshwxse != null and ''!=mshwxse" >
+			        mshwxse = #{mshwxse},
+			      </if>
+			                        <if test="mslwxse != null and ''!=mslwxse" >
+			        mslwxse = #{mslwxse},
+			      </if>
+			                        <if test="xsse != null and ''!=xsse" >
+			        xsse = #{xsse},
+			      </if>
+			                        <if test="jxse != null and ''!=jxse" >
+			        jxse = #{jxse},
+			      </if>
+			                        <if test="sqldse != null and ''!=sqldse" >
+			        sqldse = #{sqldse},
+			      </if>
+			                        <if test="jxsezc != null and ''!=jxsezc" >
+			        jxsezc = #{jxsezc},
+			      </if>
+			                        <if test="mdtytse != null and ''!=mdtytse" >
+			        mdtytse = #{mdtytse},
+			      </if>
+			                        <if test="asysljsbjse != null and ''!=asysljsbjse" >
+			        asysljsbjse = #{asysljsbjse},
+			      </if>
+			                        <if test="ydksehj != null and ''!=ydksehj" >
+			        ydksehj = #{ydksehj},
+			      </if>
+			                        <if test="sjdkse != null and ''!=sjdkse" >
+			        sjdkse = #{sjdkse},
+			      </if>
+			                        <if test="ynse != null and ''!=ynse" >
+			        ynse = #{ynse},
+			      </if>
+			                        <if test="qmldse != null and ''!=qmldse" >
+			        qmldse = #{qmldse},
+			      </if>
+			                        <if test="jyjsynse != null and ''!=jyjsynse" >
+			        jyjsynse = #{jyjsynse},
+			      </if>
+			                        <if test="ajyjsybjse != null and ''!=ajyjsybjse" >
+			        ajyjsybjse = #{ajyjsybjse},
+			      </if>
+			                        <if test="ynsejze != null and ''!=ynsejze" >
+			        ynsejze = #{ynsejze},
+			      </if>
+			                        <if test="ynsehj != null and ''!=ynsehj" >
+			        ynsehj = #{ynsehj},
+			      </if>
+			                        <if test="qcwjse != null and ''!=qcwjse" >
+			        qcwjse = #{qcwjse},
+			      </if>
+			                        <if test="ssckkjtse != null and ''!=ssckkjtse" >
+			        ssckkjtse = #{ssckkjtse},
+			      </if>
+			                        <if test="bqyjse != null and ''!=bqyjse" >
+			        bqyjse = #{bqyjse},
+			      </if>
+			                        <if test="fqyjse != null and ''!=fqyjse" >
+			        fqyjse = #{fqyjse},
+			      </if>
+			                        <if test="ckkjyjse != null and ''!=ckkjyjse" >
+			        ckkjyjse = #{ckkjyjse},
+			      </if>
+			                        <if test="bqjnyjse != null and ''!=bqjnyjse" >
+			        bqjnyjse = #{bqjnyjse},
+			      </if>
+			                        <if test="bqjnqjse != null and ''!=bqjnqjse" >
+			        bqjnqjse = #{bqjnqjse},
+			      </if>
+			                        <if test="qmwjse != null and ''!=qmwjse" >
+			        qmwjse = #{qmwjse},
+			      </if>
+			                        <if test="qzqjse != null and ''!=qzqjse" >
+			        qzqjse = #{qzqjse},
+			      </if>
+			                        <if test="bqybse != null and ''!=bqybse" >
+			        bqybse = #{bqybse},
+			      </if>
+			                        <if test="jzjtsjtse != null and ''!=jzjtsjtse" >
+			        jzjtsjtse = #{jzjtsjtse},
+			      </if>
+			                        <if test="qcwjcbse != null and ''!=qcwjcbse" >
+			        qcwjcbse = #{qcwjcbse},
+			      </if>
+			                        <if test="bqrkcbse != null and ''!=bqrkcbse" >
+			        bqrkcbse = #{bqrkcbse},
+			      </if>
+			                        <if test="qmwjcbse != null and ''!=qmwjcbse" >
+			        qmwjcbse = #{qmwjcbse},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxMainGrid 总数
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.AddTaxMainGrid">
+		select count(*)
+		from add_tax_main_grid
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxMainGrid 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_AddTaxMainGrid" parameterType="com.invoice.po.AddTaxMainGrid">
+		select 
+        <include refid="sql"/>
+		from add_tax_main_grid
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表AddTaxMainGrid 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_AddTaxMainGrid" parameterType="com.invoice.po.AddTaxMainGrid">
+		select 
+        <include refid="sql"/>
+		from add_tax_main_grid
+		
+	</select>
+	
+	<select id="queryList1" resultMap="RM_AddTaxMainGrid" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from add_tax_main_grid
+		where parent_id=#{id}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxMainGrid 分页信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_AddTaxMainGrid" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from add_tax_main_grid
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.AddTaxMainGrid">
+	 update add_tax_main_grid set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update add_tax_main_grid set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	<delete id="del" parameterType="com.invoice.po.AddTaxMain">
+	 delete from  add_tax_main_grid where parent_id=#{id}
+	</delete>
+</mapper>

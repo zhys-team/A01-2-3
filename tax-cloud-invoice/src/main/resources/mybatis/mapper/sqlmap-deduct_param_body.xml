@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="deduct_param_body">
+
+	<!--
+      - ===============================================
+      - 返回 DeductParamBody Entity
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.po.DeductParamBody"	   id="RM_DeductParamBody">
+		<id     property="id"          column="id"           jdbcType="BIGINT"     javaType="java.lang.Long"    />
+		<result property="taxNo"       column="tax_no"       jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="period"      column="period"       jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="deductType"  column="deduct_type"  jdbcType="CHAR"       javaType="java.lang.String"  />
+		<result property="createTime"  column="create_time"  jdbcType="TIMESTAMP"  javaType="java.util.Date"    />
+		<result property="state"       column="state"        jdbcType="CHAR"       javaType="java.lang.String"  />
+		<result property="requestId"   column="request_id"   jdbcType="VARCHAR"    javaType="java.lang.String"  />
+	</resultMap>
+	
+	<resultMap  type="com.zhys.po.DeductParamBody"	   id="RM_DeductParamBody_map">
+		<id     property="id"          column="id"           jdbcType="BIGINT"     javaType="java.lang.Long"    />
+		<result property="taxNo"       column="tax_no"       jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="period"      column="period"       jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="deductType"  column="deduct_type"  jdbcType="CHAR"       javaType="java.lang.String"  />
+		<result property="createTime"  column="create_time"  jdbcType="TIMESTAMP"  javaType="java.util.Date"    />
+		<result property="state"       column="state"        jdbcType="CHAR"       javaType="java.lang.String"  />
+		<result property="requestId"   column="request_id"   jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<collection  property="invoices"  ofType="com.zhys.po.DeductParamSub"  column="id"  select="deduct_param_sub.queryList1"></collection>
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			tax_no, 
+    			period, 
+    			deduct_type, 
+    			create_time, 
+    			state, 
+    			request_id
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="taxNo != null and ''!=taxNo" >
+			         and  tax_no = #{taxNo}
+			      </if>
+			                                 <if test="period != null and ''!=period" >
+			         and  period = #{period}
+			      </if>
+			                                 <if test="deductType != null and ''!=deductType" >
+			         and  deduct_type = #{deductType}
+			      </if>
+			                                 <if test="createTime != null and ''!=createTime" >
+			         and  create_time = #{createTime}
+			      </if>
+			                                 <if test="state != null and ''!=state" >
+			         and  state = #{state}
+			      </if>
+			                                 <if test="requestId != null and ''!=requestId" >
+			         and  request_id = #{requestId}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 DeductParamBody
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.po.DeductParamBody" useGeneratedKeys="true" keyProperty="id">
+		insert into deduct_param_body (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{taxNo}, 
+		    #{period}, 
+		    #{deductType}, 
+		    now(), 
+		    #{state}, 
+		    #{requestId}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 DeductParamBody
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.po.DeductParamBody">
+	      update deduct_param_body
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="taxNo != null and ''!=taxNo" >
+			        tax_no = #{taxNo},
+			      </if>
+			                        <if test="period != null and ''!=period" >
+			        period = #{period},
+			      </if>
+			                        <if test="deductType != null and ''!=deductType" >
+			        deduct_type = #{deductType},
+			      </if>
+			                        <if test="createTime != null and ''!=createTime" >
+			        create_time = #{createTime},
+			      </if>
+			                        <if test="state != null and ''!=state" >
+			        state = #{state},
+			      </if>
+			                        <if test="requestId != null and ''!=requestId" >
+			        request_id = #{requestId},
+			      </if>
+			                     </set>
+		    where request_id = #{requestId}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 DeductParamBody 总数
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.po.DeductParamBody">
+		select count(*)
+		from deduct_param_body
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 DeductParamBody 信息
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_DeductParamBody" parameterType="com.zhys.po.DeductParamBody">
+		select 
+        <include refid="sql"/>
+		from deduct_param_body
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表DeductParamBody 信息
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_DeductParamBody" parameterType="com.zhys.po.DeductParamBody">
+		select 
+        <include refid="sql"/>
+		from deduct_param_body
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 DeductParamBody 分页信息
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_DeductParamBody_map" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from deduct_param_body
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.zhys.po.DeductParamBody">
+	 update deduct_param_body set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update deduct_param_body set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="tax_mech">
+
+	<!--
+      - ===============================================
+      - 返回 TaxMech Entity
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.user.po.TaxMech"	   id="RM_TaxMech">
+		<id     property="id"              column="id"                jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="taxMechCode"     column="tax_mech_code"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="taxMechName"     column="tax_mech_name"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="taxSoftVersion"  column="tax_soft_version"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="billingLimit"    column="billingLimit"      jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="bmbbh"           column="bmbbh"             jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="invoiceType"     column="invoice_type"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="orgId"           column="org_id"            jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="orgName"  column="org_name"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			tax_mech_code, 
+    			tax_mech_name, 
+    			tax_soft_version, 
+    			billingLimit, 
+    			bmbbh, 
+    			invoice_type, 
+    			org_id,
+    			org_name
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="taxMechCode != null and ''!=taxMechCode" >
+			         and  tax_mech_code = #{taxMechCode}
+			      </if>
+			                                 <if test="taxMechName != null and ''!=taxMechName" >
+			         and  tax_mech_name = #{taxMechName}
+			      </if>
+			                                 <if test="taxSoftVersion != null and ''!=taxSoftVersion" >
+			         and  tax_soft_version = #{taxSoftVersion}
+			      </if>
+			                                 <if test="billingLimit != null and ''!=billingLimit" >
+			         and  billingLimit = #{billingLimit}
+			      </if>
+			                                 <if test="bmbbh != null and ''!=bmbbh" >
+			         and  bmbbh = #{bmbbh}
+			      </if>
+			                                 <if test="invoiceType != null and ''!=invoiceType" >
+			         and  invoice_type = #{invoiceType}
+			      </if>
+			                                 <if test="orgId != null and ''!=orgId" >
+			         and  org_id = #{orgId}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 TaxMech
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.user.po.TaxMech" useGeneratedKeys="true" keyProperty="id">
+		insert into tax_mech (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{taxMechCode}, 
+		    #{taxMechName}, 
+		    #{taxSoftVersion}, 
+		    #{billingLimit}, 
+		    #{bmbbh}, 
+		    #{invoiceType}, 
+		    #{orgId},
+		    #{orgName}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 TaxMech
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.user.po.TaxMech">
+	      update tax_mech
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="taxMechCode != null and ''!=taxMechCode" >
+			        tax_mech_code = #{taxMechCode},
+			      </if>
+			                        <if test="taxMechName != null and ''!=taxMechName" >
+			        tax_mech_name = #{taxMechName},
+			      </if>
+			                        <if test="taxSoftVersion != null and ''!=taxSoftVersion" >
+			        tax_soft_version = #{taxSoftVersion},
+			      </if>
+			                        <if test="billingLimit != null and ''!=billingLimit" >
+			        billingLimit = #{billingLimit},
+			      </if>
+			                        <if test="bmbbh != null and ''!=bmbbh" >
+			        bmbbh = #{bmbbh},
+			      </if>
+			                        <if test="invoiceType != null and ''!=invoiceType" >
+			        invoice_type = #{invoiceType},
+			      </if>
+			                        <if test="orgId != null and ''!=orgId" >
+			        org_id = #{orgId},
+			      </if>
+			      <if test="orgName != null and ''!=orgName" >
+			        org_name = #{orgName},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 TaxMech 总数
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.user.po.TaxMech">
+		select count(*)
+		from tax_mech
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 TaxMech 信息
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_TaxMech" parameterType="com.zhys.user.po.TaxMech">
+		select 
+        <include refid="sql"/>
+		from tax_mech
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表TaxMech 信息
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_TaxMech" parameterType="com.zhys.user.po.TaxMech">
+		select 
+        <include refid="sql"/>
+		from tax_mech
+		
+	</select>
+	
+	
+	<select id="queryList1" resultMap="RM_TaxMech" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from tax_mech
+		where org_id = #{id}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 TaxMech 分页信息
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_TaxMech" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from tax_mech
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<delete id="changeStateById" parameterType="com.zhys.user.po.SysOrgs">
+	 delete from  tax_mech  where org_id=#{id}
+	</delete>
+	
+	<delete id="changeStateByIds" parameterType="java.util.HashMap">
+	 delete from  tax_mech where org_id in (${ids})
+	</delete>
+</mapper>

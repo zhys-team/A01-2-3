@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="data_base">
+
+	<!--
+      - ===============================================
+      - 返回 DataBase Entity
+      - @author 11734
+      - @date 2018-08-31
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.base.po.DataBase"	   id="RM_DataBase">
+		<id     property="id"        column="id"         jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="parentId"  column="parent_id"  jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="name"      column="name"       jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="code"      column="code"       jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="rank"      column="rank"       jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="mark"      column="mark"       jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="delState"  column="del_state"  jdbcType="CHAR"     javaType="java.lang.String"   />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			parent_id, 
+    			name, 
+    			code, 
+    			rank, 
+    			mark, 
+    			del_state
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     del_state=0
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="name != null and ''!=name" >
+			         and  name like '%${name}%'
+			      </if>
+			                                 <if test="code != null and ''!=code" >
+			         and  code like '${code}%'
+			      </if>
+			                                 <if test="rank != null and ''!=rank" >
+			         and  rank = #{rank}
+			      </if>
+			                                 <if test="mark != null and ''!=mark" >
+			         and  mark = #{mark}
+			      </if>
+			                                 <if test="delState != null and ''!=delState" >
+			         and  del_state = #{delState}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 DataBase
+      - @author 11734
+      - @date 2018-08-31
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.base.po.DataBase" useGeneratedKeys="true" keyProperty="id">
+		insert into data_base (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{parentId}, 
+		    #{name}, 
+		    #{code}, 
+		    #{rank}, 
+		    #{mark}, 
+		    '0'
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 DataBase
+      - @author 11734
+      - @date 2018-08-31
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.base.po.DataBase">
+	      update data_base
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="name != null and ''!=name" >
+			        name = #{name},
+			      </if>
+			                        <if test="code != null and ''!=code" >
+			        code = #{code},
+			      </if>
+			                        <if test="rank != null and ''!=rank" >
+			        rank = #{rank},
+			      </if>
+			                        <if test="mark != null and ''!=mark" >
+			        mark = #{mark},
+			      </if>
+			                        <if test="delState != null and ''!=delState" >
+			        del_state = #{delState},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 DataBase 总数
+      - @author 11734
+      - @date 2018-08-31
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.base.po.DataBase">
+		select count(*)
+		from data_base
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 DataBase 信息
+      - @author 11734
+      - @date 2018-08-31
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_DataBase" parameterType="com.zhys.base.po.DataBase">
+		select 
+        <include refid="sql"/>
+		from data_base
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表DataBase 信息
+      - @author 11734
+      - @date 2018-08-31
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_DataBase" parameterType="com.zhys.base.po.DataBase">
+		select 
+        <include refid="sql"/>
+		from data_base
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 DataBase 分页信息
+      - @author 11734
+      - @date 2018-08-31
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_DataBase" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from data_base
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.zhys.base.po.DataBase">
+	 update data_base set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update data_base set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

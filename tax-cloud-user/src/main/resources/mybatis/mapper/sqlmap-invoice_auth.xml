@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="invoice_auth">
+
+	<!--
+      - ===============================================
+      - 返回 InvoiceAuth Entity
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.user.po.InvoiceAuth"	   id="RM_InvoiceAuth">
+		<id     property="id"           column="id"             jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="taxMechCode"  column="tax_mech_code"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="taxMechName"  column="tax_mech_name"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="invoiceType"  column="invoice_type"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="orgId"        column="org_id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="orgName"  column="org_name"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			tax_mech_code, 
+    			tax_mech_name, 
+    			invoice_type, 
+    			org_id,
+    			org_name
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="taxMechCode != null and ''!=taxMechCode" >
+			         and  tax_mech_code = #{taxMechCode}
+			      </if>
+			                                 <if test="taxMechName != null and ''!=taxMechName" >
+			         and  tax_mech_name = #{taxMechName}
+			      </if>
+			                                 <if test="invoiceType != null and ''!=invoiceType" >
+			         and  invoice_type = #{invoiceType}
+			      </if>
+			                                 <if test="orgId != null and ''!=orgId" >
+			         and  org_id = #{orgId}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 InvoiceAuth
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.user.po.InvoiceAuth" useGeneratedKeys="true" keyProperty="id">
+		insert into invoice_auth (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{taxMechCode}, 
+		    #{taxMechName}, 
+		    #{invoiceType}, 
+		    #{orgId},
+		    #{orgName}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 InvoiceAuth
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.user.po.InvoiceAuth">
+	      update invoice_auth
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="taxMechCode != null and ''!=taxMechCode" >
+			        tax_mech_code = #{taxMechCode},
+			      </if>
+			                        <if test="taxMechName != null and ''!=taxMechName" >
+			        tax_mech_name = #{taxMechName},
+			      </if>
+			                        <if test="invoiceType != null and ''!=invoiceType" >
+			        invoice_type = #{invoiceType},
+			      </if>
+			                        <if test="orgId != null and ''!=orgId" >
+			        org_id = #{orgId},
+			      </if>
+			      <if test="orgName != null and ''!=orgName" >
+			        org_name = #{orgName},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 InvoiceAuth 总数
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.user.po.InvoiceAuth">
+		select count(*)
+		from invoice_auth
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 InvoiceAuth 信息
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_InvoiceAuth" parameterType="com.zhys.user.po.InvoiceAuth">
+		select 
+        <include refid="sql"/>
+		from invoice_auth
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表InvoiceAuth 信息
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_InvoiceAuth" parameterType="com.zhys.user.po.InvoiceAuth">
+		select 
+        <include refid="sql"/>
+		from invoice_auth
+		
+	</select>
+	
+	<select id="queryList1" resultMap="RM_InvoiceAuth" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from invoice_auth
+		where  org_id = #{id}
+		
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 InvoiceAuth 分页信息
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_InvoiceAuth" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from invoice_auth
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<delete id="changeStateById" parameterType="com.zhys.user.po.SysOrgs">
+	 delete from  invoice_auth  where org_id=#{id}
+	</delete>
+	
+	<delete id="changeStateByIds" parameterType="java.util.HashMap">
+	 delete from  invoice_auth  where org_id in (${ids})
+	</delete>
+</mapper>

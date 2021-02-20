@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="customs_payment_book">
+
+	<!--
+      - ===============================================
+      - 返回 CustomsPaymentBook Entity
+      - @author 11734
+      - @date 2018-10-30
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.CustomsPaymentBook"	   id="RM_CustomsPaymentBook">
+		<id     property="id"               column="id"                jdbcType="BIGINT"     javaType="java.lang.Long"        />
+		<result property="billingNo"        column="billing_no"        jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="billingDate"      column="billing_date"      jdbcType="DATE"       javaType="java.sql.Date"         />
+		<result property="paymentOrg"       column="payment_org"       jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="totalTax"         column="total_tax"         jdbcType="DECIMAL"    javaType="java.math.BigDecimal"  />
+		<result property="customsName"      column="customs_name"      jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="customsCode"      column="customs_code"      jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="applyOrgNo"       column="apply_org_no"      jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="customsNo"        column="customs_no"        jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="contractNo"       column="contract_no"       jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="transportNo"      column="transport_no"      jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="cargoOwner"       column="cargo_owner"       jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="operationEntity"  column="operation_entity"  jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="paymentPeriod"    column="payment_period"    jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="loadingNo"        column="loading_no"        jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="submitter"        column="submitter"         jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="submitDate"       column="submit_date"       jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="businessMan"      column="business_man"      jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="checkStatus"      column="check_status"      jdbcType="CHAR"       javaType="java.lang.String"      />
+		<result property="bookStatus"       column="book_status"       jdbcType="CHAR"       javaType="java.lang.String"      />
+		<result property="mark"             column="mark"              jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="budgetaryLevels"  column="budgetary_levels"  jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="paymentAccount"   column="payment_account"   jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="paymentBank"      column="payment_bank"      jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="revenueOrg"       column="revenue_org"       jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="skgk"             column="skgk"              jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="filePath"         column="file_path"         jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="orgId"            column="org_id"            jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="delState"         column="del_state"         jdbcType="CHAR"       javaType="java.lang.String"      />
+		<result property="totalPrice"       column="total_price"       jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="incomeSystem"     column="income_system"     jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="createTime"       column="create_time"       jdbcType="TIMESTAMP"  javaType="java.util.Date"        />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			billing_no, 
+    			billing_date, 
+    			payment_org, 
+    			total_tax, 
+    			customs_name, 
+    			customs_code, 
+    			apply_org_no, 
+    			customs_no, 
+    			contract_no, 
+    			transport_no, 
+    			cargo_owner, 
+    			operation_entity, 
+    			payment_period, 
+    			loading_no, 
+    			submitter, 
+    			submit_date, 
+    			business_man, 
+    			check_status, 
+    			book_status, 
+    			mark, 
+    			budgetary_levels, 
+    			payment_account, 
+    			payment_bank, 
+    			revenue_org, 
+    			skgk, 
+    			file_path, 
+    			org_id, 
+    			del_state, 
+    			total_price, 
+    			income_system, 
+    			create_time
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="billingNo != null and ''!=billingNo" >
+			         and  billing_no = #{billingNo}
+			      </if>
+			                                 <if test="billingDate != null and ''!=billingDate" >
+			         and  billing_date = #{billingDate}
+			      </if>
+			                                 <if test="paymentOrg != null and ''!=paymentOrg" >
+			         and  payment_org = #{paymentOrg}
+			      </if>
+			                                 <if test="totalTax != null and ''!=totalTax" >
+			         and  total_tax = #{totalTax}
+			      </if>
+			                                 <if test="customsName != null and ''!=customsName" >
+			         and  customs_name = #{customsName}
+			      </if>
+			                                 <if test="customsCode != null and ''!=customsCode" >
+			         and  customs_code = #{customsCode}
+			      </if>
+			                                 <if test="applyOrgNo != null and ''!=applyOrgNo" >
+			         and  apply_org_no = #{applyOrgNo}
+			      </if>
+			                                 <if test="customsNo != null and ''!=customsNo" >
+			         and  customs_no = #{customsNo}
+			      </if>
+			                                 <if test="contractNo != null and ''!=contractNo" >
+			         and  contract_no = #{contractNo}
+			      </if>
+			                                 <if test="transportNo != null and ''!=transportNo" >
+			         and  transport_no = #{transportNo}
+			      </if>
+			                                 <if test="cargoOwner != null and ''!=cargoOwner" >
+			         and  cargo_owner = #{cargoOwner}
+			      </if>
+			                                 <if test="operationEntity != null and ''!=operationEntity" >
+			         and  operation_entity = #{operationEntity}
+			      </if>
+			                                 <if test="paymentPeriod != null and ''!=paymentPeriod" >
+			         and  payment_period = #{paymentPeriod}
+			      </if>
+			                                 <if test="loadingNo != null and ''!=loadingNo" >
+			         and  loading_no = #{loadingNo}
+			      </if>
+			                                 <if test="submitter != null and ''!=submitter" >
+			         and  submitter = #{submitter}
+			      </if>
+			                                 <if test="submitDate != null and ''!=submitDate" >
+			         and  submit_date = #{submitDate}
+			      </if>
+			                                 <if test="businessMan != null and ''!=businessMan" >
+			         and  business_man = #{businessMan}
+			      </if>
+			                                 <if test="checkStatus != null and ''!=checkStatus" >
+			         and  check_status = #{checkStatus}
+			      </if>
+			                                 <if test="bookStatus != null and ''!=bookStatus" >
+			         and  book_status = #{bookStatus}
+			      </if>
+			                                 <if test="mark != null and ''!=mark" >
+			         and  mark = #{mark}
+			      </if>
+			                                 <if test="budgetaryLevels != null and ''!=budgetaryLevels" >
+			         and  budgetary_levels = #{budgetaryLevels}
+			      </if>
+			                                 <if test="paymentAccount != null and ''!=paymentAccount" >
+			         and  payment_account = #{paymentAccount}
+			      </if>
+			                                 <if test="paymentBank != null and ''!=paymentBank" >
+			         and  payment_bank = #{paymentBank}
+			      </if>
+			                                 <if test="revenueOrg != null and ''!=revenueOrg" >
+			         and  revenue_org = #{revenueOrg}
+			      </if>
+			                                 <if test="skgk != null and ''!=skgk" >
+			         and  skgk = #{skgk}
+			      </if>
+			                                 <if test="filePath != null and ''!=filePath" >
+			         and  file_path = #{filePath}
+			      </if>
+			                                 <if test="orgId != null and ''!=orgId" >
+			         and  org_id = #{orgId}
+			      </if>
+			                                 <if test="delState != null and ''!=delState" >
+			         and  del_state = #{delState}
+			      </if>
+			                                 <if test="totalPrice != null and ''!=totalPrice" >
+			         and  total_price = #{totalPrice}
+			      </if>
+			                                 <if test="incomeSystem != null and ''!=incomeSystem" >
+			         and  income_system = #{incomeSystem}
+			      </if>
+			                                 <if test="createTime != null and ''!=createTime" >
+			         and  create_time = #{createTime}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 CustomsPaymentBook
+      - @author 11734
+      - @date 2018-10-30
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.CustomsPaymentBook" useGeneratedKeys="true" keyProperty="id">
+		insert into customs_payment_book (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{billingNo}, 
+		    #{billingDate}, 
+		    #{paymentOrg}, 
+		    #{totalTax}, 
+		    #{customsName}, 
+		    #{customsCode}, 
+		    #{applyOrgNo}, 
+		    #{customsNo}, 
+		    #{contractNo}, 
+		    #{transportNo}, 
+		    #{cargoOwner}, 
+		    #{operationEntity}, 
+		    #{paymentPeriod}, 
+		    #{loadingNo}, 
+		    #{submitter}, 
+		    #{submitDate}, 
+		    #{businessMan}, 
+		    #{checkStatus}, 
+		    #{bookStatus}, 
+		    #{mark}, 
+		    #{budgetaryLevels}, 
+		    #{paymentAccount}, 
+		    #{paymentBank}, 
+		    #{revenueOrg}, 
+		    #{skgk}, 
+		    #{filePath}, 
+		    #{orgId}, 
+		    #{delState}, 
+		    #{totalPrice}, 
+		    #{incomeSystem}, 
+		    #{createTime}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 CustomsPaymentBook
+      - @author 11734
+      - @date 2018-10-30
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.CustomsPaymentBook">
+	      update customs_payment_book
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="billingNo != null and ''!=billingNo" >
+			        billing_no = #{billingNo},
+			      </if>
+			                        <if test="billingDate != null and ''!=billingDate" >
+			        billing_date = #{billingDate},
+			      </if>
+			                        <if test="paymentOrg != null and ''!=paymentOrg" >
+			        payment_org = #{paymentOrg},
+			      </if>
+			                        <if test="totalTax != null and ''!=totalTax" >
+			        total_tax = #{totalTax},
+			      </if>
+			                        <if test="customsName != null and ''!=customsName" >
+			        customs_name = #{customsName},
+			      </if>
+			                        <if test="customsCode != null and ''!=customsCode" >
+			        customs_code = #{customsCode},
+			      </if>
+			                        <if test="applyOrgNo != null and ''!=applyOrgNo" >
+			        apply_org_no = #{applyOrgNo},
+			      </if>
+			                        <if test="customsNo != null and ''!=customsNo" >
+			        customs_no = #{customsNo},
+			      </if>
+			                        <if test="contractNo != null and ''!=contractNo" >
+			        contract_no = #{contractNo},
+			      </if>
+			                        <if test="transportNo != null and ''!=transportNo" >
+			        transport_no = #{transportNo},
+			      </if>
+			                        <if test="cargoOwner != null and ''!=cargoOwner" >
+			        cargo_owner = #{cargoOwner},
+			      </if>
+			                        <if test="operationEntity != null and ''!=operationEntity" >
+			        operation_entity = #{operationEntity},
+			      </if>
+			                        <if test="paymentPeriod != null and ''!=paymentPeriod" >
+			        payment_period = #{paymentPeriod},
+			      </if>
+			                        <if test="loadingNo != null and ''!=loadingNo" >
+			        loading_no = #{loadingNo},
+			      </if>
+			                        <if test="submitter != null and ''!=submitter" >
+			        submitter = #{submitter},
+			      </if>
+			                        <if test="submitDate != null and ''!=submitDate" >
+			        submit_date = #{submitDate},
+			      </if>
+			                        <if test="businessMan != null and ''!=businessMan" >
+			        business_man = #{businessMan},
+			      </if>
+			                        <if test="checkStatus != null and ''!=checkStatus" >
+			        check_status = #{checkStatus},
+			      </if>
+			                        <if test="bookStatus != null and ''!=bookStatus" >
+			        book_status = #{bookStatus},
+			      </if>
+			                        <if test="mark != null and ''!=mark" >
+			        mark = #{mark},
+			      </if>
+			                        <if test="budgetaryLevels != null and ''!=budgetaryLevels" >
+			        budgetary_levels = #{budgetaryLevels},
+			      </if>
+			                        <if test="paymentAccount != null and ''!=paymentAccount" >
+			        payment_account = #{paymentAccount},
+			      </if>
+			                        <if test="paymentBank != null and ''!=paymentBank" >
+			        payment_bank = #{paymentBank},
+			      </if>
+			                        <if test="revenueOrg != null and ''!=revenueOrg" >
+			        revenue_org = #{revenueOrg},
+			      </if>
+			                        <if test="skgk != null and ''!=skgk" >
+			        skgk = #{skgk},
+			      </if>
+			                        <if test="filePath != null and ''!=filePath" >
+			        file_path = #{filePath},
+			      </if>
+			                        <if test="orgId != null and ''!=orgId" >
+			        org_id = #{orgId},
+			      </if>
+			                        <if test="delState != null and ''!=delState" >
+			        del_state = #{delState},
+			      </if>
+			                        <if test="totalPrice != null and ''!=totalPrice" >
+			        total_price = #{totalPrice},
+			      </if>
+			                        <if test="incomeSystem != null and ''!=incomeSystem" >
+			        income_system = #{incomeSystem},
+			      </if>
+			                        <if test="createTime != null and ''!=createTime" >
+			        create_time = #{createTime},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 CustomsPaymentBook 总数
+      - @author 11734
+      - @date 2018-10-30
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.CustomsPaymentBook">
+		select count(*)
+		from customs_payment_book
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 CustomsPaymentBook 信息
+      - @author 11734
+      - @date 2018-10-30
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_CustomsPaymentBook" parameterType="com.invoice.po.CustomsPaymentBook">
+		select 
+        <include refid="sql"/>
+		from customs_payment_book
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表CustomsPaymentBook 信息
+      - @author 11734
+      - @date 2018-10-30
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_CustomsPaymentBook" parameterType="com.invoice.po.CustomsPaymentBook">
+		select 
+        <include refid="sql"/>
+		from customs_payment_book
+		<where>
+		  <include refid="where"/>
+		</where>
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 CustomsPaymentBook 分页信息
+      - @author 11734
+      - @date 2018-10-30
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_CustomsPaymentBook" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from customs_payment_book
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.CustomsPaymentBook">
+	 update customs_payment_book set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update customs_payment_book set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

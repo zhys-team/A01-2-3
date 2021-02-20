@@ -1,0 +1,71 @@
+server:
+  port: 2000
+
+#日志
+logging:
+  config: classpath:logback-${spring.profiles.active}.xml
+  level:  
+    top.anets.mapper: debug
+
+spring:
+   application:
+    name: e-invoice
+   profiles:
+     active: dev
+   datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/fin-tax?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+#    url: jdbc:oracle:thin:@10.10.20.27:1521:jsdb
+#    username: system
+#    password: jsdb128#
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+
+ #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    
+#mybatis
+mybatis:
+  mapper-locations:
+  - classpath:/mapper/*.xml
+  
+  
+  
+#pageHelper插件配置
+pagehelper:
+  helper-dialect: mysql    #数据库连接 oracle
+  reasonable: true        #分页合理化参数
+     
+eureka:
+  instance:
+    prefer-ip-address: true
+  client: 
+    service-url:
+      defaultZone: http://localhost:20002/eureka/
+     
+#测试
+httpclient:
+  fpx_url: d:/gnjt.pfx
+  dev_or_prod: dev
+
+
+#正式
+#httpclient:
+#  fpx_url: /home/gnjs/zhys/gnjt.pfx
+#  dev_or_prod: prod
+
+     

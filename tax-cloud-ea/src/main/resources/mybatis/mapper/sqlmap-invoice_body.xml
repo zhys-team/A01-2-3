@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="invoice_body">
+
+	<!--
+      - ===============================================
+      - 返回 InvoiceBody Entity
+      - @author 11734
+      - @date 2018-05-24
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.InvoiceBody"	   id="RM_InvoiceBody">
+		<id     property="id"      column="id"       jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="headId"  column="head_id"  jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="hh"      column="hh"       jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="hwmc"    column="hwmc"     jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="ggxh"    column="ggxh"     jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="dw"      column="dw"       jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="sl"      column="sl"       jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="dj"      column="dj"       jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="je"      column="je"       jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="slv"     column="slv"      jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="se"      column="se"       jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		
+	</resultMap>
+
+<!-- sql查询语句-->
+	<sql id="sql">
+		id, 
+			head_id, 
+			hh, 
+			hwmc, 
+			ggxh, 
+			dw, 
+			sl, 
+			dj, 
+			je, 
+			slv, 
+			se
+	</sql>
+	
+	
+	<!-- sql查询条件-->
+	<sql id="where">
+	     1=1
+	    <if test="headId != null and ''!=headId" >
+			  and   head_id = #{headId}
+	    </if>
+	    <if test="headIds != null and ''!=headIds" >
+			  and   head_id in (${headIds})
+	    </if>
+    </sql>
+
+	<!--
+      - ===============================================
+      - 新增 InvoiceBody
+      - @author 11734
+      - @date 2018-05-24
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.InvoiceBody" useGeneratedKeys="true" keyProperty="id">
+		insert into invoice_body (
+			<include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{headId}, 
+		    #{hh}, 
+		    #{hwmc}, 
+		    #{ggxh}, 
+		    #{dw}, 
+		    #{sl}, 
+		    #{dj}, 
+		    #{je}, 
+		    #{slv}, 
+		    #{se}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 InvoiceBody
+      - @author 11734
+      - @date 2018-05-24
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.InvoiceBody">
+	      update invoice_body
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="headId != null and ''!=headId" >
+			        head_id = #{headId},
+			      </if>
+			                        <if test="hh != null and ''!=hh" >
+			        hh = #{hh},
+			      </if>
+			                        <if test="hwmc != null and ''!=hwmc" >
+			        hwmc = #{hwmc},
+			      </if>
+			                        <if test="ggxh != null and ''!=ggxh" >
+			        ggxh = #{ggxh},
+			      </if>
+			                        <if test="dw != null and ''!=dw" >
+			        dw = #{dw},
+			      </if>
+			                        <if test="sl != null and ''!=sl" >
+			        sl = #{sl},
+			      </if>
+			                        <if test="dj != null and ''!=dj" >
+			        dj = #{dj},
+			      </if>
+			                        <if test="je != null and ''!=je" >
+			        je = #{je},
+			      </if>
+			                        <if test="slv != null and ''!=slv" >
+			        slv = #{slv},
+			      </if>
+			                        <if test="se != null and ''!=se" >
+			        se = #{se},
+			      </if>
+			                        
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 InvoiceBody 总数
+      - @author 11734
+      - @date 2018-05-24
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.InvoiceBody">
+		select count(*)
+		from invoice_body
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 InvoiceBody 信息
+      - @author 11734
+      - @date 2018-05-24
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_InvoiceBody" parameterType="com.invoice.po.InvoiceBody">
+		select 
+		    <include refid="sql"/>
+		from invoice_body
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表InvoiceBody 信息
+      - @author 11734
+      - @date 2018-05-24
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_InvoiceBody" parameterType="java.util.HashMap">
+		select 
+		    <include refid="sql"/>
+		from invoice_body
+		where 1=1 
+			  and   head_id = #{headId}
+	</select>
+	<!--
+      - ===============================================
+      - 查询 列表InvoiceBody 信息
+      - @author 11734
+      - @date 2018-05-24
+      - ===============================================
+    -->
+	<select id="queryListByPoJo" resultMap="RM_InvoiceBody" parameterType="java.util.HashMap">
+		select 
+		    <include refid="sql"/>
+		from invoice_body
+		where 1=1 
+			  and   head_id in (${headIds})
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 InvoiceBody 分页信息
+      - @author 11734
+      - @date 2018-05-24
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_InvoiceBody" parameterType="java.util.HashMap">
+		select 
+		    <include refid="sql"/>
+		from invoice_body
+		where 1=1 
+		<if test="hh != null and ''!=hh" >
+			  and   hh = #{hh}
+	    </if>
+	</select>
+	
+	<delete id="delByParent" parameterType="java.util.HashMap">
+	delete from invoice_body where head_id = #{invoiceId}
+	</delete>
+</mapper>

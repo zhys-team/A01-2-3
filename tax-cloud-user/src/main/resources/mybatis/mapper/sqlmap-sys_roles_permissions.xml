@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sys_roles_permissions">
+
+	<!--
+      - ===============================================
+      - 返回 SysRolesPermissions Entity
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.user.po.SysRolesPermissions"	   id="RM_SysRolesPermissions">
+		<result property="roleid"        column="roleid"        jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="permissionid"  column="permissionid"  jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+	</resultMap>
+
+	<!--
+      - ===============================================
+      - 新增 SysRolesPermissions
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.user.po.SysRolesPermissions" >
+		insert into sys_roles_permissions (
+			roleid, 
+			permissionid
+		) values (
+		    #{roleid}, 
+		    #{permissionid}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 删除 SysRolesPermissions
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+    <delete id="delete" parameterType="com.zhys.user.po.SysRolesPermissions">
+     delete from sys_roles_permissions where 1=1
+      
+        and roleid = #{roleid}
+      
+    </delete>
+	
+
+	<!--
+      - ===============================================
+      - 查询 SysRolesPermissions 总数
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.user.po.SysRolesPermissions">
+		select count(*)
+		from sys_roles_permissions
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysRolesPermissions 信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_SysRolesPermissions" parameterType="com.zhys.user.po.SysRolesPermissions">
+		select 
+		    roleid, 
+		    permissionid
+		from sys_roles_permissions
+		
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表SysRolesPermissions 信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_SysRolesPermissions" parameterType="com.zhys.user.po.SysRolesPermissions">
+		select 
+		    roleid, 
+		    permissionid
+		from sys_roles_permissions
+		where roleid=#{roleid}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysRolesPermissions 分页信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_SysRolesPermissions" parameterType="java.util.HashMap">
+		select 
+		    roleid, 
+		    permissionid
+		from sys_roles_permissions
+	</select>
+</mapper>

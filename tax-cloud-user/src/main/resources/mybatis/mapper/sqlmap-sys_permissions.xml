@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sys_permissions">
+
+	<!--
+      - ===============================================
+      - 返回 SysPermissions Entity
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.user.po.SysPermissions"	   id="RM_SysPermissions">
+		<id     property="id"    column="id"    jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="name"  column="name"  jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="no"    column="no"    jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="parentId"    column="parent_id"    jdbcType="INTEGER"  javaType="java.lang.Integer"   />
+	</resultMap>
+
+	<!--
+      - ===============================================
+      - 新增 SysPermissions
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.user.po.SysPermissions" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_permissions (
+			name, 
+			no,
+			parent_id
+		) values (
+		    #{name}, 
+		    #{no}, 
+		    #{parentId}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 SysPermissions
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.user.po.SysPermissions">
+	      update sys_permissions
+	         <set >
+			      		      <if test="name != null and ''!=name" >
+			        name = #{name},
+			      </if>
+			      		      <if test="no != null and ''!=no" >
+			        no = #{no},
+			      </if>
+			      
+			      		      		    </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 SysPermissions 总数
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.user.po.SysPermissions">
+		select count(*)
+		from sys_permissions
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysPermissions 信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_SysPermissions" parameterType="com.zhys.user.po.SysPermissions">
+		select 
+		    id, 
+		    name, 
+		    no,
+		    parent_id
+		from sys_permissions
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表SysPermissions 信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_SysPermissions" parameterType="com.zhys.user.po.SysPermissions">
+		select 
+		    id, 
+		    name, 
+		    no,
+		    parent_id
+		from sys_permissions
+		order by no
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysPermissions 分页信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_SysPermissions" parameterType="java.util.HashMap">
+		select 
+		    id, 
+		    name, 
+		    no,
+		    parent_id
+		from sys_permissions
+	</select>
+	
+	<!--
+      - ===============================================
+      - 获取用户所拥有权限信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="queryListByUserNo" resultMap="RM_SysPermissions" parameterType="com.zhys.user.po.SysPermissions">
+		select p.* from sys_permissions p 
+		RIGHT JOIN sys_roles_permissions rp on rp.permissionid = p.id
+		RIGHT JOIN sys_roles_users ru on ru.roleid = rp.roleid
+		RIGHT JOIN sys_users u on u.id = ru.userid
+		where u.no=#{userNo}
+	</select>
+</mapper>

@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="add_tax_detail_sub">
+
+	<!--
+      - ===============================================
+      - 返回 AddTaxDetailSub Entity
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.AddTaxDetailSub"	   id="RM_AddTaxDetailSub">
+		<id     property="id"        column="id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="parentId"  column="parent_id"  jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="hmc"       column="hmc"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="lc"        column="lc"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qcye"      column="qcye"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqfse"     column="bqfse"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqydjse"   column="bqydjse"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqsjdjse"  column="bqsjdjse"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qmye"      column="qmye"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			parent_id, 
+    			hmc, 
+    			lc, 
+    			qcye, 
+    			bqfse, 
+    			bqydjse, 
+    			bqsjdjse, 
+    			qmye
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="hmc != null and ''!=hmc" >
+			         and  hmc = #{hmc}
+			      </if>
+			                                 <if test="lc != null and ''!=lc" >
+			         and  lc = #{lc}
+			      </if>
+			                                 <if test="qcye != null and ''!=qcye" >
+			         and  qcye = #{qcye}
+			      </if>
+			                                 <if test="bqfse != null and ''!=bqfse" >
+			         and  bqfse = #{bqfse}
+			      </if>
+			                                 <if test="bqydjse != null and ''!=bqydjse" >
+			         and  bqydjse = #{bqydjse}
+			      </if>
+			                                 <if test="bqsjdjse != null and ''!=bqsjdjse" >
+			         and  bqsjdjse = #{bqsjdjse}
+			      </if>
+			                                 <if test="qmye != null and ''!=qmye" >
+			         and  qmye = #{qmye}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 AddTaxDetailSub
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.AddTaxDetailSub" useGeneratedKeys="true" keyProperty="id">
+		insert into add_tax_detail_sub (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{parentId}, 
+		    #{hmc}, 
+		    #{lc}, 
+		    #{qcye}, 
+		    #{bqfse}, 
+		    #{bqydjse}, 
+		    #{bqsjdjse}, 
+		    #{qmye}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 AddTaxDetailSub
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.AddTaxDetailSub">
+	      update add_tax_detail_sub
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="hmc != null and ''!=hmc" >
+			        hmc = #{hmc},
+			      </if>
+			                        <if test="lc != null and ''!=lc" >
+			        lc = #{lc},
+			      </if>
+			                        <if test="qcye != null and ''!=qcye" >
+			        qcye = #{qcye},
+			      </if>
+			                        <if test="bqfse != null and ''!=bqfse" >
+			        bqfse = #{bqfse},
+			      </if>
+			                        <if test="bqydjse != null and ''!=bqydjse" >
+			        bqydjse = #{bqydjse},
+			      </if>
+			                        <if test="bqsjdjse != null and ''!=bqsjdjse" >
+			        bqsjdjse = #{bqsjdjse},
+			      </if>
+			                        <if test="qmye != null and ''!=qmye" >
+			        qmye = #{qmye},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxDetailSub 总数
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.AddTaxDetailSub">
+		select count(*)
+		from add_tax_detail_sub
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxDetailSub 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_AddTaxDetailSub" parameterType="com.invoice.po.AddTaxDetailSub">
+		select 
+        <include refid="sql"/>
+		from add_tax_detail_sub
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表AddTaxDetailSub 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_AddTaxDetailSub" parameterType="com.invoice.po.AddTaxDetailSub">
+		select 
+        <include refid="sql"/>
+		from add_tax_detail_sub
+		
+	</select>
+
+    <select id="queryList1" resultMap="RM_AddTaxDetailSub" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from add_tax_detail_sub
+		where parent_id=#{id}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxDetailSub 分页信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_AddTaxDetailSub" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from add_tax_detail_sub
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.AddTaxDetailSub">
+	 update add_tax_detail_sub set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update add_tax_detail_sub set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	<delete id="del" parameterType="com.invoice.po.AddTaxMain">
+	 delete from  add_tax_detail_sub where parent_id=#{id}
+	</delete>
+</mapper>

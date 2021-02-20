@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="finance_sheet">
+
+	<!--
+      - ===============================================
+      - 返回 FinanceSheet Entity
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.FinanceSheet"	   id="RM_FinanceSheet">
+		<id     property="id"            column="id"             jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="nssbh"         column="nssbh"          jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="periodYear"    column="period_year"    jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="periodQuater"  column="period_quater"  jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="nsrmc"         column="nsrmc"          jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="zcfzr"         column="zcfzr"          jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="ssrqq"         column="ssrqq"          jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="ssrqz"         column="ssrqz"          jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="orgId"         column="org_id"          jdbcType="VARCHAR"  javaType="java.lang.String"   />
+	</resultMap>
+	
+	<resultMap  type="com.invoice.po.FinanceSheet"	   id="RM_FinanceSheetMap">
+		<id     property="id"            column="id"             jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="nssbh"         column="nssbh"          jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="periodYear"    column="period_year"    jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="periodQuater"  column="period_quater"  jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="nsrmc"         column="nsrmc"          jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="zcfzr"         column="zcfzr"          jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="ssrqq"         column="ssrqq"          jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="ssrqz"         column="ssrqz"          jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="orgId"         column="org_id"          jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<collection  property="balances"  ofType="com.invoice.po.FinanceBalanceSheet"  column="id"  select="finance_balance_sheet.queryList1"></collection>
+		<collection  property="profits"  ofType="com.invoice.po.FinanceProfitSheet"  column="id"  select="finance_profit_sheet.queryList1"></collection>
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			nssbh, 
+    			period_year, 
+    			period_quater, 
+    			nsrmc, 
+    			zcfzr, 
+    			ssrqq, 
+    			ssrqz,
+    			org_id
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="nssbh != null and ''!=nssbh" >
+			         and  nssbh = #{nssbh}
+			      </if>
+			                                 <if test="periodYear != null and ''!=periodYear" >
+			         and  period_year = #{periodYear}
+			      </if>
+			                                 <if test="periodQuater != null and ''!=periodQuater" >
+			         and  period_quater = #{periodQuater}
+			      </if>
+			                                 <if test="nsrmc != null and ''!=nsrmc" >
+			         and  nsrmc = #{nsrmc}
+			      </if>
+			                                 <if test="zcfzr != null and ''!=zcfzr" >
+			         and  zcfzr = #{zcfzr}
+			      </if>
+			                                 <if test="ssrqq != null and ''!=ssrqq" >
+			         and  ssrqq = #{ssrqq}
+			      </if>
+			                                 <if test="ssrqz != null and ''!=ssrqz" >
+			         and  ssrqz = #{ssrqz}
+			      </if>
+			       <if test="orgId != null and ''!=orgId" >
+			         and  org_id = #{orgId}
+			      </if>
+			   </sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 FinanceSheet
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.FinanceSheet" useGeneratedKeys="true" keyProperty="id">
+		insert into finance_sheet (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{nssbh}, 
+		    #{periodYear}, 
+		    #{periodQuater}, 
+		    #{nsrmc}, 
+		    #{zcfzr}, 
+		    #{ssrqq}, 
+		    #{ssrqz}, 
+		    #{orgId}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 FinanceSheet
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.FinanceSheet">
+	      update finance_sheet
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="nssbh != null and ''!=nssbh" >
+			        nssbh = #{nssbh},
+			      </if>
+			                        <if test="periodYear != null and ''!=periodYear" >
+			        period_year = #{periodYear},
+			      </if>
+			                        <if test="periodQuater != null and ''!=periodQuater" >
+			        period_quater = #{periodQuater},
+			      </if>
+			                        <if test="nsrmc != null and ''!=nsrmc" >
+			        nsrmc = #{nsrmc},
+			      </if>
+			                        <if test="zcfzr != null and ''!=zcfzr" >
+			        zcfzr = #{zcfzr},
+			      </if>
+			                        <if test="ssrqq != null and ''!=ssrqq" >
+			        ssrqq = #{ssrqq},
+			      </if>
+			                        <if test="ssrqz != null and ''!=ssrqz" >
+			        ssrqz = #{ssrqz},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 FinanceSheet 总数
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.FinanceSheet">
+		select count(*)
+		from finance_sheet
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 FinanceSheet 信息
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_FinanceSheetMap" parameterType="com.invoice.po.FinanceSheet">
+		select 
+        <include refid="sql"/>
+		from finance_sheet
+		where 1=1
+		  <if test="nssbh != null and ''!=nssbh" >
+	         and  nssbh = #{nssbh}
+	      </if>
+	      <if test="periodYear != null and ''!=periodYear" >
+	         and  period_year = #{periodYear}
+	      </if>
+	      <if test="periodQuater != null and ''!=periodQuater" >
+	         and  period_quater = #{periodQuater}
+	      </if>
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表FinanceSheet 信息
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_FinanceSheet" parameterType="com.invoice.po.FinanceSheet">
+		select 
+        <include refid="sql"/>
+		from finance_sheet
+		
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 FinanceSheet 分页信息
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_FinanceSheet" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from finance_sheet
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.FinanceSheet">
+	 update finance_sheet set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update finance_sheet set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

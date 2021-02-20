@@ -1,0 +1,42 @@
+server:
+  port: 8022
+  context-path: /
+  max-http-header-size: 102400
+spring:
+  application:
+    name: wechat
+  profiles:
+    #指定读取配置文件:dev(开发环境),prod(生产环境),qa(测试环境)
+    active: dev
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:20002/eureka/
+
+
+#日志
+logging:
+  config: classpath:logback-${spring.profiles.active}.xml
+  
+pdfUrl: /image/
+
+
+#hystrix的超时时间
+hystrix:
+    command:
+        default:
+            execution:
+              timeout:
+                enabled: true
+              isolation:
+                    thread:
+                        timeoutInMilliseconds: 90000
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+
+
+ 
+    

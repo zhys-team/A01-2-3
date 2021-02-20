@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.anets.mapper.FileMapper" >
+  <resultMap id="BaseResultMap" type="top.anets.entity.File" >
+    <id column="fid" property="fid" jdbcType="BIGINT" />
+    <result column="fid_uid" property="fidUid" jdbcType="INTEGER" />
+    <result column="fid_cid" property="fidCid" jdbcType="INTEGER" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="isDir" property="isdir" jdbcType="INTEGER" />
+    <result column="preview" property="preview" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="BIGINT" />
+    <result column="suffix" property="suffix" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="VARCHAR" />
+    <result column="isPublic" property="ispublic" jdbcType="INTEGER" />
+    <result column="isShare" property="isshare" jdbcType="INTEGER" />
+    <result column="sharePassword" property="sharepassword" jdbcType="VARCHAR" />
+    <result column="shareAddress" property="shareaddress" jdbcType="VARCHAR" />
+    <result column="attr1" property="attr1" jdbcType="VARCHAR" />
+    <result column="attr2" property="attr2" jdbcType="VARCHAR" />
+    <result column="attr3" property="attr3" jdbcType="VARCHAR" />
+    <result column="attr4" property="attr4" jdbcType="VARCHAR" />
+    <result column="attr5" property="attr5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    fid, fid_uid, fid_cid, fname, parent_id, isDir, preview, address, size, suffix, updatetime, 
+    isPublic, isShare, sharePassword, shareAddress, attr1, attr2, attr3, attr4, attr5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="top.anets.entity.FileExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from file
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from file
+    where fid = #{fid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from file
+    where fid = #{fid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="top.anets.entity.FileExample" >
+    delete from file
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="top.anets.entity.File" >
+    insert into file (fid, fid_uid, fid_cid, 
+      fname, parent_id, isDir, 
+      preview, address, size, 
+      suffix, updatetime, isPublic, 
+      isShare, sharePassword, shareAddress, 
+      attr1, attr2, attr3, 
+      attr4, attr5)
+    values (#{fid,jdbcType=BIGINT}, #{fidUid,jdbcType=INTEGER}, #{fidCid,jdbcType=INTEGER}, 
+      #{fname,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, #{isdir,jdbcType=INTEGER}, 
+      #{preview,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{size,jdbcType=BIGINT}, 
+      #{suffix,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, #{ispublic,jdbcType=INTEGER}, 
+      #{isshare,jdbcType=INTEGER}, #{sharepassword,jdbcType=VARCHAR}, #{shareaddress,jdbcType=VARCHAR}, 
+      #{attr1,jdbcType=VARCHAR}, #{attr2,jdbcType=VARCHAR}, #{attr3,jdbcType=VARCHAR}, 
+      #{attr4,jdbcType=VARCHAR}, #{attr5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="fid" parameterType="top.anets.entity.File" >
+    insert into file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="fidUid != null" >
+        fid_uid,
+      </if>
+      <if test="fidCid != null" >
+        fid_cid,
+      </if>
+      <if test="fname != null" >
+        fname,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="isdir != null" >
+        isDir,
+      </if>
+      <if test="preview != null" >
+        preview,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="suffix != null" >
+        suffix,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="ispublic != null" >
+        isPublic,
+      </if>
+      <if test="isshare != null" >
+        isShare,
+      </if>
+      <if test="sharepassword != null" >
+        sharePassword,
+      </if>
+      <if test="shareaddress != null" >
+        shareAddress,
+      </if>
+      <if test="attr1 != null" >
+        attr1,
+      </if>
+      <if test="attr2 != null" >
+        attr2,
+      </if>
+      <if test="attr3 != null" >
+        attr3,
+      </if>
+      <if test="attr4 != null" >
+        attr4,
+      </if>
+      <if test="attr5 != null" >
+        attr5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        #{fid,jdbcType=BIGINT},
+      </if>
+      <if test="fidUid != null" >
+        #{fidUid,jdbcType=INTEGER},
+      </if>
+      <if test="fidCid != null" >
+        #{fidCid,jdbcType=INTEGER},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="isdir != null" >
+        #{isdir,jdbcType=INTEGER},
+      </if>
+      <if test="preview != null" >
+        #{preview,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=BIGINT},
+      </if>
+      <if test="suffix != null" >
+        #{suffix,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="ispublic != null" >
+        #{ispublic,jdbcType=INTEGER},
+      </if>
+      <if test="isshare != null" >
+        #{isshare,jdbcType=INTEGER},
+      </if>
+      <if test="sharepassword != null" >
+        #{sharepassword,jdbcType=VARCHAR},
+      </if>
+      <if test="shareaddress != null" >
+        #{shareaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="attr1 != null" >
+        #{attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="attr2 != null" >
+        #{attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="attr3 != null" >
+        #{attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="attr4 != null" >
+        #{attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="attr5 != null" >
+        #{attr5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="top.anets.entity.FileExample" resultType="java.lang.Integer" >
+    select count(*) from file
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update file
+    <set >
+      <if test="record.fid != null" >
+        fid = #{record.fid,jdbcType=BIGINT},
+      </if>
+      <if test="record.fidUid != null" >
+        fid_uid = #{record.fidUid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fidCid != null" >
+        fid_cid = #{record.fidCid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fname != null" >
+        fname = #{record.fname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.isdir != null" >
+        isDir = #{record.isdir,jdbcType=INTEGER},
+      </if>
+      <if test="record.preview != null" >
+        preview = #{record.preview,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.size != null" >
+        size = #{record.size,jdbcType=BIGINT},
+      </if>
+      <if test="record.suffix != null" >
+        suffix = #{record.suffix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ispublic != null" >
+        isPublic = #{record.ispublic,jdbcType=INTEGER},
+      </if>
+      <if test="record.isshare != null" >
+        isShare = #{record.isshare,jdbcType=INTEGER},
+      </if>
+      <if test="record.sharepassword != null" >
+        sharePassword = #{record.sharepassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shareaddress != null" >
+        shareAddress = #{record.shareaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr1 != null" >
+        attr1 = #{record.attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr2 != null" >
+        attr2 = #{record.attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr3 != null" >
+        attr3 = #{record.attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr4 != null" >
+        attr4 = #{record.attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr5 != null" >
+        attr5 = #{record.attr5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update file
+    set fid = #{record.fid,jdbcType=BIGINT},
+      fid_uid = #{record.fidUid,jdbcType=INTEGER},
+      fid_cid = #{record.fidCid,jdbcType=INTEGER},
+      fname = #{record.fname,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=BIGINT},
+      isDir = #{record.isdir,jdbcType=INTEGER},
+      preview = #{record.preview,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      size = #{record.size,jdbcType=BIGINT},
+      suffix = #{record.suffix,jdbcType=VARCHAR},
+      updatetime = #{record.updatetime,jdbcType=VARCHAR},
+      isPublic = #{record.ispublic,jdbcType=INTEGER},
+      isShare = #{record.isshare,jdbcType=INTEGER},
+      sharePassword = #{record.sharepassword,jdbcType=VARCHAR},
+      shareAddress = #{record.shareaddress,jdbcType=VARCHAR},
+      attr1 = #{record.attr1,jdbcType=VARCHAR},
+      attr2 = #{record.attr2,jdbcType=VARCHAR},
+      attr3 = #{record.attr3,jdbcType=VARCHAR},
+      attr4 = #{record.attr4,jdbcType=VARCHAR},
+      attr5 = #{record.attr5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="top.anets.entity.File" >
+    update file
+    <set >
+      <if test="fidUid != null" >
+        fid_uid = #{fidUid,jdbcType=INTEGER},
+      </if>
+      <if test="fidCid != null" >
+        fid_cid = #{fidCid,jdbcType=INTEGER},
+      </if>
+      <if test="fname != null" >
+        fname = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="isdir != null" >
+        isDir = #{isdir,jdbcType=INTEGER},
+      </if>
+      <if test="preview != null" >
+        preview = #{preview,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=BIGINT},
+      </if>
+      <if test="suffix != null" >
+        suffix = #{suffix,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="ispublic != null" >
+        isPublic = #{ispublic,jdbcType=INTEGER},
+      </if>
+      <if test="isshare != null" >
+        isShare = #{isshare,jdbcType=INTEGER},
+      </if>
+      <if test="sharepassword != null" >
+        sharePassword = #{sharepassword,jdbcType=VARCHAR},
+      </if>
+      <if test="shareaddress != null" >
+        shareAddress = #{shareaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="attr1 != null" >
+        attr1 = #{attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="attr2 != null" >
+        attr2 = #{attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="attr3 != null" >
+        attr3 = #{attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="attr4 != null" >
+        attr4 = #{attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="attr5 != null" >
+        attr5 = #{attr5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fid = #{fid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.anets.entity.File" >
+    update file
+    set fid_uid = #{fidUid,jdbcType=INTEGER},
+      fid_cid = #{fidCid,jdbcType=INTEGER},
+      fname = #{fname,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      isDir = #{isdir,jdbcType=INTEGER},
+      preview = #{preview,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      size = #{size,jdbcType=BIGINT},
+      suffix = #{suffix,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      isPublic = #{ispublic,jdbcType=INTEGER},
+      isShare = #{isshare,jdbcType=INTEGER},
+      sharePassword = #{sharepassword,jdbcType=VARCHAR},
+      shareAddress = #{shareaddress,jdbcType=VARCHAR},
+      attr1 = #{attr1,jdbcType=VARCHAR},
+      attr2 = #{attr2,jdbcType=VARCHAR},
+      attr3 = #{attr3,jdbcType=VARCHAR},
+      attr4 = #{attr4,jdbcType=VARCHAR},
+      attr5 = #{attr5,jdbcType=VARCHAR}
+    where fid = #{fid,jdbcType=BIGINT}
+  </update>
+</mapper>

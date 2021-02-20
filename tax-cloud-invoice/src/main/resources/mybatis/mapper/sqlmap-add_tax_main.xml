@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="add_tax_main">
+
+	<!--
+      - ===============================================
+      - 返回 AddTaxMain Entity
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.AddTaxMain"	   id="RM_AddTaxMain">
+		<id     property="id"       column="id"       jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="nssbh"    column="nssbh"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="period"   column="period"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="year"     column="year"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="nsrmc"    column="nsrmc"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="tbrq"     column="tbrq"     jdbcType="DATE"     javaType="java.sql.Date"     />
+		<result property="sksssjq"  column="sksssjq"  jdbcType="DATE"     javaType="java.sql.Date"     />
+		<result property="sksssjz"  column="sksssjz"  jdbcType="DATE"     javaType="java.sql.Date"     />
+		<result property="jedw"     column="jedw"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="sshy"     column="sshy"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="fddbrxm"  column="fddbrxm"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="zcdz"     column="zcdz"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="scjydz"   column="scjydz"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="khyhjzh"  column="khyhjzh"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="djzclx"   column="djzclx"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="dhhm"     column="dhhm"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <resultMap  type="com.invoice.po.AddTaxMain"	   id="RM_AddTaxMainMap">
+		<id     property="id"       column="id"       jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="nssbh"    column="nssbh"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="period"   column="period"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="year"     column="year"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="nsrmc"    column="nsrmc"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="tbrq"     column="tbrq"     jdbcType="DATE"     javaType="java.sql.Date"     />
+		<result property="sksssjq"  column="sksssjq"  jdbcType="DATE"     javaType="java.sql.Date"     />
+		<result property="sksssjz"  column="sksssjz"  jdbcType="DATE"     javaType="java.sql.Date"     />
+		<result property="jedw"     column="jedw"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="sshy"     column="sshy"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="fddbrxm"  column="fddbrxm"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="zcdz"     column="zcdz"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="scjydz"   column="scjydz"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="khyhjzh"  column="khyhjzh"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="djzclx"   column="djzclx"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="dhhm"     column="dhhm"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<collection  property="mains"  ofType="com.invoice.po.AddTaxMainGrid"  column="id"  select="add_tax_main_grid.queryList1"></collection>
+		<collection  property="ones"  ofType="com.invoice.po.AddTaxFirst"  column="id"  select="add_tax_first.queryList1"></collection>
+		<collection  property="twos"  ofType="com.invoice.po.AddTaxTwo"  column="id"  select="add_tax_two.queryList1"></collection>
+		<collection  property="threes"  ofType="com.invoice.po.AddTaxThree"  column="id"  select="add_tax_three.queryList1"></collection>
+		<collection  property="fours"  ofType="com.invoice.po.AddTaxFour"  column="id"  select="add_tax_four.queryList1"></collection>
+		<collection  property="fives"  ofType="com.invoice.po.AddTaxFive"  column="id"  select="add_tax_five.queryList1"></collection>
+		<collection  property="detailfrees"  ofType="com.invoice.po.AddTaxDetailFree"  column="id"  select="add_tax_detail_free.queryList1"></collection>
+		<collection  property="detailsubs"  ofType="com.invoice.po.AddTaxDetailSub"  column="id"  select="add_tax_detail_sub.queryList1"></collection>
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			nssbh, 
+    			period, 
+    			year, 
+    			nsrmc, 
+    			tbrq, 
+    			sksssjq, 
+    			sksssjz, 
+    			jedw, 
+    			sshy, 
+    			fddbrxm, 
+    			zcdz, 
+    			scjydz, 
+    			khyhjzh, 
+    			djzclx, 
+    			dhhm
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="nssbh != null and ''!=nssbh" >
+			         and  nssbh = #{nssbh}
+			      </if>
+			                                 <if test="period != null and ''!=period" >
+			         and  period = #{period}
+			      </if>
+			                                 <if test="year != null and ''!=year" >
+			         and  year = #{year}
+			      </if>
+			                                 <if test="nsrmc != null and ''!=nsrmc" >
+			         and  nsrmc = #{nsrmc}
+			      </if>
+			                                 <if test="tbrq != null and ''!=tbrq" >
+			         and  tbrq = #{tbrq}
+			      </if>
+			                                 <if test="sksssjq != null and ''!=sksssjq" >
+			         and  sksssjq = #{sksssjq}
+			      </if>
+			                                 <if test="sksssjz != null and ''!=sksssjz" >
+			         and  sksssjz = #{sksssjz}
+			      </if>
+			                                 <if test="jedw != null and ''!=jedw" >
+			         and  jedw = #{jedw}
+			      </if>
+			                                 <if test="sshy != null and ''!=sshy" >
+			         and  sshy = #{sshy}
+			      </if>
+			                                 <if test="fddbrxm != null and ''!=fddbrxm" >
+			         and  fddbrxm = #{fddbrxm}
+			      </if>
+			                                 <if test="zcdz != null and ''!=zcdz" >
+			         and  zcdz = #{zcdz}
+			      </if>
+			                                 <if test="scjydz != null and ''!=scjydz" >
+			         and  scjydz = #{scjydz}
+			      </if>
+			                                 <if test="khyhjzh != null and ''!=khyhjzh" >
+			         and  khyhjzh = #{khyhjzh}
+			      </if>
+			                                 <if test="djzclx != null and ''!=djzclx" >
+			         and  djzclx = #{djzclx}
+			      </if>
+			                                 <if test="dhhm != null and ''!=dhhm" >
+			         and  dhhm = #{dhhm}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 AddTaxMain
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.AddTaxMain" useGeneratedKeys="true" keyProperty="id">
+		insert into add_tax_main (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{nssbh}, 
+		    #{period}, 
+		    #{year}, 
+		    #{nsrmc}, 
+		    #{tbrq}, 
+		    #{sksssjq}, 
+		    #{sksssjz}, 
+		    #{jedw}, 
+		    #{sshy}, 
+		    #{fddbrxm}, 
+		    #{zcdz}, 
+		    #{scjydz}, 
+		    #{khyhjzh}, 
+		    #{djzclx}, 
+		    #{dhhm}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 AddTaxMain
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.AddTaxMain">
+	      update add_tax_main
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="nssbh != null and ''!=nssbh" >
+			        nssbh = #{nssbh},
+			      </if>
+			                        <if test="period != null and ''!=period" >
+			        period = #{period},
+			      </if>
+			                        <if test="year != null and ''!=year" >
+			        year = #{year},
+			      </if>
+			                        <if test="nsrmc != null and ''!=nsrmc" >
+			        nsrmc = #{nsrmc},
+			      </if>
+			                        <if test="tbrq != null and ''!=tbrq" >
+			        tbrq = #{tbrq},
+			      </if>
+			                        <if test="sksssjq != null and ''!=sksssjq" >
+			        sksssjq = #{sksssjq},
+			      </if>
+			                        <if test="sksssjz != null and ''!=sksssjz" >
+			        sksssjz = #{sksssjz},
+			      </if>
+			                        <if test="jedw != null and ''!=jedw" >
+			        jedw = #{jedw},
+			      </if>
+			                        <if test="sshy != null and ''!=sshy" >
+			        sshy = #{sshy},
+			      </if>
+			                        <if test="fddbrxm != null and ''!=fddbrxm" >
+			        fddbrxm = #{fddbrxm},
+			      </if>
+			                        <if test="zcdz != null and ''!=zcdz" >
+			        zcdz = #{zcdz},
+			      </if>
+			                        <if test="scjydz != null and ''!=scjydz" >
+			        scjydz = #{scjydz},
+			      </if>
+			                        <if test="khyhjzh != null and ''!=khyhjzh" >
+			        khyhjzh = #{khyhjzh},
+			      </if>
+			                        <if test="djzclx != null and ''!=djzclx" >
+			        djzclx = #{djzclx},
+			      </if>
+			                        <if test="dhhm != null and ''!=dhhm" >
+			        dhhm = #{dhhm},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxMain 总数
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.AddTaxMain">
+		select count(*)
+		from add_tax_main
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxMain 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_AddTaxMainMap" parameterType="com.invoice.po.AddTaxMain">
+		select 
+        <include refid="sql"/>
+		from add_tax_main
+		where 1=1
+		  <if test="nssbh != null and ''!=nssbh" >
+	         and  nssbh = #{nssbh}
+	      </if>
+	      <if test="period != null and ''!=period" >
+	         and  period = #{period}
+	      </if>
+	      <if test="year != null and ''!=year" >
+	         and  year = #{year}
+	      </if>
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表AddTaxMain 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_AddTaxMain" parameterType="com.invoice.po.AddTaxMain">
+		select 
+        <include refid="sql"/>
+		from add_tax_main
+		
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxMain 分页信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_AddTaxMain" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from add_tax_main
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.AddTaxMain">
+	 update add_tax_main set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update add_tax_main set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

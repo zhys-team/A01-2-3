@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.anets.mapper.BusinessMapper" >
+  <resultMap id="BaseResultMap" type="top.anets.entity.Business" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="is_sap" property="isSap" jdbcType="BIT" />
+    <result column="invoice_way" property="invoiceWay" jdbcType="INTEGER" />
+    <result column="invoice_type" property="invoiceType" jdbcType="INTEGER" />
+    <result column="app_id" property="appId" jdbcType="VARCHAR" />
+    <result column="app_secret" property="appSecret" jdbcType="VARCHAR" />
+    <result column="user_code" property="userCode" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="wx_limit" property="wxLimit" jdbcType="DECIMAL" />
+    <result column="se_limit" property="seLimit" jdbcType="DECIMAL" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="VARCHAR" />
+    <result column="org_taxcode" property="orgTaxcode" jdbcType="VARCHAR" />
+    <result column="org_machine" property="orgMachine" jdbcType="VARCHAR" />
+    <result column="org_machine_id" property="orgMachineId" jdbcType="VARCHAR" />
+    <result column="is_skp" property="isSkp" jdbcType="BIT" />
+    <result column="is_enterprise" property="isEnterprise" jdbcType="BIT" />
+    <result column="is_strict" property="isStrict" jdbcType="BIT" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, is_sap, invoice_way, invoice_type, app_id, app_secret, user_code, password, wx_limit, 
+    se_limit, org_name, org_id, org_taxcode, org_machine, org_machine_id, is_skp, is_enterprise, 
+    is_strict, user_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="top.anets.entity.BusinessExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from business
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from business
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from business
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="top.anets.entity.BusinessExample" >
+    delete from business
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="top.anets.entity.Business" >
+    insert into business (id, is_sap, invoice_way, 
+      invoice_type, app_id, app_secret, 
+      user_code, password, wx_limit, 
+      se_limit, org_name, org_id, 
+      org_taxcode, org_machine, org_machine_id, 
+      is_skp, is_enterprise, is_strict, 
+      user_type)
+    values (#{id,jdbcType=INTEGER}, #{isSap,jdbcType=BIT}, #{invoiceWay,jdbcType=INTEGER}, 
+      #{invoiceType,jdbcType=INTEGER}, #{appId,jdbcType=VARCHAR}, #{appSecret,jdbcType=VARCHAR}, 
+      #{userCode,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{wxLimit,jdbcType=DECIMAL}, 
+      #{seLimit,jdbcType=DECIMAL}, #{orgName,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, 
+      #{orgTaxcode,jdbcType=VARCHAR}, #{orgMachine,jdbcType=VARCHAR}, #{orgMachineId,jdbcType=VARCHAR}, 
+      #{isSkp,jdbcType=BIT}, #{isEnterprise,jdbcType=BIT}, #{isStrict,jdbcType=BIT}, 
+      #{userType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.anets.entity.Business" >
+    insert into business
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="isSap != null" >
+        is_sap,
+      </if>
+      <if test="invoiceWay != null" >
+        invoice_way,
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="appSecret != null" >
+        app_secret,
+      </if>
+      <if test="userCode != null" >
+        user_code,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="wxLimit != null" >
+        wx_limit,
+      </if>
+      <if test="seLimit != null" >
+        se_limit,
+      </if>
+      <if test="orgName != null" >
+        org_name,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="orgTaxcode != null" >
+        org_taxcode,
+      </if>
+      <if test="orgMachine != null" >
+        org_machine,
+      </if>
+      <if test="orgMachineId != null" >
+        org_machine_id,
+      </if>
+      <if test="isSkp != null" >
+        is_skp,
+      </if>
+      <if test="isEnterprise != null" >
+        is_enterprise,
+      </if>
+      <if test="isStrict != null" >
+        is_strict,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="isSap != null" >
+        #{isSap,jdbcType=BIT},
+      </if>
+      <if test="invoiceWay != null" >
+        #{invoiceWay,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceType != null" >
+        #{invoiceType,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appSecret != null" >
+        #{appSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="wxLimit != null" >
+        #{wxLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="seLimit != null" >
+        #{seLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgTaxcode != null" >
+        #{orgTaxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgMachine != null" >
+        #{orgMachine,jdbcType=VARCHAR},
+      </if>
+      <if test="orgMachineId != null" >
+        #{orgMachineId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSkp != null" >
+        #{isSkp,jdbcType=BIT},
+      </if>
+      <if test="isEnterprise != null" >
+        #{isEnterprise,jdbcType=BIT},
+      </if>
+      <if test="isStrict != null" >
+        #{isStrict,jdbcType=BIT},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="top.anets.entity.BusinessExample" resultType="java.lang.Integer" >
+    select count(*) from business
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update business
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.isSap != null" >
+        is_sap = #{record.isSap,jdbcType=BIT},
+      </if>
+      <if test="record.invoiceWay != null" >
+        invoice_way = #{record.invoiceWay,jdbcType=INTEGER},
+      </if>
+      <if test="record.invoiceType != null" >
+        invoice_type = #{record.invoiceType,jdbcType=INTEGER},
+      </if>
+      <if test="record.appId != null" >
+        app_id = #{record.appId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appSecret != null" >
+        app_secret = #{record.appSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userCode != null" >
+        user_code = #{record.userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxLimit != null" >
+        wx_limit = #{record.wxLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.seLimit != null" >
+        se_limit = #{record.seLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orgName != null" >
+        org_name = #{record.orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgId != null" >
+        org_id = #{record.orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgTaxcode != null" >
+        org_taxcode = #{record.orgTaxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgMachine != null" >
+        org_machine = #{record.orgMachine,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgMachineId != null" >
+        org_machine_id = #{record.orgMachineId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSkp != null" >
+        is_skp = #{record.isSkp,jdbcType=BIT},
+      </if>
+      <if test="record.isEnterprise != null" >
+        is_enterprise = #{record.isEnterprise,jdbcType=BIT},
+      </if>
+      <if test="record.isStrict != null" >
+        is_strict = #{record.isStrict,jdbcType=BIT},
+      </if>
+      <if test="record.userType != null" >
+        user_type = #{record.userType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update business
+    set id = #{record.id,jdbcType=INTEGER},
+      is_sap = #{record.isSap,jdbcType=BIT},
+      invoice_way = #{record.invoiceWay,jdbcType=INTEGER},
+      invoice_type = #{record.invoiceType,jdbcType=INTEGER},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      app_secret = #{record.appSecret,jdbcType=VARCHAR},
+      user_code = #{record.userCode,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      wx_limit = #{record.wxLimit,jdbcType=DECIMAL},
+      se_limit = #{record.seLimit,jdbcType=DECIMAL},
+      org_name = #{record.orgName,jdbcType=VARCHAR},
+      org_id = #{record.orgId,jdbcType=VARCHAR},
+      org_taxcode = #{record.orgTaxcode,jdbcType=VARCHAR},
+      org_machine = #{record.orgMachine,jdbcType=VARCHAR},
+      org_machine_id = #{record.orgMachineId,jdbcType=VARCHAR},
+      is_skp = #{record.isSkp,jdbcType=BIT},
+      is_enterprise = #{record.isEnterprise,jdbcType=BIT},
+      is_strict = #{record.isStrict,jdbcType=BIT},
+      user_type = #{record.userType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="top.anets.entity.Business" >
+    update business
+    <set >
+      <if test="isSap != null" >
+        is_sap = #{isSap,jdbcType=BIT},
+      </if>
+      <if test="invoiceWay != null" >
+        invoice_way = #{invoiceWay,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type = #{invoiceType,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appSecret != null" >
+        app_secret = #{appSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null" >
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="wxLimit != null" >
+        wx_limit = #{wxLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="seLimit != null" >
+        se_limit = #{seLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgTaxcode != null" >
+        org_taxcode = #{orgTaxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgMachine != null" >
+        org_machine = #{orgMachine,jdbcType=VARCHAR},
+      </if>
+      <if test="orgMachineId != null" >
+        org_machine_id = #{orgMachineId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSkp != null" >
+        is_skp = #{isSkp,jdbcType=BIT},
+      </if>
+      <if test="isEnterprise != null" >
+        is_enterprise = #{isEnterprise,jdbcType=BIT},
+      </if>
+      <if test="isStrict != null" >
+        is_strict = #{isStrict,jdbcType=BIT},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.anets.entity.Business" >
+    update business
+    set is_sap = #{isSap,jdbcType=BIT},
+      invoice_way = #{invoiceWay,jdbcType=INTEGER},
+      invoice_type = #{invoiceType,jdbcType=INTEGER},
+      app_id = #{appId,jdbcType=VARCHAR},
+      app_secret = #{appSecret,jdbcType=VARCHAR},
+      user_code = #{userCode,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      wx_limit = #{wxLimit,jdbcType=DECIMAL},
+      se_limit = #{seLimit,jdbcType=DECIMAL},
+      org_name = #{orgName,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      org_taxcode = #{orgTaxcode,jdbcType=VARCHAR},
+      org_machine = #{orgMachine,jdbcType=VARCHAR},
+      org_machine_id = #{orgMachineId,jdbcType=VARCHAR},
+      is_skp = #{isSkp,jdbcType=BIT},
+      is_enterprise = #{isEnterprise,jdbcType=BIT},
+      is_strict = #{isStrict,jdbcType=BIT},
+      user_type = #{userType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

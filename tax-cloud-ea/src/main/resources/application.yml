@@ -1,0 +1,181 @@
+#server:
+#  port: 8788
+##  context-path: /invoice
+#eureka:
+#  client:
+#    serviceUrl:
+#      #defaultZone: http://localhost:20001/eureka/,http://localhost:20002/eureka/
+#      defaultZone: http://localhost:20001/eureka/
+#spring:
+#  application:
+#    name: ea
+#  profiles:
+#    #指定读取配置文件:dev(开发环境),prod(生产环境),qa(测试环境)
+#    active: dev
+#  redis:
+#    host: 127.0.0.1
+#    password: 
+#    port: 6379
+#    pool:
+#      max-idle: 100
+#      min-idle: 1
+#      max-active: 1000
+#      max-wait: -1
+#  #数据库连接信息
+#  datasource:
+#        name: test
+#        url: jdbc:mysql://127.0.0.1:3306/tax-cloud?useUnicode=true&characterEncoding=utf-8
+#        username: root
+#        password: 123456
+#        # 使用druid数据源
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        filters: stat
+#        maxActive: 20
+#        initialSize: 1
+#        maxWait: 60000
+#        minIdle: 1
+#        timeBetweenEvictionRunsMillis: 60000
+#        minEvictableIdleTimeMillis: 300000
+#        validationQuery: select 'x'
+#        testWhileIdle: true
+#        testOnBorrow: false
+#        testOnReturn: false
+#        poolPreparedStatements: true
+#        maxOpenPreparedStatements: 20
+#
+#mybatis:
+#  #mapper.xml所在位置
+#  mapper-locations: classpath:mybatis/mapper/*.xml
+#   
+## 分页配置
+#pagehelper:
+#  helper-dialect: mysql
+#  reasonable: false
+#  support-methods-arguments: true
+#  params: count=countSql
+#  
+#
+##日志
+#logging:
+#  config: classpath:logback-${spring.profiles.active}.xml
+#  
+#  
+#feign:
+#   hystrix:
+#     enabled: true
+#hystrix:
+#   command: 
+#     default: 
+#       execution: 
+#        isolation:
+#         thread: 
+#          timeoutInMilliseconds: 4000
+#
+#
+#
+# 
+#    
+
+
+
+server:
+  port: 8077
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:20002/eureka/
+      #defaultZone: http://101.132.130.71:20001/eureka/
+  #instance:
+   # prefer-ip-address: true
+    #ip-address: mark.zpcdi.com
+#      ip-address: 10.112.11.108
+#      prefer-ip-address: true
+      
+
+spring:
+  application:
+    name: ea
+  profiles:
+    #指定读取配置文件:dev(开发环境),prod(生产环境),qa(测试环境)
+    active: dev
+#  redis:
+#    host: 127.0.0.1
+#    password:
+#    port: 6379
+#    pool:
+  #      max-idle: 100
+  #      min-idle: 1
+  #      max-active: 1000
+  #      max-wait: -1
+  #数据库连接信息
+  datasource:
+    name: test
+#    url: jdbc:mysql://127.0.0.1:3306/fin-tax?useUnicode=true&characterEncoding=utf-8&&allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:3306/tax-cloud?useUnicode=true&characterEncoding=utf-8&&allowMultiQueries=true
+    username: root
+    password: 123456
+#    url: jdbc:oracle:thin:@106.15.205.224:1521:orcl
+#    username: hundwe_invoice
+#    password: hundwe_invoice
+#    url: jdbc:sqlserver://192.168.1.101:1433;DatabaseName=Poweron
+#    username: poweron
+#    password: P3-china
+#    url: jdbc:sqlserver://192.168.1.101:1433;DatabaseName=Poweron
+#    username: poweron
+#    password: P3-china
+#    url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=zhys_k3
+#    username: sa
+#    password: 123456
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  servlet:
+    multipart:
+      max-request-size: 10MB
+
+mybatis:
+  #mapper.xml所在位置
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    default-executor-type: simple
+  executor-type: simple
+
+# 分页配置
+pagehelper:
+#  helper-dialect: mysql
+  helper-dialect: sqlserver
+  reasonable: false
+  support-methods-arguments: true
+  params: count=countSql
+
+
+#日志
+logging:
+  config: classpath:logback-${spring.profiles.active}.xml
+  
+  
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  
+  
+
+
+

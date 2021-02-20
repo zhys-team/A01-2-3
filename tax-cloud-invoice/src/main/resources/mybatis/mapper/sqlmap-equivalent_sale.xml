@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="equivalent_sale">
+
+	<!--
+      - ===============================================
+      - 返回 EquivalentSale Entity
+      - @author 11734
+      - @date 2018-11-01
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.EquivalentSale"	   id="RM_EquivalentSale">
+		<id     property="id"                  column="id"                   jdbcType="BIGINT"   javaType="java.lang.Long"        />
+		<result property="billDate"            column="bill_date"            jdbcType="DATE"     javaType="java.sql.Date"         />
+		<result property="mark"                column="mark"                 jdbcType="VARCHAR"  javaType="java.lang.String"      />
+		<result property="taxType"             column="tax_type"             jdbcType="CHAR"     javaType="java.lang.String"      />
+		<result property="saleClassification"  column="sale_classification"  jdbcType="CHAR"     javaType="java.lang.String"      />
+		<result property="taxRate"             column="tax_rate"             jdbcType="VARCHAR"  javaType="java.lang.String"      />
+		<result property="bhsxse"              column="bhsxse"               jdbcType="DECIMAL"  javaType="java.math.BigDecimal"  />
+		<result property="se"                  column="se"                   jdbcType="DECIMAL"  javaType="java.math.BigDecimal"  />
+		<result property="jshj"                column="jshj"                 jdbcType="DECIMAL"  javaType="java.math.BigDecimal"  />
+		<result property="corpid"              column="corpid"               jdbcType="VARCHAR"  javaType="java.lang.String"      />
+		<result property="orgid"               column="orgid"                jdbcType="VARCHAR"  javaType="java.lang.String"      />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			bill_date, 
+    			mark, 
+    			tax_type, 
+    			sale_classification, 
+    			tax_rate, 
+    			bhsxse, 
+    			se, 
+    			jshj, 
+    			corpid, 
+    			orgid
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="billDate != null and ''!=billDate" >
+			         and  bill_date = #{billDate}
+			      </if>
+			                                 <if test="mark != null and ''!=mark" >
+			         and  mark = #{mark}
+			      </if>
+			                                 <if test="taxType != null and ''!=taxType" >
+			         and  tax_type = #{taxType}
+			      </if>
+			                                 <if test="saleClassification != null and ''!=saleClassification" >
+			         and  sale_classification = #{saleClassification}
+			      </if>
+			                                 <if test="taxRate != null and ''!=taxRate" >
+			         and  tax_rate = #{taxRate}
+			      </if>
+			                                 <if test="bhsxse != null and ''!=bhsxse" >
+			         and  bhsxse = #{bhsxse}
+			      </if>
+			                                 <if test="se != null and ''!=se" >
+			         and  se = #{se}
+			      </if>
+			                                 <if test="jshj != null and ''!=jshj" >
+			         and  jshj = #{jshj}
+			      </if>
+			                                 <if test="corpid != null and ''!=corpid" >
+			         and  corpid = #{corpid}
+			      </if>
+			                                 <if test="orgid != null and ''!=orgid" >
+			         and  orgid = #{orgid}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 EquivalentSale
+      - @author 11734
+      - @date 2018-11-01
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.EquivalentSale" useGeneratedKeys="true" keyProperty="id">
+		insert into equivalent_sale (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{billDate}, 
+		    #{mark}, 
+		    #{taxType}, 
+		    #{saleClassification}, 
+		    #{taxRate}, 
+		    #{bhsxse}, 
+		    #{se}, 
+		    #{jshj}, 
+		    #{corpid}, 
+		    #{orgid}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 EquivalentSale
+      - @author 11734
+      - @date 2018-11-01
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.EquivalentSale">
+	      update equivalent_sale
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="billDate != null and ''!=billDate" >
+			        bill_date = #{billDate},
+			      </if>
+			                        <if test="mark != null and ''!=mark" >
+			        mark = #{mark},
+			      </if>
+			                        <if test="taxType != null and ''!=taxType" >
+			        tax_type = #{taxType},
+			      </if>
+			                        <if test="saleClassification != null and ''!=saleClassification" >
+			        sale_classification = #{saleClassification},
+			      </if>
+			                        <if test="taxRate != null and ''!=taxRate" >
+			        tax_rate = #{taxRate},
+			      </if>
+			                        <if test="bhsxse != null and ''!=bhsxse" >
+			        bhsxse = #{bhsxse},
+			      </if>
+			                        <if test="se != null and ''!=se" >
+			        se = #{se},
+			      </if>
+			                        <if test="jshj != null and ''!=jshj" >
+			        jshj = #{jshj},
+			      </if>
+			                        <if test="corpid != null and ''!=corpid" >
+			        corpid = #{corpid},
+			      </if>
+			                        <if test="orgid != null and ''!=orgid" >
+			        orgid = #{orgid},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 EquivalentSale 总数
+      - @author 11734
+      - @date 2018-11-01
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.EquivalentSale">
+		select count(*)
+		from equivalent_sale
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 EquivalentSale 信息
+      - @author 11734
+      - @date 2018-11-01
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_EquivalentSale" parameterType="com.invoice.po.EquivalentSale">
+		select 
+        <include refid="sql"/>
+		from equivalent_sale
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表EquivalentSale 信息
+      - @author 11734
+      - @date 2018-11-01
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_EquivalentSale" parameterType="com.invoice.po.EquivalentSale">
+		select 
+        <include refid="sql"/>
+		from equivalent_sale
+		
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 EquivalentSale 分页信息
+      - @author 11734
+      - @date 2018-11-01
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_EquivalentSale" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from equivalent_sale
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.EquivalentSale">
+	 update equivalent_sale set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update equivalent_sale set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

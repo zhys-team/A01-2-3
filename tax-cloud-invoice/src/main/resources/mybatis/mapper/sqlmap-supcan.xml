@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="supcan">
+	<resultMap type="com.invoice.model.SupcanReport" id="RM_SupcanReport">
+		<result property="mid"          column="mid"          jdbcType="INTEGER"    javaType="java.lang.Integer"     />
+		<result property="reportName"          column="reportName"          jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="createDate"       column="createDate"       jdbcType="TIMESTAMP"  javaType="java.util.Date"        />
+		<result property="modifyDate"       column="modifyDate"       jdbcType="TIMESTAMP"  javaType="java.util.Date"        />
+	</resultMap>
+	
+	<resultMap type="com.invoice.model.TemplateDataSource" id="RM_TemplateDataSource">
+		<result property="mid"          column="mid"          jdbcType="INTEGER"    javaType="java.lang.Long"     />
+		<result property="dataSourceName"          column="dataSourceName"          jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="sqlStatement"          column="sqlStatement"          jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="createDate"       column="createDate"       jdbcType="TIMESTAMP"  javaType="java.util.Date"        />
+		<result property="modifyDate"       column="modifyDate"       jdbcType="TIMESTAMP"  javaType="java.util.Date"        />
+	</resultMap>
+	
+	<resultMap type="com.invoice.model.TemplateDataSourcePara" id="RM_TemplateDataSourcePara">
+		<result property="nid"          column="nid"          jdbcType="INTEGER"    javaType="java.lang.Integer"     />
+		<result property="parentId"          column="parentId"          jdbcType="INTEGER"    javaType="java.lang.Integer"     />
+		<result property="paraName"          column="paraName"          jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="paraStr"          column="paraStr"          jdbcType="VARCHAR"    javaType="java.lang.String"      />
+		<result property="paraType"          column="paraType"          jdbcType="INTEGER"    javaType="java.lang.Integer"     />
+	</resultMap>
+	
+	<insert id="_insert" parameterType="com.invoice.model.SupcanReport">
+		insert into supcan
+		(reportName,createDate,modifyDate)
+		values
+		(#{reportName},now(),now()) 
+	</insert>
+	
+	<update id="_update" parameterType="com.invoice.model.SupcanReport">
+		update supcan
+		set 
+			reportName = #{reportName},
+			modifyDate = now()
+		where mid = #{mid}
+	</update>
+	
+	<update id="_updateTempletContext" parameterType="com.invoice.model.SupcanReport">
+		update supcan
+		set
+			templetContext = #{templetContext},
+			modifyDate = now()
+		where mid = #{mid}
+	</update>
+	
+	<select id="_getObjectByMid" resultMap="RM_SupcanReport" parameterType="java.lang.Integer">
+		select mid,reportName,createDate,modifyDate
+		from supcan
+		where mid = #{mid}
+	</select>
+	
+	<select id="_selectTempletData" parameterType="java.lang.Integer" resultType="java.lang.String">
+		select templetContext 
+		from supcan
+		where mid = #{mid}
+	</select>
+	
+	<select id="page" resultMap="RM_SupcanReport" parameterType="java.util.HashMap">
+		select mid,reportName,createDate,modifyDate
+		from supcan
+		order by mid
+	</select>
+	
+	<select id="_dspage" resultMap="RM_TemplateDataSource" parameterType="java.util.HashMap">
+		select mid,dataSourceName,sqlStatement,createDate,modifyDate
+		from templateDataSource
+		order by mid
+	</select>
+	
+	<select id="_selectTemplateDataSource" resultMap="RM_TemplateDataSource" parameterType="java.lang.Long">
+		select mid,dataSourceName,sqlStatement,createDate,modifyDate
+		from templateDataSource
+		where mid = #{mid}
+	</select>
+	
+	<select id="_selectTemplateDataSourcePara" resultMap="RM_TemplateDataSourcePara" parameterType="java.lang.Long">
+		select nid,parentId,paraName,paraStr,paraType
+		from templateDataSourcePara
+		where nid = #{mid}
+	</select>
+</mapper>

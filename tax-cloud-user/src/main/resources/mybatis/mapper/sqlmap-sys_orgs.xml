@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sys_orgs">
+
+	<!--
+      - ===============================================
+      - 返回 SysOrgs Entity
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.user.po.SysOrgs"	   id="RM_SysOrgs">
+		<id     property="id"        column="id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="orgName"   column="org_name"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="orgNo"     column="org_no"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="isDept"    column="is_dept"    jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="isOrg"     column="is_org"     jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="parentId"  column="parent_id"  jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="taxNo"     column="tax_no"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="delState"  column="del_state"  jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="isKp"      column="is_kp"      jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="addr"      column="addr"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="tel"       column="tel"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="khhmc"     column="khhmc"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="khhzh"     column="khhzh"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="kpr"       column="kpr"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="fhr"       column="fhr"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="skr"       column="skr"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="isSp"      column="is_sp"      jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="bxspyx"    column="bxspyx"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="cgspyx"    column="cgspyx"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="isRz"      column="is_rz"      jdbcType="CHAR"     javaType="java.lang.String"  />
+	</resultMap>
+	
+	<resultMap  type="com.zhys.user.po.SysOrgs"	   id="sysOrgsDetail">
+		<id     property="id"        column="id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="orgName"   column="org_name"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="orgNo"     column="org_no"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="isDept"    column="is_dept"    jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="isOrg"     column="is_org"     jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="parentId"  column="parent_id"  jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="taxNo"     column="tax_no"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="delState"  column="del_state"  jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="isKp"      column="is_kp"      jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="addr"      column="addr"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="tel"       column="tel"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="khhmc"     column="khhmc"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="khhzh"     column="khhzh"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="kpr"       column="kpr"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="fhr"       column="fhr"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="skr"       column="skr"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="isSp"      column="is_sp"      jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="bxspyx"    column="bxspyx"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="cgspyx"    column="cgspyx"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="isRz"      column="is_rz"      jdbcType="CHAR"     javaType="java.lang.String"  />
+		<collection  property="auths"  ofType="com.zhys.base.po.InvoiceAuth"  column="id"  select="invoice_auth.queryList1"></collection>
+		<collection  property="mechs"  ofType="com.zhys.base.po.TaxMech"  column="id"  select="tax_mech.queryList1"></collection>
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			org_name, 
+    			org_no, 
+    			is_dept, 
+    			is_org, 
+    			parent_id, 
+    			tax_no, 
+    			del_state, 
+    			is_kp, 
+    			addr, 
+    			tel, 
+    			khhmc, 
+    			khhzh, 
+    			kpr, 
+    			fhr, 
+    			skr, 
+    			is_sp, 
+    			bxspyx, 
+    			cgspyx, 
+    			is_rz
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     del_state=0
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="orgName != null and ''!=orgName" >
+			         and  org_name like '%${orgName}%'
+			      </if>
+			                                 <if test="orgNo != null and ''!=orgNo" >
+			         and  org_no = #{orgNo}
+			      </if>
+			                                 <if test="isDept != null and ''!=isDept" >
+			         and  is_dept = #{isDept}
+			      </if>
+			                                 <if test="isOrg != null and ''!=isOrg" >
+			         and  is_org = #{isOrg}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="taxNo != null and ''!=taxNo" >
+			         and  tax_no = #{taxNo}
+			      </if>
+			                                 <if test="delState != null and ''!=delState" >
+			         and  del_state = #{delState}
+			      </if>
+			                                 <if test="isKp != null and ''!=isKp" >
+			         and  is_kp = #{isKp}
+			      </if>
+			                                 <if test="addr != null and ''!=addr" >
+			         and  addr = #{addr}
+			      </if>
+			                                 <if test="tel != null and ''!=tel" >
+			         and  tel = #{tel}
+			      </if>
+			                                 <if test="khhmc != null and ''!=khhmc" >
+			         and  khhmc = #{khhmc}
+			      </if>
+			                                 <if test="khhzh != null and ''!=khhzh" >
+			         and  khhzh = #{khhzh}
+			      </if>
+			                                 <if test="kpr != null and ''!=kpr" >
+			         and  kpr = #{kpr}
+			      </if>
+			                                 <if test="fhr != null and ''!=fhr" >
+			         and  fhr = #{fhr}
+			      </if>
+			                                 <if test="skr != null and ''!=skr" >
+			         and  skr = #{skr}
+			      </if>
+			                                 <if test="isSp != null and ''!=isSp" >
+			         and  is_sp = #{isSp}
+			      </if>
+			                                 <if test="bxspyx != null and ''!=bxspyx" >
+			         and  bxspyx = #{bxspyx}
+			      </if>
+			                                 <if test="cgspyx != null and ''!=cgspyx" >
+			         and  cgspyx = #{cgspyx}
+			      </if>
+			                                 <if test="isRz != null and ''!=isRz" >
+			         and  is_rz = #{isRz}
+			      </if>
+			      <if test="orgIds != null and ''!=orgIds" >
+			         and  id in(${orgIds}) 
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 SysOrgs
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.user.po.SysOrgs" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_orgs (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{orgName}, 
+		    #{orgNo}, 
+		    #{isDept}, 
+		    #{isOrg}, 
+		    #{parentId}, 
+		    #{taxNo}, 
+		    #{delState}, 
+		    #{isKp}, 
+		    #{addr}, 
+		    #{tel}, 
+		    #{khhmc}, 
+		    #{khhzh}, 
+		    #{kpr}, 
+		    #{fhr}, 
+		    #{skr}, 
+		    #{isSp}, 
+		    #{bxspyx}, 
+		    #{cgspyx}, 
+		    #{isRz}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 SysOrgs
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.user.po.SysOrgs">
+	      update sys_orgs
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="orgName != null and ''!=orgName" >
+			        org_name = #{orgName},
+			      </if>
+			                        <if test="orgNo != null and ''!=orgNo" >
+			        org_no = #{orgNo},
+			      </if>
+			                        <if test="isDept != null and ''!=isDept" >
+			        is_dept = #{isDept},
+			      </if>
+			                        <if test="isOrg != null and ''!=isOrg" >
+			        is_org = #{isOrg},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="taxNo != null and ''!=taxNo" >
+			        tax_no = #{taxNo},
+			      </if>
+			                        <if test="delState != null and ''!=delState" >
+			        del_state = #{delState},
+			      </if>
+			                        <if test="isKp != null and ''!=isKp" >
+			        is_kp = #{isKp},
+			      </if>
+			                        <if test="addr != null and ''!=addr" >
+			        addr = #{addr},
+			      </if>
+			                        <if test="tel != null and ''!=tel" >
+			        tel = #{tel},
+			      </if>
+			                        <if test="khhmc != null and ''!=khhmc" >
+			        khhmc = #{khhmc},
+			      </if>
+			                        <if test="khhzh != null and ''!=khhzh" >
+			        khhzh = #{khhzh},
+			      </if>
+			                        <if test="kpr != null and ''!=kpr" >
+			        kpr = #{kpr},
+			      </if>
+			                        <if test="fhr != null and ''!=fhr" >
+			        fhr = #{fhr},
+			      </if>
+			                        <if test="skr != null and ''!=skr" >
+			        skr = #{skr},
+			      </if>
+			                        <if test="isSp != null and ''!=isSp" >
+			        is_sp = #{isSp},
+			      </if>
+			                        <if test="bxspyx != null and ''!=bxspyx" >
+			        bxspyx = #{bxspyx},
+			      </if>
+			                        <if test="cgspyx != null and ''!=cgspyx" >
+			        cgspyx = #{cgspyx},
+			      </if>
+			                        <if test="isRz != null and ''!=isRz" >
+			        is_rz = #{isRz},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 SysOrgs 总数
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.user.po.SysOrgs">
+		select count(*)
+		from sys_orgs
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysOrgs 信息
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<select id="query" resultMap="sysOrgsDetail" parameterType="com.zhys.user.po.SysOrgs">
+		select 
+        <include refid="sql"/>
+		from sys_orgs
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表SysOrgs 信息
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_SysOrgs" parameterType="com.zhys.user.po.SysOrgs">
+		select 
+        <include refid="sql"/>
+		from sys_orgs
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysOrgs 分页信息
+      - @author 11734
+      - @date 2018-08-28
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_SysOrgs" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from sys_orgs
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeStateById" parameterType="com.zhys.user.po.SysOrgs">
+	 update sys_orgs set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeStateByIds" parameterType="java.util.HashMap">
+	 update sys_orgs set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

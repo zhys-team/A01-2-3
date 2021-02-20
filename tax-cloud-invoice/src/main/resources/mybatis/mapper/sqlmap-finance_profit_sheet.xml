@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="finance_profit_sheet">
+
+	<!--
+      - ===============================================
+      - 返回 FinanceProfitSheet Entity
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.FinanceProfitSheet"	   id="RM_FinanceProfitSheet">
+		<id     property="id"        column="id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="hh"        column="hh"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="hmc"       column="hmc"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqje"      column="bqje"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="sqjr"      column="sqjr"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="parentId"  column="parent_id"  jdbcType="BIGINT"   javaType="java.lang.Long"    />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			hh, 
+    			hmc, 
+    			bqje, 
+    			sqjr, 
+    			parent_id
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="hh != null and ''!=hh" >
+			         and  hh = #{hh}
+			      </if>
+			                                 <if test="hmc != null and ''!=hmc" >
+			         and  hmc = #{hmc}
+			      </if>
+			                                 <if test="bqje != null and ''!=bqje" >
+			         and  bqje = #{bqje}
+			      </if>
+			                                 <if test="sqjr != null and ''!=sqjr" >
+			         and  sqjr = #{sqjr}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 FinanceProfitSheet
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.FinanceProfitSheet" useGeneratedKeys="true" keyProperty="id">
+		insert into finance_profit_sheet (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{hh}, 
+		    #{hmc}, 
+		    #{bqje}, 
+		    #{sqjr}, 
+		    #{parentId}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 FinanceProfitSheet
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.FinanceProfitSheet">
+	      update finance_profit_sheet
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="hh != null and ''!=hh" >
+			        hh = #{hh},
+			      </if>
+			                        <if test="hmc != null and ''!=hmc" >
+			        hmc = #{hmc},
+			      </if>
+			                        <if test="bqje != null and ''!=bqje" >
+			        bqje = #{bqje},
+			      </if>
+			                        <if test="sqjr != null and ''!=sqjr" >
+			        sqjr = #{sqjr},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 FinanceProfitSheet 总数
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.FinanceProfitSheet">
+		select count(*)
+		from finance_profit_sheet
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 FinanceProfitSheet 信息
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_FinanceProfitSheet" parameterType="com.invoice.po.FinanceProfitSheet">
+		select 
+        <include refid="sql"/>
+		from finance_profit_sheet
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表FinanceProfitSheet 信息
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_FinanceProfitSheet" parameterType="com.invoice.po.FinanceProfitSheet">
+		select 
+        <include refid="sql"/>
+		from finance_profit_sheet
+		
+	</select>
+	
+	<select id="queryList1" resultMap="RM_FinanceProfitSheet" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from finance_profit_sheet
+		where parent_id=#{id}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 FinanceProfitSheet 分页信息
+      - @author 11734
+      - @date 2018-10-19
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_FinanceProfitSheet" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from finance_profit_sheet
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.FinanceProfitSheet">
+	 update finance_profit_sheet set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update finance_profit_sheet set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	<delete id="del" parameterType="com.invoice.po.FinanceSheet">
+	 delete from  finance_profit_sheet where parent_id=#{id}
+	</delete>
+</mapper>

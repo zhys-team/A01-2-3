@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rate_business">
+
+	<!--
+      - ===============================================
+      - 返回 RateBusiness Entity
+      - @author 11734
+      - @date 2018-08-21
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.base.po.RateBusiness"	   id="RM_RateBusiness">
+		<id     property="id"                  column="id"                    jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="rateCodeId"          column="rate_code_id"          jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="businessMatterId"    column="business_matter_id"    jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="businessMatterName"  column="business_matter_name"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="orgId"               column="org_id"                jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="orgName"  column="org_name"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			rate_code_id, 
+    			business_matter_id, 
+    			business_matter_name, 
+    			org_id,
+    			org_name
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="rateCodeId != null and ''!=rateCodeId" >
+			         and  rate_code_id = #{rateCodeId}
+			      </if>
+			                                 <if test="businessMatterId != null and ''!=businessMatterId" >
+			         and  business_matter_id = #{businessMatterId}
+			      </if>
+			                                 <if test="businessMatterName != null and ''!=businessMatterName" >
+			         and  business_matter_name = #{businessMatterName}
+			      </if>
+			                                 <if test="orgId != null and ''!=orgId" >
+			         and  org_id = #{orgId}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 RateBusiness
+      - @author 11734
+      - @date 2018-08-21
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.base.po.RateBusiness" useGeneratedKeys="true" keyProperty="id">
+		insert into rate_business (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{rateCodeId}, 
+		    #{businessMatterId}, 
+		    #{businessMatterName}, 
+		    #{orgId},
+		    #{orgName}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 RateBusiness
+      - @author 11734
+      - @date 2018-08-21
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.base.po.RateBusiness">
+	      update rate_business
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="rateCodeId != null and ''!=rateCodeId" >
+			        rate_code_id = #{rateCodeId},
+			      </if>
+			                        <if test="businessMatterId != null and ''!=businessMatterId" >
+			        business_matter_id = #{businessMatterId},
+			      </if>
+			                        <if test="businessMatterName != null and ''!=businessMatterName" >
+			        business_matter_name = #{businessMatterName},
+			      </if>
+			                        <if test="orgId != null and ''!=orgId" >
+			        org_id = #{orgId},
+			      </if>
+			      <if test="orgName != null and ''!=orgName" >
+			        org_name = #{orgName},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 RateBusiness 总数
+      - @author 11734
+      - @date 2018-08-21
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.base.po.RateBusiness">
+		select count(*)
+		from rate_business
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 RateBusiness 信息
+      - @author 11734
+      - @date 2018-08-21
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_RateBusiness" parameterType="com.zhys.base.po.RateBusiness">
+		select 
+        <include refid="sql"/>
+		from rate_business
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表RateBusiness 信息
+      - @author 11734
+      - @date 2018-08-21
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_RateBusiness" parameterType="com.zhys.base.po.RateBusiness">
+		select 
+        <include refid="sql"/>
+		from rate_business
+		<where>
+		  <include refid="where"/>
+		</where>
+	</select>
+	
+	<select id="queryList1" resultMap="RM_RateBusiness" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from rate_business
+		where rate_code_id=#{id}
+		
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 RateBusiness 分页信息
+      - @author 11734
+      - @date 2018-08-21
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_RateBusiness" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from rate_business
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeStateById" parameterType="com.zhys.base.po.RateBusiness">
+	 update rate_business set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeStateByIds" parameterType="java.util.HashMap">
+	 update rate_business set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	
+	<delete id="delByParent" parameterType="com.zhys.base.po.RateCode">
+	delete from rate_business where rate_code_id = #{id}
+	</delete>
+</mapper>

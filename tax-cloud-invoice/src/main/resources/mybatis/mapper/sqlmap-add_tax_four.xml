@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="add_tax_four">
+
+	<!--
+      - ===============================================
+      - 返回 AddTaxFour Entity
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.AddTaxFour"	   id="RM_AddTaxFour">
+		<id     property="id"        column="id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="parentId"  column="parent_id"  jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="xh"        column="xh"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqye"      column="bqye"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqfse"     column="bqfse"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqydjse"   column="bqydjse"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqsjdjse"  column="bqsjdjse"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qmye"      column="qmye"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			parent_id, 
+    			xh, 
+    			bqye, 
+    			bqfse, 
+    			bqydjse, 
+    			bqsjdjse, 
+    			qmye
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="xh != null and ''!=xh" >
+			         and  xh = #{xh}
+			      </if>
+			                                 <if test="bqye != null and ''!=bqye" >
+			         and  bqye = #{bqye}
+			      </if>
+			                                 <if test="bqfse != null and ''!=bqfse" >
+			         and  bqfse = #{bqfse}
+			      </if>
+			                                 <if test="bqydjse != null and ''!=bqydjse" >
+			         and  bqydjse = #{bqydjse}
+			      </if>
+			                                 <if test="bqsjdjse != null and ''!=bqsjdjse" >
+			         and  bqsjdjse = #{bqsjdjse}
+			      </if>
+			                                 <if test="qmye != null and ''!=qmye" >
+			         and  qmye = #{qmye}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 AddTaxFour
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.AddTaxFour" useGeneratedKeys="true" keyProperty="id">
+		insert into add_tax_four (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{parentId}, 
+		    #{xh}, 
+		    #{bqye}, 
+		    #{bqfse}, 
+		    #{bqydjse}, 
+		    #{bqsjdjse}, 
+		    #{qmye}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 AddTaxFour
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.AddTaxFour">
+	      update add_tax_four
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="xh != null and ''!=xh" >
+			        xh = #{xh},
+			      </if>
+			                        <if test="bqye != null and ''!=bqye" >
+			        bqye = #{bqye},
+			      </if>
+			                        <if test="bqfse != null and ''!=bqfse" >
+			        bqfse = #{bqfse},
+			      </if>
+			                        <if test="bqydjse != null and ''!=bqydjse" >
+			        bqydjse = #{bqydjse},
+			      </if>
+			                        <if test="bqsjdjse != null and ''!=bqsjdjse" >
+			        bqsjdjse = #{bqsjdjse},
+			      </if>
+			                        <if test="qmye != null and ''!=qmye" >
+			        qmye = #{qmye},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxFour 总数
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.AddTaxFour">
+		select count(*)
+		from add_tax_four
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxFour 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_AddTaxFour" parameterType="com.invoice.po.AddTaxFour">
+		select 
+        <include refid="sql"/>
+		from add_tax_four
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表AddTaxFour 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_AddTaxFour" parameterType="com.invoice.po.AddTaxFour">
+		select 
+        <include refid="sql"/>
+		from add_tax_four
+		
+	</select>
+	
+	<select id="queryList1" resultMap="RM_AddTaxFour" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from add_tax_four
+		where parent_id=#{id}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxFour 分页信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_AddTaxFour" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from add_tax_four
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.AddTaxFour">
+	 update add_tax_four set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update add_tax_four set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	<delete id="del" parameterType="com.invoice.po.AddTaxMain">
+	 delete from  add_tax_four where parent_id=#{id}
+	</delete>
+</mapper>

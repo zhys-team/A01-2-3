@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.orgid//DTD Mapper 3.0//EN"
+    "http://mybatis.orgid/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sys_users">
+
+	<!--
+      - ===============================================
+      - 返回 SysUsers Entity
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.user.po.SysUsers"	   id="RM_SysUsers">
+		<id     property="id"      column="id"      jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="name"    column="name"    jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="no"      column="no"      jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="password"    column="password"    jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="openid"  column="openid"  jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="state"   column="state"   jdbcType="CHAR"     javaType="java.lang.String"   />
+		<result property="orgid"     column="orgid"     jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="otherid"     column="otherid"     jdbcType="VARCHAR"  javaType="java.lang.String"   />
+	</resultMap>
+
+	<!--
+      - ===============================================
+      - 新增 SysUsers
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.user.po.SysUsers" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_users (
+			id, 
+			name, 
+			no,
+			password, 
+			openid, 
+			state, 
+			orgid,
+			otherid
+		) values (
+		    #{id}, 
+		    #{name}, 
+		    #{no}, 
+		    #{password},
+		    #{openid}, 
+		    '1',
+		    #{orgid},
+		    #{otherid}
+		)
+	</insert>
+
+
+<!-- sql查询语句-->
+	<sql id="where">
+	     state='0'
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+				  <if test="name != null and ''!=name" >
+			         and name like '%${name}%'
+			      </if>
+			                                 <if test="password != null and ''!=password" >
+			         and  password = #{password}
+			      </if>
+			                                 <if test="no != null and ''!=no" >
+			         and  no = #{no}
+			      </if>
+			                                 <if test="openid != null and ''!=openid" >
+			         and  openid = #{openid}
+			      </if>
+			                                 <if test="state != null and ''!=state" >
+			         and  state = #{state}
+			      </if>
+			                                 <if test="orgid != null and ''!=orgid" >
+			         and  orgid = #{orgid}
+			      </if>
+			                                 <if test="otherid != null and ''!=otherid" >
+			         and  otherid = #{otherid}
+			      </if>
+	</sql>
+
+	<!--
+      - ===============================================
+      - 修改 SysUsers
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.user.po.SysUsers">
+	      update sys_users
+	         <set >
+	         	         
+			      		      <if test="name != null and ''!=name" >
+			        name = #{name},
+			      </if>
+			      		      <if test="no != null and ''!=no" >
+			        no = #{no},
+			      </if>
+			      		      <if test="openid != null and ''!=openid" >
+			        openid = #{openid},
+			      </if>
+			      		      <if test="state != null and ''!=state" >
+			        state = #{state},
+			      </if>
+			      		      <if test="orgid != null and ''!=orgid" >
+			        orgid = #{orgid},
+			      </if>
+			      		      		    </set>
+		    where id = #{id} and state='0'
+	</update>  
+	
+	<update id="bandOpnid" parameterType="com.zhys.user.po.SysUsers">
+	      update sys_users set  openid = #{openid}
+	      where no = #{no} and password = #{password} and state='0'
+	        
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 SysUsers 总数
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.user.po.SysUsers">
+		select count(*)
+		from sys_users
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysUsers 信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_SysUsers" parameterType="com.zhys.user.po.SysUsers">
+		select 
+		    id, 
+		    name, 
+		    no, 
+		    password,
+		    openid, 
+		    state, 
+		    orgid,
+			otherid
+		from sys_users
+		where id = #{id}
+	</select>
+	
+	<select id="login" resultMap="RM_SysUsers" parameterType="com.zhys.user.po.SysUsers">
+		select 
+		    id, 
+		    name, 
+		    no, 
+		    password,
+		    openid, 
+		    state, 
+		    orgid,
+			otherid
+		from sys_users
+		where no = #{no} and password=#{password}
+	</select>
+	
+	<select id="queryByOpenid" resultMap="RM_SysUsers" parameterType="com.zhys.user.po.SysUsers">
+		select 
+		    id, 
+		    name, 
+		    no, 
+		    password,
+		    openid, 
+		    state, 
+		    orgid,
+			otherid
+		from sys_users
+		where openid = #{openid}
+	</select>
+	
+	<select id="queryByNo" resultMap="RM_SysUsers" parameterType="com.zhys.user.po.SysUsers">
+		select 
+		    id, 
+		    name, 
+		    no, 
+		    password,
+		    openid, 
+		    state, 
+		    orgid,
+			otherid
+		from sys_users
+		where no = #{no}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表SysUsers 信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_SysUsers" parameterType="com.zhys.user.po.SysUsers">
+		select 
+		    id, 
+		    name, 
+		    no, 
+		    password,
+		    openid, 
+		    state, 
+		    orgid,
+			otherid
+		from sys_users where 1=1 and state='0'
+		
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysUsers 分页信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_SysUsers" parameterType="com.zhys.user.po.SysUsers">
+		select 
+		    id, 
+		    name, 
+		    no, 
+		    password,
+		    openid, 
+		    state, 
+		    orgid,
+			otherid
+		from sys_users 
+		<where>
+		  <include refid="where"/>
+		</where>
+	</select>
+	
+	
+	<update id="updateState" parameterType="com.zhys.user.po.SysUsers">
+	      update sys_users
+	         <set >
+			      	<if test="state != null and ''!=state" >
+			        state = #{state},
+			      </if>
+			  </set>
+		    where id in (${ids})
+	</update>
+	
+	
+	
+	<update id="modifyPwd" parameterType="com.zhys.user.po.SysUsers">
+	      update sys_users set
+	        password=#{password}
+		    where id =#{id}
+	</update>
+	
+	
+	<select id="queryCountByOpenid" resultType="int" parameterType="com.zhys.user.po.SysUsers">
+		select 
+		   count(1)
+		from sys_users
+		where openid = #{openid}
+	</select> 
+	
+	
+</mapper>

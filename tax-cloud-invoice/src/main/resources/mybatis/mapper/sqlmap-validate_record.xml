@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="validate_record">
+
+	<!--
+      - ===============================================
+      - 返回 ValidateRecord Entity
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.ValidateRecord"	   id="RM_ValidateRecord">
+		<id     property="id"              column="id"               jdbcType="BIGINT"     javaType="java.lang.Long"    />
+		<result property="createTime"      column="create_time"      jdbcType="TIMESTAMP"  javaType="java.util.Date"    />
+		<result property="createMan"       column="create_man"       jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="validateMode"    column="validate_mode"    jdbcType="CHAR"       javaType="java.lang.String"  />
+		<result property="orgId"           column="org_id"           jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="orgName"         column="org_name"         jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="fpdm"            column="fpdm"             jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="fphm"            column="fphm"             jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="fpzl"            column="fpzl"             jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="validateResult"  column="validate_result"  jdbcType="CLOB"    javaType="java.lang.String"  />
+	    <result property="reason"     column="reason"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			create_time, 
+    			create_man, 
+    			validate_mode, 
+    			org_id, 
+    			org_name, 
+    			fpdm, 
+    			fphm, 
+    			fpzl, 
+    			validate_result,
+    			reason
+    			
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="createTimeStart != null" >
+			        and date_format(create_time,'%Y-%m-%d') >= #{createTimeStart}
+			      </if>
+			      <if test="createTimeEnd != null" >
+			        and date_format(create_time,'%Y-%m-%d') <![CDATA[<=]]> #{createTimeEnd}
+			      </if>
+			                                 <if test="createMan != null and ''!=createMan" >
+			         and  create_man = #{createMan}
+			      </if>
+			                                 <if test="validateMode != null and ''!=validateMode" >
+			         and  validate_mode = #{validateMode}
+			      </if>
+			                                 <if test="orgId != null and ''!=orgId" >
+			         and  org_id = #{orgId}
+			      </if>
+			                                 <if test="orgName != null and ''!=orgName" >
+			         and  org_name = #{orgName}
+			      </if>
+			                                 <if test="fpdm != null and ''!=fpdm" >
+			         and  fpdm = #{fpdm}
+			      </if>
+			                                 <if test="fphm != null and ''!=fphm" >
+			         and  fphm = #{fphm}
+			      </if>
+			                                 <if test="fpzl != null and ''!=fpzl" >
+			         and  fpzl = #{fpzl}
+			      </if>
+			                                 <if test="validateResult != null and ''!=validateResult" >
+			         and  validate_result = #{validateResult}
+			      </if>
+			      order by id desc
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 ValidateRecord
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.ValidateRecord" useGeneratedKeys="true" keyProperty="id">
+		insert into validate_record (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{createTime}, 
+		    #{createMan}, 
+		    #{validateMode}, 
+		    #{orgId}, 
+		    #{orgName}, 
+		    #{fpdm}, 
+		    #{fphm}, 
+		    #{fpzl}, 
+		    #{validateResult},
+		    #{reason}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 ValidateRecord
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.ValidateRecord">
+	      update validate_record
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="createTime != null and ''!=createTime" >
+			        create_time = #{createTime},
+			      </if>
+			                        <if test="createMan != null and ''!=createMan" >
+			        create_man = #{createMan},
+			      </if>
+			                        <if test="validateMode != null and ''!=validateMode" >
+			        validate_mode = #{validateMode},
+			      </if>
+			                        <if test="orgId != null and ''!=orgId" >
+			        org_id = #{orgId},
+			      </if>
+			                        <if test="orgName != null and ''!=orgName" >
+			        org_name = #{orgName},
+			      </if>
+			                        <if test="fpdm != null and ''!=fpdm" >
+			        fpdm = #{fpdm},
+			      </if>
+			                        <if test="fphm != null and ''!=fphm" >
+			        fphm = #{fphm},
+			      </if>
+			                        <if test="fpzl != null and ''!=fpzl" >
+			        fpzl = #{fpzl},
+			      </if>
+			                        <if test="validateResult != null and ''!=validateResult" >
+			        validate_result = #{validateResult},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 ValidateRecord 总数
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.ValidateRecord">
+		select count(*)
+		from validate_record
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 ValidateRecord 信息
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_ValidateRecord" parameterType="com.invoice.po.ValidateRecord">
+		select 
+        <include refid="sql"/>
+		from validate_record
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表ValidateRecord 信息
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_ValidateRecord" parameterType="com.invoice.po.ValidateRecord">
+		select 
+        <include refid="sql"/>
+		from validate_record
+		
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 ValidateRecord 分页信息
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_ValidateRecord" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from validate_record
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+</mapper>

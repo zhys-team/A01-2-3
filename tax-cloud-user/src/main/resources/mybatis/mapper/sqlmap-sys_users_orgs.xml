@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sys_users_orgs">
+
+	<!--
+      - ===============================================
+      - 返回 SysUsersOrgs Entity
+      - @author 11734
+      - @date 2018-07-05
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.user.po.SysUsersOrgs"	   id="RM_SysUsersOrgs">
+	    <id     property="id"        column="id"         jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="userId"    column="user_id"    jdbcType="BIGINT"  javaType="java.lang.Long"  />
+		<result property="orgId"     column="org_id"     jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="delState"  column="del_state"  jdbcType="CHAR"     javaType="java.lang.String"   />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				user_id, 
+    			org_id, 
+    			id, 
+    			del_state
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="userId != null and ''!=userId" >
+			         and  user_id = #{userId}
+			      </if>
+			                                 <if test="orgId != null and ''!=orgId" >
+			         and  org_id = #{orgId}
+			      </if>
+			                                 <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="delState != null and ''!=delState" >
+			         and  del_state = #{delState}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 SysUsersOrgs
+      - @author 11734
+      - @date 2018-07-05
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.user.po.SysUsersOrgs" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_users_orgs (
+         <include refid="sql"/>
+		) values (
+		    #{userId}, 
+		    #{orgId}, 
+		    #{id}, 
+		    #{delState}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 SysUsersOrgs
+      - @author 11734
+      - @date 2018-07-05
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.user.po.SysUsersOrgs">
+	      update sys_users_orgs
+	           <set>
+	                             <if test="userId != null and ''!=userId" >
+			        user_id = #{userId},
+			      </if>
+			                        <if test="orgId != null and ''!=orgId" >
+			        org_id = #{orgId},
+			      </if>
+			                        <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="delState != null and ''!=delState" >
+			        del_state = #{delState},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+	
+	<!--
+      - ===============================================
+      - 删除 SysUsersOrgs
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+    <delete id="delete" parameterType="com.zhys.user.po.SysUsersOrgs">
+     delete from sys_users_orgs where 1=1
+      
+        and user_id = #{userId}
+      
+    </delete>
+
+	<!--
+      - ===============================================
+      - 查询 SysUsersOrgs 总数
+      - @author 11734
+      - @date 2018-07-05
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.user.po.SysUsersOrgs">
+		select count(*)
+		from sys_users_orgs
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysUsersOrgs 信息
+      - @author 11734
+      - @date 2018-07-05
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_SysUsersOrgs" parameterType="com.zhys.user.po.SysUsersOrgs">
+		select 
+        <include refid="sql"/>
+		from sys_users_orgs
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表SysUsersOrgs 信息
+      - @author 11734
+      - @date 2018-07-05
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_SysUsersOrgs" parameterType="com.zhys.user.po.SysUsersOrgs">
+		select 
+        <include refid="sql"/>
+		from sys_users_orgs
+		<where>
+		  <include refid="where"/>
+		</where>
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysUsersOrgs 分页信息
+      - @author 11734
+      - @date 2018-07-05
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_SysUsersOrgs" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from sys_users_orgs
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeStateById" parameterType="com.zhys.user.po.SysUsersOrgs">
+	 update sys_users_orgs set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeStateByIds" parameterType="java.util.HashMap">
+	 update sys_users_orgs set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

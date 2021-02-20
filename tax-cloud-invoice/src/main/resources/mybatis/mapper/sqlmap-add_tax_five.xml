@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="add_tax_five">
+
+	<!--
+      - ===============================================
+      - 返回 AddTaxFive Entity
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.AddTaxFive"	   id="RM_AddTaxFive">
+		<id     property="id"         column="id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="parentId"   column="parent_id"  jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="qcddkjxse"  column="qcddkjxse"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqbdczje"   column="bqbdczje"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqkdkjxse"  column="bqkdkjxse"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqzrjxse"   column="bqzrjxse"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="bqzcjxse"   column="bqzcjxse"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="qmddkjxse"  column="qmddkjxse"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			parent_id, 
+    			qcddkjxse, 
+    			bqbdczje, 
+    			bqkdkjxse, 
+    			bqzrjxse, 
+    			bqzcjxse, 
+    			qmddkjxse
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="qcddkjxse != null and ''!=qcddkjxse" >
+			         and  qcddkjxse = #{qcddkjxse}
+			      </if>
+			                                 <if test="bqbdczje != null and ''!=bqbdczje" >
+			         and  bqbdczje = #{bqbdczje}
+			      </if>
+			                                 <if test="bqkdkjxse != null and ''!=bqkdkjxse" >
+			         and  bqkdkjxse = #{bqkdkjxse}
+			      </if>
+			                                 <if test="bqzrjxse != null and ''!=bqzrjxse" >
+			         and  bqzrjxse = #{bqzrjxse}
+			      </if>
+			                                 <if test="bqzcjxse != null and ''!=bqzcjxse" >
+			         and  bqzcjxse = #{bqzcjxse}
+			      </if>
+			                                 <if test="qmddkjxse != null and ''!=qmddkjxse" >
+			         and  qmddkjxse = #{qmddkjxse}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 AddTaxFive
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.AddTaxFive" useGeneratedKeys="true" keyProperty="id">
+		insert into add_tax_five (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{parentId}, 
+		    #{qcddkjxse}, 
+		    #{bqbdczje}, 
+		    #{bqkdkjxse}, 
+		    #{bqzrjxse}, 
+		    #{bqzcjxse}, 
+		    #{qmddkjxse}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 AddTaxFive
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.AddTaxFive">
+	      update add_tax_five
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="qcddkjxse != null and ''!=qcddkjxse" >
+			        qcddkjxse = #{qcddkjxse},
+			      </if>
+			                        <if test="bqbdczje != null and ''!=bqbdczje" >
+			        bqbdczje = #{bqbdczje},
+			      </if>
+			                        <if test="bqkdkjxse != null and ''!=bqkdkjxse" >
+			        bqkdkjxse = #{bqkdkjxse},
+			      </if>
+			                        <if test="bqzrjxse != null and ''!=bqzrjxse" >
+			        bqzrjxse = #{bqzrjxse},
+			      </if>
+			                        <if test="bqzcjxse != null and ''!=bqzcjxse" >
+			        bqzcjxse = #{bqzcjxse},
+			      </if>
+			                        <if test="qmddkjxse != null and ''!=qmddkjxse" >
+			        qmddkjxse = #{qmddkjxse},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxFive 总数
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.AddTaxFive">
+		select count(*)
+		from add_tax_five
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxFive 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_AddTaxFive" parameterType="com.invoice.po.AddTaxFive">
+		select 
+        <include refid="sql"/>
+		from add_tax_five
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表AddTaxFive 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_AddTaxFive" parameterType="com.invoice.po.AddTaxFive">
+		select 
+        <include refid="sql"/>
+		from add_tax_five
+		
+	</select>
+	
+	<select id="queryList1" resultMap="RM_AddTaxFive" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from add_tax_five
+		where parent_id=#{id}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxFive 分页信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_AddTaxFive" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from add_tax_five
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.AddTaxFive">
+	 update add_tax_five set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update add_tax_five set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	<delete id="del" parameterType="com.invoice.po.AddTaxMain">
+	 delete from  add_tax_five where parent_id=#{id}
+	</delete>
+</mapper>

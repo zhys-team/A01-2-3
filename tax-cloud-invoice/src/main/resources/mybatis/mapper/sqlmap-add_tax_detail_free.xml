@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="add_tax_detail_free">
+
+	<!--
+      - ===============================================
+      - 返回 AddTaxDetailFree Entity
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.AddTaxDetailFree"	   id="RM_AddTaxDetailFree">
+		<id     property="id"         column="id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="parentId"   column="parent_id"  jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="hmc"        column="hmc"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="lc"         column="lc"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="mzzzsxse"   column="mzzzsxse"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="mssjkcje"   column="mssjkcje"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="kchmsxse"   column="kchmsxse"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="msxsejxse"  column="msxsejxse"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="mse"        column="mse"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			parent_id, 
+    			hmc, 
+    			lc, 
+    			mzzzsxse, 
+    			mssjkcje, 
+    			kchmsxse, 
+    			msxsejxse, 
+    			mse
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="hmc != null and ''!=hmc" >
+			         and  hmc = #{hmc}
+			      </if>
+			                                 <if test="lc != null and ''!=lc" >
+			         and  lc = #{lc}
+			      </if>
+			                                 <if test="mzzzsxse != null and ''!=mzzzsxse" >
+			         and  mzzzsxse = #{mzzzsxse}
+			      </if>
+			                                 <if test="mssjkcje != null and ''!=mssjkcje" >
+			         and  mssjkcje = #{mssjkcje}
+			      </if>
+			                                 <if test="kchmsxse != null and ''!=kchmsxse" >
+			         and  kchmsxse = #{kchmsxse}
+			      </if>
+			                                 <if test="msxsejxse != null and ''!=msxsejxse" >
+			         and  msxsejxse = #{msxsejxse}
+			      </if>
+			                                 <if test="mse != null and ''!=mse" >
+			         and  mse = #{mse}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 AddTaxDetailFree
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.AddTaxDetailFree" useGeneratedKeys="true" keyProperty="id">
+		insert into add_tax_detail_free (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{parentId}, 
+		    #{hmc}, 
+		    #{lc}, 
+		    #{mzzzsxse}, 
+		    #{mssjkcje}, 
+		    #{kchmsxse}, 
+		    #{msxsejxse}, 
+		    #{mse}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 AddTaxDetailFree
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.AddTaxDetailFree">
+	      update add_tax_detail_free
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="hmc != null and ''!=hmc" >
+			        hmc = #{hmc},
+			      </if>
+			                        <if test="lc != null and ''!=lc" >
+			        lc = #{lc},
+			      </if>
+			                        <if test="mzzzsxse != null and ''!=mzzzsxse" >
+			        mzzzsxse = #{mzzzsxse},
+			      </if>
+			                        <if test="mssjkcje != null and ''!=mssjkcje" >
+			        mssjkcje = #{mssjkcje},
+			      </if>
+			                        <if test="kchmsxse != null and ''!=kchmsxse" >
+			        kchmsxse = #{kchmsxse},
+			      </if>
+			                        <if test="msxsejxse != null and ''!=msxsejxse" >
+			        msxsejxse = #{msxsejxse},
+			      </if>
+			                        <if test="mse != null and ''!=mse" >
+			        mse = #{mse},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxDetailFree 总数
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.AddTaxDetailFree">
+		select count(*)
+		from add_tax_detail_free
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxDetailFree 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_AddTaxDetailFree" parameterType="com.invoice.po.AddTaxDetailFree">
+		select 
+        <include refid="sql"/>
+		from add_tax_detail_free
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表AddTaxDetailFree 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_AddTaxDetailFree" parameterType="com.invoice.po.AddTaxDetailFree">
+		select 
+        <include refid="sql"/>
+		from add_tax_detail_free
+		
+	</select>
+	
+	<select id="queryList1" resultMap="RM_AddTaxDetailFree" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from add_tax_detail_free
+		where parent_id=#{id}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxDetailFree 分页信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_AddTaxDetailFree" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from add_tax_detail_free
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.AddTaxDetailFree">
+	 update add_tax_detail_free set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update add_tax_detail_free set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	<delete id="del" parameterType="com.invoice.po.AddTaxMain">
+	 delete from  add_tax_detail_free where parent_id=#{id}
+	</delete>
+</mapper>

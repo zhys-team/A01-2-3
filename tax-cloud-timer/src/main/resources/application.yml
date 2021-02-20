@@ -1,0 +1,20 @@
+server:
+  port: 8765
+#  context-path: /timer
+spring:
+  application:
+    name: timer
+  profiles:
+    #指定读取配置文件:dev(开发环境),prod(生产环境),qa(测试环境)
+    active: dev
+  
+  
+
+#日志
+logging:
+  config: classpath:logback-${spring.profiles.active}.xml
+
+
+
+ 
+    

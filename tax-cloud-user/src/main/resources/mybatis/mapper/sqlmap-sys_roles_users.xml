@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sys_roles_users">
+
+	<!--
+      - ===============================================
+      - 返回 SysRolesUsers Entity
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.user.po.SysRolesUsers"	   id="RM_SysRolesUsers">
+		<result property="roleid"  column="roleid"  jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="userid"  column="userid"  jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+	</resultMap>
+
+	<!--
+      - ===============================================
+      - 新增 SysRolesUsers
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.user.po.SysRolesUsers" >
+		insert into sys_roles_users (
+			roleid, 
+			userid
+		) values (
+		    #{roleid}, 
+		    #{userid}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 删除SysRolesUsers
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<delete id="delete" parameterType="com.zhys.user.po.SysRolesUsers">
+	      delete from  sys_roles_users where 1=1
+	      
+	         
+		      and roleid = #{roleid}
+		      
+	</delete>
+
+	<!--
+      - ===============================================
+      - 查询 SysRolesUsers 总数
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.user.po.SysRolesUsers">
+		select count(*)
+		from sys_roles_users
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysRolesUsers 信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_SysRolesUsers" parameterType="com.zhys.user.po.SysRolesUsers">
+		select 
+		    roleid, 
+		    userid
+		from sys_roles_users
+		
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表SysRolesUsers 信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_SysRolesUsers" parameterType="com.zhys.user.po.SysRolesUsers">
+		select 
+		    roleid, 
+		    userid,
+		    (select name from sys_users where id =ru.userid )as name
+		from sys_roles_users ru
+		where roleid=#{roleid}
+	</select>
+	
+	<select id="queryByUserid" resultMap="RM_SysRolesUsers" parameterType="com.zhys.user.po.SysRolesUsers">
+		select 
+		    roleid, 
+		    userid
+		    
+		from sys_roles_users ru
+		where userid=#{userid}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 SysRolesUsers 分页信息
+      - @author Administrator
+      - @date 2017-11-28
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_SysRolesUsers" parameterType="java.util.HashMap">
+		select 
+		    roleid, 
+		    userid
+		from sys_roles_users
+	</select>
+</mapper>

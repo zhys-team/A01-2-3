@@ -1,0 +1,1399 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="invoice_head">
+
+	<!--
+      - ===============================================
+      - 返回 InvoiceHead Entity
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.InvoiceHead"	   id="RM_InvoiceHead">
+		<id     property="id"          column="id"           jdbcType="BIGINT"     javaType="java.lang.Long"     />
+		<result property="fpzl"        column="fpzl"         jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="fplx"        column="fplx"         jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="fpdm"        column="fpdm"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="fphm"        column="fphm"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="kprq"        column="kprq"         jdbcType="DATE"       javaType="java.sql.Date"      />
+		<result property="jym"         column="jym"          jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="jqbh"        column="jqbh"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="spfmc"       column="spfmc"        jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="spfsbh"      column="spfsbh"       jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="spfdzdh"     column="spfdzdh"      jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="spfyhzh"     column="spfyhzh"      jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="kpfmc"       column="kpfmc"        jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="kpfsbh"      column="kpfsbh"       jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="kpfdzdh"     column="kpfdzdh"      jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="kpfyhzh"     column="kpfyhzh"      jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="hjje"        column="hjje"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="hjse"        column="hjse"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="kpje"        column="kpje"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="mark"        column="mark"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="secret"      column="secret"       jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="zfbz"        column="zfbz"         jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="qdbz"        column="qdbz"         jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="cycs"        column="cycs"         jdbcType="INTEGER"    javaType="java.lang.Integer"  />
+		<result property="orgId"       column="org_id"       jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="orgName"     column="org_name"     jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="deptId"       column="dept_id"       jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="deptName"     column="dept_name"     jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="dyState"     column="dy_state"     jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="outState"    column="out_state"    jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="createTime"  column="create_time"  jdbcType="TIMESTAMP"  javaType="java.util.Date"     />
+		<result property="fjState"     column="fj_state"     jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="fjContent"     column="fj_content"     jdbcType="VARCHAR"       javaType="java.lang.String"   />
+		<result property="jxType"      column="jx_type"      jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="rzrq"        column="rzrq"         jdbcType="TIMESTAMP"  javaType="java.util.Date"     />
+		<result property="rzState"     column="rz_state"     jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="dcrq"        column="dcrq"         jdbcType="TIMESTAMP"  javaType="java.util.Date"     />
+		<result property="dcState"     column="dc_state"     jdbcType="INTEGER"    javaType="java.lang.Integer"  />
+		<result property="djlx"        column="djlx"         jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="spState"     column="sp_state"     jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="createMan"   column="create_man"   jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="updateTime"  column="update_time"  jdbcType="TIMESTAMP"  javaType="java.util.Date"     />
+		<result property="updateMan"   column="update_man"   jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="procMan"     column="proc_man"     jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="voucherNo"   column="voucher_no"   jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="fply"        column="fply"         jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="delState"        column="del_state"         jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="inOrOut"        column="in_or_out"         jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="businessType"        column="business_type"         jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="openId"        column="open_id"         jdbcType="VARCHAR"       javaType="java.lang.String"   />
+		<result property="jzState"     column="jz_state"     jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="bxState"     column="bx_state"     jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="zfState"     column="zf_state"     jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="taxAttr"     column="tax_attr"     jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="pdfUrl"     column="pdf_url"     jdbcType="VARCHAR"       javaType="java.lang.String"   />
+	    <result property="specialType"  column="special_type"  jdbcType="CHAR"       javaType="java.lang.String"   />
+		<result property="startDate"    column="start_date"    jdbcType="TIMESTAMP"  javaType="java.util.Date"     />
+		<result property="endDate"      column="end_date"      jdbcType="TIMESTAMP"  javaType="java.util.Date"     />
+		<result property="startAddr"    column="start_addr"    jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="endAddr"      column="end_addr"      jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="amount"       column="amount"        jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="jtgj"         column="jtgj"          jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="ywsx"         column="ywsx"          jdbcType="VARCHAR"       javaType="java.lang.String"   />
+		<result property="num"          column="num"           jdbcType="INTEGER"    javaType="java.lang.Integer"  />
+	    <result property="seatCategory"  column="seat_category"  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="mxsx"  column="mxsx"  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="passenger"  column="passenger"  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="trainNum"  column="train_num"  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="ticketId"  column="ticket_id"  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="rideTime"  column="ride_time"  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="lyywxt"  column="lyywxt"  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="ywxtbh"  column="ywxtbh"  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="ljzcse"  column="ljzcse"  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="ycxqedk"  column="ycxqedk"  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="sfblzc"  column="sfblzc"  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="jsfs"  column="jsfs"  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="machineCode"          column="machine_code"           jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="machineNumber"        column="machine_number"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="taxAuthorities"       column="tax_authorities"        jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="taxAuthoritiesCode"   column="tax_authorities_code"   jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="carCode"              column="car_code"               jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="carEngineCode"        column="car_engine_code"        jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="carModel"             column="car_model"              jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="certificateNumber"    column="certificate_number"     jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="timeGeton"            column="time_geton"             jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="timeGetoff"           column="time_getoff"            jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="mileage"              column="mileage"                jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="place"                column="place"                  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="time"                 column="time"                   jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="name"                 column="name"                   jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="stationGeton"         column="station_geton"          jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="stationGetoff"        column="station_getoff"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="trainNumber"          column="train_number"           jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="seat"                 column="seat"                   jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="category"             column="category"               jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="entrance"             column="entrance"               jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="exist"                 column="exist"                   jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="userName"             column="user_name"              jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="userId"               column="user_id"                jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="agentcode"            column="agentcode"              jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="issueBy"              column="issue_by"               jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="fare"                 column="fare"                   jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="tax"                  column="tax"                    jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="fuelSurcharge"        column="fuel_surcharge"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="caacDevelopmentFund"  column="caac_development_fund"  jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="insurance"            column="insurance"              jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="flights"              column="flights"                jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="companyName"          column="company_name"           jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="companyTaxId"         column="company_tax_id"         jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="licensePlate"         column="license_plate"          jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="registrationNumber"   column="registration_number"    jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="storeName"            column="store_name"             jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="subtotal"             column="subtotal"               jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="discount"             column="discount"               jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="tips"                 column="tips"                   jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="currencyCode"         column="currency_code"          jdbcType="VARCHAR"    javaType="java.lang.String"   />
+		<result property="isChange"         column="is_change"          jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="reimburseNo"         column="reimburse_no"          jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="dkje"         column="dkje"          jdbcType="DECIMAL"    javaType="java.math.BigDecimal"   />
+	    <result property="dkwsje"         column="dkwsje"          jdbcType="DECIMAL"    javaType="java.math.BigDecimal"   />
+	    <result property="serviceType"         column="service_type"          jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="icon"         column="icon"          jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	    <result property="kjdkq"         column="kjdkq"          jdbcType="VARCHAR"    javaType="java.lang.String"   />
+	
+	</resultMap>
+
+
+<!-- sql查询语句-->
+	<sql id="sql">
+		id, 
+			fpzl, 
+			fplx, 
+			fpdm, 
+			fphm, 
+			kprq, 
+			jym, 
+			jqbh, 
+			spfmc, 
+			spfsbh, 
+			spfdzdh, 
+			spfyhzh, 
+			kpfmc, 
+			kpfsbh, 
+			kpfdzdh, 
+			kpfyhzh, 
+			hjje, 
+			hjse, 
+			kpje, 
+			mark, 
+			secret, 
+			zfbz, 
+			qdbz, 
+			cycs, 
+			org_id, 
+			org_name,
+			dept_id, 
+			dept_name, 
+			dy_state, 
+			out_state, 
+			create_time, 
+			fj_state,
+			fj_content, 
+			jx_type, 
+			rzrq, 
+			rz_state, 
+			dcrq, 
+			dc_state, 
+			djlx, 
+			sp_state, 
+			create_man, 
+			update_time, 
+			update_man, 
+			proc_man, 
+			voucher_no, 
+			fply,
+			del_state,
+			in_or_out,
+			business_type,
+			open_id,
+			jz_state,
+			bx_state,
+			zf_state,
+			tax_attr,
+			pdf_url,
+			special_type, 
+   			start_date, 
+   			end_date, 
+   			start_addr, 
+   			end_addr, 
+   			amount, 
+   			jtgj, 
+   			ywsx, 
+   			num,
+   			seat_category,
+   			mxsx,
+   			passenger,
+   			train_num,
+   			ticket_id,
+   			ride_time,
+   			lyywxt,ywxtbh,ljzcse,ycxqedk,sfblzc,jsfs, 
+    			machine_code, 
+    			machine_number, 
+    			tax_authorities, 
+    			tax_authorities_code, 
+    			car_code, 
+    			car_engine_code, 
+    			car_model, 
+    			certificate_number, 
+    			time_geton, 
+    			time_getoff, 
+    			mileage, 
+    			place, 
+    			time, 
+    			name, 
+    			station_geton, 
+    			station_getoff, 
+    			train_number, 
+    			seat, 
+    			category, 
+    			entrance, 
+    			exist, 
+    			user_name, 
+    			user_id, 
+    			agentcode, 
+    			issue_by, 
+    			fare, 
+    			tax, 
+    			fuel_surcharge, 
+    			caac_development_fund, 
+    			insurance, 
+    			flights, 
+    			company_name, 
+    			company_tax_id, 
+    			license_plate, 
+    			registration_number, 
+    			store_name, 
+    			subtotal, 
+    			discount, 
+    			tips, 
+    			currency_code,
+    			is_change,
+    			reimburse_no,
+    			dkje,
+    			dkwsje,
+    			service_type,
+    			icon,
+    			kjdkq
+	</sql>
+	
+	<sql id="sql2">
+		    id, 
+			fpzl, 
+			kprq, 
+			kpfmc, 
+			kpje
+	</sql>
+	
+	<!-- sql查询条件-->
+	<sql id="where">
+	     del_state='0'
+	     <if test="spfsbh != null and ''!=spfsbh" >
+	       and spfsbh = #{spfsbh} and fpzl=0
+	      </if>
+	    <if test="id != null and ''!=id" >
+	       and id = #{id}
+	      </if>
+	      <if test="fpzl != null and ''!=fpzl" >
+	        and fpzl = #{fpzl}
+	      </if>
+	      <if test="fplx != null and ''!=fplx" >
+	        and fplx in (${fplx})
+	      </if>
+	      <if test="fpdm != null and ''!=fpdm" >
+	        and fpdm = #{fpdm}
+	      </if>
+	      <if test="fphm != null and ''!=fphm" >
+	       and fphm = #{fphm}
+	      </if>
+	      <if test="kprqStart != null" >
+	        and kprq >= #{kprqStart}
+	      </if>
+	      <if test="kprqEnd != null" >
+	        and kprq <![CDATA[<=]]> #{kprqEnd}
+	      </if>
+	      <if test="rzrqStart != null" >
+	        and date_format(rzrq,'%Y-%m-%d')  >= #{rzrqStart}
+	      </if>
+	      <if test="rzrqEnd != null" >
+	         and date_format(rzrq,'%Y-%m-%d')  <![CDATA[<=]]> #{rzrqEnd}
+	      </if>
+	      <if test="orgId != null and ''!=orgId" >
+	        and org_id = #{orgId}
+	      </if>
+	      <if test="deptId != null and ''!=deptId" >
+	        and dept_id = #{deptId}
+	      </if>
+	      <if test="createTimeStart != null" >
+	        and create_time >= #{createTimeStart}
+	      </if>
+	      <if test="createTimeEnd != null" >
+	        and create_time <![CDATA[<=]]> #{createTimeEnd}
+	      </if>
+	      <if test="rzState != null and ''!=rzState" >
+	        and rz_state = #{rzState}
+	      </if>
+	      <if test="createMan != null and ''!=createMan" >
+	       and  create_man = #{createMan}
+	      </if>
+	      <if test="spState != null and ''!=spState" >
+	        and sp_state = #{spState}
+	      </if>
+	      <if test="fply != null and ''!=fply" >
+	        and fply = #{fply}
+	      </if>
+	      <if test="delState != null and ''!=delState" >
+	        and del_state = #{delState}
+	      </if>
+	      <if test="kpfmc != null and ''!=kpfmc" >
+	        and kpfmc = #{kpfmc}
+	      </if>
+          <if test="kpfsbh != null and ''!=kpfsbh" >
+	        and kpfsbh = #{kpfsbh}
+	        </if>
+	      <if test="queryString1 != null and ''!=queryString1" >
+	        and ((fpdm like '%${queryString1}%') or (fphm like '%${queryString1}%')
+	             or (spfmc like '%${queryString1}%') or (kpfmc like '%${queryString1}%')
+	             or (mark like '%${queryString1}%')
+	        )
+	      </if>
+	      <if test="queryString2 != null and ''!=queryString2" >
+	        and ((fpdm like '%${queryString2}%') or (fphm like '%${queryString2}%')
+	             or (spfmc like '%${queryString2}%') or (kpfmc like '%${queryString2}%')
+	             or (mark like '%${queryString2}%')
+	        )
+	      </if>
+	      <if test="fphmStart != null and ''!=fphmStart" >
+	       and CONVERT(fphm,SIGNED)  >= CONVERT(#{fphmStart},SIGNED) 
+	      </if>
+	      <if test="fphmEnd != null and ''!=fphmEnd" >
+	       and CONVERT(fphm,SIGNED)  <![CDATA[<=]]> CONVERT(#{fphmEnd},SIGNED) 
+	      </if>
+	      
+	      <if test="kpjeStart != null and ''!=kpjeStart" >
+	       and CONVERT(kpje,SIGNED)  >= CONVERT(#{kpjeStart},SIGNED) 
+	      </if>
+	      <if test="kpjeEnd != null and ''!=kpjeEnd" >
+	       and CONVERT(kpje,SIGNED)  <![CDATA[<=]]> CONVERT(#{kpjeEnd},SIGNED) 
+	      </if>  
+	      <if test="isInside != null and ''!=isInside" >
+	       and  kpfmc in (
+	       select  name from customer_supplier where is_inside = #{isInside}
+	       )
+	      </if>
+	      <if test="supplierName != null and ''!=supplierName" >
+	       and  kpfmc in (
+	       select  name from customer_supplier where name = #{supplierName} and is_supplier=0
+	       )
+	      </if>
+	      <if test="businessType != null and ''!=businessType" >
+	       and  business_type =#{businessType}
+	      </if>
+	      <if test="inOrOut != null and ''!=inOrOut" >
+	       and  in_or_out =#{inOrOut}
+	      </if>
+	      <if test="jzState != null and ''!=jzState" >
+	       and  jz_state =#{jzState}
+	      </if>
+	      <if test="bxState != null and ''!=bxState" >
+	       and  bx_state =#{bxState}
+	      </if>
+	      <if test="zfState != null and ''!=zfState" >
+	       and  zf_state =#{zfState}
+	      </if>
+	      <if test="taxAttr != null and ''!=taxAttr" >
+	       and  tax_attr =#{taxAttr}
+	      </if>
+	      <if test="specialType != null and ''!=specialType" >
+	         and  special_type = #{specialType}
+	      </if>
+	                                 <if test="startDate != null and ''!=startDate" >
+	         and  start_date = #{startDate}
+	      </if>
+	                                 <if test="endDate != null and ''!=endDate" >
+	         and  end_date = #{endDate}
+	      </if>
+	                                 <if test="startAddr != null and ''!=startAddr" >
+	         and  start_addr = #{startAddr}
+	      </if>
+	                                 <if test="endAddr != null and ''!=endAddr" >
+	         and  end_addr = #{endAddr}
+	      </if>
+	                                 <if test="amount != null and ''!=amount" >
+	         and  amount = #{amount}
+	      </if>
+	                                 <if test="jtgj != null and ''!=jtgj" >
+	         and  jtgj = #{jtgj}
+	      </if>
+	                                 <if test="ywsx != null and ''!=ywsx" >
+	         and  ywsx = #{ywsx}
+	      </if>
+	      <if test="mxsx != null and ''!=mxsx" >
+	         and  mxsx = #{mxsx}
+	      </if>
+	      <if test="passenger != null and ''!=passenger" >
+	         and  passenger = #{passenger}
+	      </if>
+	      <if test="ticketId != null and ''!=ticketId" >
+	         and  ticket_id = #{ticketId}
+	      </if>
+	      <if test="orgIds != null and ''!=orgIds" >
+	         and  org_id in(${orgIds}) 
+	      </if>
+	      <if test="lyywxt != null and ''!=lyywxt" >
+	         and  lyywxt = #{lyywxt}
+	      </if>
+	      <if test="ywxtbh != null and ''!=ywxtbh" >
+	         and  ywxtbh = #{ywxtbh}
+	      </if>
+	      <if test="ljzcse != null and ''!=ljzcse" >
+	         and  ljzcse = #{ljzcse}
+	      </if>
+	      <if test="ycxqedk != null and ''!=ycxqedk" >
+	         and  ycxqedk = #{ycxqedk}
+	      </if>
+	      <if test="sfblzc != null and ''!=sfblzc" >
+	         and  sfblzc = #{sfblzc}
+	      </if>
+	      <if test="jsfs != null and ''!=jsfs" >
+	         and  jsfs = #{jsfs}
+	      </if>
+	      <if test="machineCode != null and ''!=machineCode" >
+			         and  machine_code = #{machineCode}
+			      </if>
+			                                 <if test="machineNumber != null and ''!=machineNumber" >
+			         and  machine_number = #{machineNumber}
+			      </if>
+			                                 <if test="taxAuthorities != null and ''!=taxAuthorities" >
+			         and  tax_authorities = #{taxAuthorities}
+			      </if>
+			                                 <if test="taxAuthoritiesCode != null and ''!=taxAuthoritiesCode" >
+			         and  tax_authorities_code = #{taxAuthoritiesCode}
+			      </if>
+			                                 <if test="carCode != null and ''!=carCode" >
+			         and  car_code = #{carCode}
+			      </if>
+			                                 <if test="carEngineCode != null and ''!=carEngineCode" >
+			         and  car_engine_code = #{carEngineCode}
+			      </if>
+			                                 <if test="carModel != null and ''!=carModel" >
+			         and  car_model = #{carModel}
+			      </if>
+			                                 <if test="certificateNumber != null and ''!=certificateNumber" >
+			         and  certificate_number = #{certificateNumber}
+			      </if>
+			                                 <if test="timeGeton != null and ''!=timeGeton" >
+			         and  time_geton = #{timeGeton}
+			      </if>
+			                                 <if test="timeGetoff != null and ''!=timeGetoff" >
+			         and  time_getoff = #{timeGetoff}
+			      </if>
+			                                 <if test="mileage != null and ''!=mileage" >
+			         and  mileage = #{mileage}
+			      </if>
+			                                 <if test="place != null and ''!=place" >
+			         and  place = #{place}
+			      </if>
+			                                 <if test="time != null and ''!=time" >
+			         and  time = #{time}
+			      </if>
+			                                 <if test="name != null and ''!=name" >
+			         and  name = #{name}
+			      </if>
+			                                 <if test="stationGeton != null and ''!=stationGeton" >
+			         and  station_geton = #{stationGeton}
+			      </if>
+			                                 <if test="stationGetoff != null and ''!=stationGetoff" >
+			         and  station_getoff = #{stationGetoff}
+			      </if>
+			                                 <if test="trainNumber != null and ''!=trainNumber" >
+			         and  train_number = #{trainNumber}
+			      </if>
+			                                 <if test="seat != null and ''!=seat" >
+			         and  seat = #{seat}
+			      </if>
+			                                 <if test="category != null and ''!=category" >
+			         and  category = #{category}
+			      </if>
+			                                 <if test="entrance != null and ''!=entrance" >
+			         and  entrance = #{entrance}
+			      </if>
+			                                 <if test="exist != null and ''!=exist" >
+			         and  exist = #{exist}
+			      </if>
+			                                 <if test="userName != null and ''!=userName" >
+			         and  user_name = #{userName}
+			      </if>
+			                                 <if test="userId != null and ''!=userId" >
+			         and  user_id = #{userId}
+			      </if>
+			                                 <if test="agentcode != null and ''!=agentcode" >
+			         and  agentcode = #{agentcode}
+			      </if>
+			                                 <if test="issueBy != null and ''!=issueBy" >
+			         and  issue_by = #{issueBy}
+			      </if>
+			                                 <if test="fare != null and ''!=fare" >
+			         and  fare = #{fare}
+			      </if>
+			                                 <if test="tax != null and ''!=tax" >
+			         and  tax = #{tax}
+			      </if>
+			                                 <if test="fuelSurcharge != null and ''!=fuelSurcharge" >
+			         and  fuel_surcharge = #{fuelSurcharge}
+			      </if>
+			                                 <if test="caacDevelopmentFund != null and ''!=caacDevelopmentFund" >
+			         and  caac_development_fund = #{caacDevelopmentFund}
+			      </if>
+			                                 <if test="insurance != null and ''!=insurance" >
+			         and  insurance = #{insurance}
+			      </if>
+			                                 <if test="flights != null and ''!=flights" >
+			         and  flights = #{flights}
+			      </if>
+			                                 <if test="companyName != null and ''!=companyName" >
+			         and  company_name = #{companyName}
+			      </if>
+			                                 <if test="companyTaxId != null and ''!=companyTaxId" >
+			         and  company_tax_id = #{companyTaxId}
+			      </if>
+			                                 <if test="licensePlate != null and ''!=licensePlate" >
+			         and  license_plate = #{licensePlate}
+			      </if>
+			                                 <if test="registrationNumber != null and ''!=registrationNumber" >
+			         and  registration_number = #{registrationNumber}
+			      </if>
+			                                 <if test="storeName != null and ''!=storeName" >
+			         and  store_name = #{storeName}
+			      </if>
+			                                 <if test="subtotal != null and ''!=subtotal" >
+			         and  subtotal = #{subtotal}
+			      </if>
+			                                 <if test="discount != null and ''!=discount" >
+			         and  discount = #{discount}
+			      </if>
+			                                 <if test="tips != null and ''!=tips" >
+			         and  tips = #{tips}
+			      </if>
+			                                 <if test="currencyCode != null and ''!=currencyCode" >
+			         and  currency_code = #{currencyCode}
+			      </if>
+			      <if test="reimburseNo != null and ''!=reimburseNo" >
+			         and  reimburse_no = #{reimburseNo}
+			      </if>
+			      <if test="isChange != null and ''!=isChange" >
+			         and  is_change = #{isChange}
+			      </if>
+			      <if test="serviceType != null and ''!=serviceType" >
+			         and  service_type = #{serviceType}
+			      </if>
+			      <if test="dcState != null and ''!=dcState" >
+			        and dc_state = #{dcState}
+			      </if>
+			      <if test="kjdkq != null and ''!=kjdkq" >
+			        and kjdkq = #{kjdkq}
+			      </if>
+	      order by create_time desc
+    </sql>
+	<!--
+      - ===============================================
+      - 新增 InvoiceHead
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.InvoiceHead" useGeneratedKeys="true" keyProperty="id">
+		insert into invoice_head (
+			<include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{fpzl}, 
+		    #{fplx}, 
+		    #{fpdm}, 
+		    #{fphm}, 
+		    #{kprq}, 
+		    #{jym}, 
+		    #{jqbh}, 
+		    #{spfmc}, 
+		    #{spfsbh}, 
+		    #{spfdzdh}, 
+		    #{spfyhzh}, 
+		    #{kpfmc}, 
+		    #{kpfsbh}, 
+		    #{kpfdzdh}, 
+		    #{kpfyhzh}, 
+		    #{hjje}, 
+		    #{hjse}, 
+		    #{kpje}, 
+		    #{mark}, 
+		    #{secret}, 
+		    #{zfbz}, 
+		    #{qdbz}, 
+		    #{cycs}, 
+		    1, 
+		    #{orgName},
+		    #{deptId}, 
+		    #{deptName}, 
+		    0, 
+		    0, 
+		    #{createTime}, 
+		    #{fjState}, 
+		    #{fjContent},
+		    #{jxType}, 
+		    #{rzrq}, 
+		    '1', 
+		    #{dcrq}, 
+		    #{dcState}, 
+		    #{djlx}, 
+		    #{spState}, 
+		    #{createMan}, 
+		    #{updateTime}, 
+		    #{updateMan}, 
+		    #{procMan}, 
+		    #{voucherNo}, 
+		    #{fply},
+		    0,
+		    #{inOrOut},
+		    0,
+		    #{openId},
+		    0,
+		    0,
+		    0,
+		    #{taxAttr},
+		    #{pdfUrl},
+		    #{specialType}, 
+		    #{startDate}, 
+		    #{endDate}, 
+		    #{startAddr}, 
+		    #{endAddr}, 
+		    #{amount}, 
+		    #{jtgj}, 
+		    #{ywsx}, 
+		    #{num}, 
+		    #{seatCategory},
+		    #{mxsx},
+		    #{passenger},
+		    #{trainNum},
+		    #{ticketId},
+		    #{rideTime},
+		    #{lyywxt},
+		    #{ywxtbh},
+		    #{ljzcse},
+		    #{ycxqedk},
+		    #{sfblzc},
+		    #{jsfs}, 
+		    #{machineCode}, 
+		    #{machineNumber}, 
+		    #{taxAuthorities}, 
+		    #{taxAuthoritiesCode}, 
+		    #{carCode}, 
+		    #{carEngineCode}, 
+		    #{carModel}, 
+		    #{certificateNumber}, 
+		    #{timeGeton}, 
+		    #{timeGetoff}, 
+		    #{mileage}, 
+		    #{place}, 
+		    #{time}, 
+		    #{name}, 
+		    #{stationGeton}, 
+		    #{stationGetoff}, 
+		    #{trainNumber}, 
+		    #{seat}, 
+		    #{category}, 
+		    #{entrance}, 
+		    #{exist}, 
+		    #{userName}, 
+		    #{userId}, 
+		    #{agentcode}, 
+		    #{issueBy}, 
+		    #{fare}, 
+		    #{tax}, 
+		    #{fuelSurcharge}, 
+		    #{caacDevelopmentFund}, 
+		    #{insurance}, 
+		    #{flights}, 
+		    #{companyName}, 
+		    #{companyTaxId}, 
+		    #{licensePlate}, 
+		    #{registrationNumber}, 
+		    #{storeName}, 
+		    #{subtotal}, 
+		    #{discount}, 
+		    #{tips}, 
+		    #{currencyCode},
+		    #{isChange},
+		    #{reimburseNo},
+		    #{dkje},
+		    #{dkwsje},
+		    #{serviceType},
+		    #{icon},
+		    #{kjdkq}
+		    
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 InvoiceHead
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.InvoiceHead">
+	      update invoice_head
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="fpzl != null and ''!=fpzl" >
+			        fpzl = #{fpzl},
+			      </if>
+			                        <if test="fplx != null and ''!=fplx" >
+			        fplx = #{fplx},
+			      </if>
+			                        <if test="fpdm != null and ''!=fpdm" >
+			        fpdm = #{fpdm},
+			      </if>
+			                        <if test="fphm != null and ''!=fphm" >
+			        fphm = #{fphm},
+			      </if>
+			                        <if test="kprq != null" >
+			        kprq = #{kprq},
+			      </if>
+			                        <if test="jym != null and ''!=jym" >
+			        jym = #{jym},
+			      </if>
+			                        <if test="jqbh != null and ''!=jqbh" >
+			        jqbh = #{jqbh},
+			      </if>
+			                        <if test="spfmc != null and ''!=spfmc" >
+			        spfmc = #{spfmc},
+			      </if>
+			                        <if test="spfsbh != null and ''!=spfsbh" >
+			        spfsbh = #{spfsbh},
+			      </if>
+			                        <if test="spfdzdh != null and ''!=spfdzdh" >
+			        spfdzdh = #{spfdzdh},
+			      </if>
+			                        <if test="spfyhzh != null and ''!=spfyhzh" >
+			        spfyhzh = #{spfyhzh},
+			      </if>
+			                        <if test="kpfmc != null and ''!=kpfmc" >
+			        kpfmc = #{kpfmc},
+			      </if>
+			                        <if test="kpfsbh != null and ''!=kpfsbh" >
+			        kpfsbh = #{kpfsbh},
+			      </if>
+			                        <if test="kpfdzdh != null and ''!=kpfdzdh" >
+			        kpfdzdh = #{kpfdzdh},
+			      </if>
+			                        <if test="kpfyhzh != null and ''!=kpfyhzh" >
+			        kpfyhzh = #{kpfyhzh},
+			      </if>
+			                        <if test="hjje != null and ''!=hjje" >
+			        hjje = #{hjje},
+			      </if>
+			                        <if test="hjse != null and ''!=hjse" >
+			        hjse = #{hjse},
+			      </if>
+			                        <if test="kpje != null and ''!=kpje" >
+			        kpje = #{kpje},
+			      </if>
+			                        <if test="mark != null and ''!=mark" >
+			        mark = #{mark},
+			      </if>
+			                        <if test="secret != null and ''!=secret" >
+			        secret = #{secret},
+			      </if>
+			                        <if test="zfbz != null and ''!=zfbz" >
+			        zfbz = #{zfbz},
+			      </if>
+			                        <if test="qdbz != null and ''!=qdbz" >
+			        qdbz = #{qdbz},
+			      </if>
+			                        <if test="cycs != null and ''!=cycs" >
+			        cycs = #{cycs},
+			      </if>
+			                        <if test="orgId != null and ''!=orgId" >
+			        org_id = #{orgId},
+			      </if>
+			                        <if test="orgName != null and ''!=orgName" >
+			        org_name = #{orgName},
+			      </if>
+			                        <if test="dyState != null and ''!=dyState" >
+			        dy_state = #{dyState},
+			      </if>
+			                        <if test="outState != null and ''!=outState" >
+			        out_state = #{outState},
+			      </if>
+			                        <if test="createTime != null" >
+			        create_time = #{createTime},
+			      </if>
+			                        <if test="fjState != null and ''!=fjState" >
+			        fj_state = #{fjState},
+			      </if>
+			                        <if test="jxType != null and ''!=jxType" >
+			        jx_type = #{jxType},
+			      </if>
+			                        <if test="rzrq != null" >
+			        rzrq = #{rzrq},
+			      </if>
+			                        <if test="rzState != null and ''!=rzState" >
+			        rz_state = #{rzState},
+			      </if>
+			                        <if test="dcrq != null" >
+			        dcrq = #{dcrq},
+			      </if>
+			                        <if test="dcState != null and ''!=dcState" >
+			        dc_state = #{dcState},
+			      </if>
+			                        <if test="djlx != null and ''!=djlx" >
+			        djlx = #{djlx},
+			      </if>
+			                        <if test="spState != null and ''!=spState" >
+			        sp_state = #{spState},
+			      </if>
+			                        <if test="createMan != null and ''!=createMan" >
+			        create_man = #{createMan},
+			      </if>
+			                        <if test="updateTime != null" >
+			        update_time = #{updateTime},
+			      </if>
+			                        <if test="updateMan != null and ''!=updateMan" >
+			        update_man = #{updateMan},
+			      </if>
+			                        <if test="procMan != null and ''!=procMan" >
+			        proc_man = #{procMan},
+			      </if>
+			                        <if test="voucherNo != null and ''!=voucherNo" >
+			        voucher_no = #{voucherNo},
+			      </if>
+			                        <if test="fply != null and ''!=fply" >
+			        fply = #{fply},
+			      </if>
+			      <if test="jzState != null and ''!=jzState" >
+			         jz_state =#{jzState},
+			      </if>
+			      <if test="bxState != null and ''!=bxState" >
+			         bx_state =#{bxState},
+			      </if>
+			      <if test="zfState != null and ''!=zfState" >
+			         zf_state =#{zfState},
+			      </if>
+			      <if test="taxAttr != null and ''!=taxAttr" >
+			         tax_attr =#{taxAttr},
+			      </if>
+			      <if test="specialType != null and ''!=specialType" >
+			        special_type = #{specialType},
+			      </if>
+			                        <if test="startDate != null and ''!=startDate" >
+			        start_date = #{startDate},
+			      </if>
+			                        <if test="endDate != null and ''!=endDate" >
+			        end_date = #{endDate},
+			      </if>
+			                        <if test="startAddr != null and ''!=startAddr" >
+			        start_addr = #{startAddr},
+			      </if>
+			                        <if test="endAddr != null and ''!=endAddr" >
+			        end_addr = #{endAddr},
+			      </if>
+			                        <if test="amount != null and ''!=amount" >
+			        amount = #{amount},
+			      </if>
+			                        <if test="jtgj != null and ''!=jtgj" >
+			        jtgj = #{jtgj},
+			      </if>
+			                        <if test="ywsx != null and ''!=ywsx" >
+			        ywsx = #{ywsx},
+			      </if>
+			                        <if test="num != null and ''!=num" >
+			        num = #{num},
+			      </if>
+			      <if test="mxsx != null and ''!=mxsx" >
+			        mxsx = #{mxsx},
+			      </if>
+			      <if test="passenger != null and ''!=passenger" >
+			        passenger = #{passenger},
+			      </if>
+			      <if test="trainNum != null and ''!=trainNum" >
+			        train_num = #{trainNum},
+			      </if>
+			      <if test="rideTime != null and ''!=rideTime" >
+			        ride_time = #{rideTime},
+			      </if>
+			      <if test="lyywxt != null and ''!=lyywxt" >
+			           lyywxt = #{lyywxt},
+			      </if>
+			      <if test="ywxtbh != null and ''!=ywxtbh" >
+			           ywxtbh = #{ywxtbh},
+			      </if>
+			      <if test="ljzcse != null and ''!=ljzcse" >
+			           ljzcse = #{ljzcse},
+			      </if>
+			      <if test="ycxqedk != null and ''!=ycxqedk" >
+			           ycxqedk = #{ycxqedk},
+			      </if>
+			      <if test="sfblzc != null and ''!=sfblzc" >
+			           sfblzc = #{sfblzc},
+			      </if>
+			      <if test="jsfs != null and ''!=jsfs" >
+			           jsfs = #{jsfs},
+			      </if>
+			      <if test="machineCode != null and ''!=machineCode" >
+			        machine_code = #{machineCode},
+			      </if>
+			                        <if test="machineNumber != null and ''!=machineNumber" >
+			        machine_number = #{machineNumber},
+			      </if>
+			                        <if test="taxAuthorities != null and ''!=taxAuthorities" >
+			        tax_authorities = #{taxAuthorities},
+			      </if>
+			                        <if test="taxAuthoritiesCode != null and ''!=taxAuthoritiesCode" >
+			        tax_authorities_code = #{taxAuthoritiesCode},
+			      </if>
+			                        <if test="carCode != null and ''!=carCode" >
+			        car_code = #{carCode},
+			      </if>
+			                        <if test="carEngineCode != null and ''!=carEngineCode" >
+			        car_engine_code = #{carEngineCode},
+			      </if>
+			                        <if test="carModel != null and ''!=carModel" >
+			        car_model = #{carModel},
+			      </if>
+			                        <if test="certificateNumber != null and ''!=certificateNumber" >
+			        certificate_number = #{certificateNumber},
+			      </if>
+			                        <if test="timeGeton != null and ''!=timeGeton" >
+			        time_geton = #{timeGeton},
+			      </if>
+			                        <if test="timeGetoff != null and ''!=timeGetoff" >
+			        time_getoff = #{timeGetoff},
+			      </if>
+			                        <if test="mileage != null and ''!=mileage" >
+			        mileage = #{mileage},
+			      </if>
+			                        <if test="place != null and ''!=place" >
+			        place = #{place},
+			      </if>
+			                        <if test="time != null and ''!=time" >
+			        time = #{time},
+			      </if>
+			                        <if test="name != null and ''!=name" >
+			        name = #{name},
+			      </if>
+			                        <if test="stationGeton != null and ''!=stationGeton" >
+			        station_geton = #{stationGeton},
+			      </if>
+			                        <if test="stationGetoff != null and ''!=stationGetoff" >
+			        station_getoff = #{stationGetoff},
+			      </if>
+			                        <if test="trainNumber != null and ''!=trainNumber" >
+			        train_number = #{trainNumber},
+			      </if>
+			                        <if test="seat != null and ''!=seat" >
+			        seat = #{seat},
+			      </if>
+			                        <if test="category != null and ''!=category" >
+			        category = #{category},
+			      </if>
+			                        <if test="entrance != null and ''!=entrance" >
+			        entrance = #{entrance},
+			      </if>
+			                        <if test="exist != null and ''!=exist" >
+			        exist = #{exist},
+			      </if>
+			                        <if test="userName != null and ''!=userName" >
+			        user_name = #{userName},
+			      </if>
+			                        <if test="userId != null and ''!=userId" >
+			        user_id = #{userId},
+			      </if>
+			                        <if test="agentcode != null and ''!=agentcode" >
+			        agentcode = #{agentcode},
+			      </if>
+			                        <if test="issueBy != null and ''!=issueBy" >
+			        issue_by = #{issueBy},
+			      </if>
+			                        <if test="fare != null and ''!=fare" >
+			        fare = #{fare},
+			      </if>
+			                        <if test="tax != null and ''!=tax" >
+			        tax = #{tax},
+			      </if>
+			                        <if test="fuelSurcharge != null and ''!=fuelSurcharge" >
+			        fuel_surcharge = #{fuelSurcharge},
+			      </if>
+			                        <if test="caacDevelopmentFund != null and ''!=caacDevelopmentFund" >
+			        caac_development_fund = #{caacDevelopmentFund},
+			      </if>
+			                        <if test="insurance != null and ''!=insurance" >
+			        insurance = #{insurance},
+			      </if>
+			                        <if test="flights != null and ''!=flights" >
+			        flights = #{flights},
+			      </if>
+			                        <if test="companyName != null and ''!=companyName" >
+			        company_name = #{companyName},
+			      </if>
+			                        <if test="companyTaxId != null and ''!=companyTaxId" >
+			        company_tax_id = #{companyTaxId},
+			      </if>
+			                        <if test="licensePlate != null and ''!=licensePlate" >
+			        license_plate = #{licensePlate},
+			      </if>
+			                        <if test="registrationNumber != null and ''!=registrationNumber" >
+			        registration_number = #{registrationNumber},
+			      </if>
+			                        <if test="storeName != null and ''!=storeName" >
+			        store_name = #{storeName},
+			      </if>
+			                        <if test="subtotal != null and ''!=subtotal" >
+			        subtotal = #{subtotal},
+			      </if>
+			                        <if test="discount != null and ''!=discount" >
+			        discount = #{discount},
+			      </if>
+			                        <if test="tips != null and ''!=tips" >
+			        tips = #{tips},
+			      </if>
+			                        <if test="currencyCode != null and ''!=currencyCode" >
+			        currency_code = #{currencyCode},
+			      </if>
+			      <if test="pdfUrl != null and ''!=pdfUrl" >
+			        pdf_url = #{pdfUrl},
+			      </if>
+			      <if test="reimburseNo != null and ''!=reimburseNo" >
+			           reimburse_no = #{reimburseNo},
+			      </if>
+			      <if test="isChange != null and ''!=isChange" >
+			           is_change = #{isChange},
+			      </if>
+			      <if test="dkje != null and ''!=dkje" >
+			           dkje = #{dkje},
+			      </if>
+			      <if test="dkwsje != null and ''!=dkwsje" >
+			           dkwsje = #{dkwsje},
+			      </if>
+			      <if test="serviceType != null and ''!=serviceType" >
+			           service_type = #{serviceType},
+			      </if>
+			      <if test="icon != null and ''!=icon" >
+			           icon = #{icon},
+			      </if>
+			      
+			    </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 InvoiceHead 总数
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.InvoiceHead">
+		select count(*)
+		from invoice_head
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 InvoiceHead 信息
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_InvoiceHead" parameterType="com.invoice.po.InvoiceHead">
+		select 
+		    <include refid="sql"/>
+		from invoice_head
+		where id = #{id}
+	</select>
+	
+	<select id="queryByTicketId" resultType="java.lang.Integer" parameterType="com.invoice.po.InvoiceHead">
+		select 
+		    count(*)
+		from invoice_head
+		where ticket_id = #{ticketId}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表InvoiceHead 信息
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_InvoiceHead" parameterType="com.invoice.pojo.InvoiceHeadPoJo">
+		select 
+		    <include refid="sql"/>
+		from invoice_head
+		<where>
+		  <include refid="where"/>
+		</where>
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 InvoiceHead 分页信息
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_InvoiceHead" parameterType="java.util.HashMap">
+		select 
+		    <include refid="sql"/>
+		from invoice_head
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<delete id="changeDelStateById" parameterType="com.invoice.po.InvoiceHead">
+	 delete  from invoice_head 
+	 
+	where id=#{id};
+	delete  from invoice_body where  head_id=#{id};
+	</delete>
+	
+	<delete id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 delete from  invoice_head 
+	 
+     where id in (${ids});
+     delete  from invoice_body where head_id in (${ids});
+	</delete>
+	
+	<select id="indexMsg" parameterType="java.util.HashMap" resultType="com.invoice.po.IndexEntity">
+	select 
+	   sum(dkje)
+	   as jxse,
+	   sum(kpje)
+	   as jxhsze,
+		(select sum(kpje) from invoice_head WHERE (rz_state = 1 or rz_state = 2) 
+	     and del_state='0' and service_type  is  null ) as fy,
+	  CASE
+	     when in_or_out = 1 then sum(hjse)
+	  end as xxse,
+	  CASE
+	     when in_or_out = 1 then sum(kpje)
+	  end as xxhsze,
+	  CASE
+	     when in_or_out = 1 then sum(hjje)
+	  end as bhssr,
+	  date_format(kprq,'%Y-%m') as kprq
+	from invoice_head where (rz_state = 1 or rz_state = 2)
+	     and del_state='0' and service_type is not null
+	<if test="orgId != null and '' != orgId" >
+      and org_id in (${orgId})
+    </if>
+	<!--  <if test="kprqStart != null and ''!=kprqStart" >
+      and date_format(kprq,'%Y-%m') <![CDATA[>=]]>#{kprqStart}
+    </if>
+	<if test="kprqEnd != null and ''!=kprqEnd" >
+      and date_format(kprq,'%Y-%m') <![CDATA[<=]]>#{kprqEnd}
+    </if>-->
+    <if test="mx != null and ''!=mx and mx==1" >
+      GROUP BY date_format(kprq,'%Y-%m')
+    </if>
+    
+	</select>
+	
+	<!--
+      - ===============================================
+      - 查询 InvoiceHead 手机端各人票夹
+      - @author 11734
+      - @date 2018-05-25
+      - ===============================================
+    -->
+	<select id="pageForMobile" resultType="com.invoice.pojo.PersonalTicket" parameterType="java.util.HashMap">
+		select 
+		    id, 
+			fpzl,
+			fplx,  
+			kprq, 
+			kpfmc, 
+			kpje,
+			(select hwmc from invoice_body b where b.head_id=h.id limit 1)as kpnr,
+			(select sum(kpje) from invoice_head where open_id=#{openId})as ljje,
+			fpdm, 
+			fphm,
+			spfmc, 
+			spfsbh, 
+			spfdzdh, 
+			spfyhzh, 
+			kpfsbh, 
+			kpfdzdh, 
+			kpfyhzh, 
+			hjje, 
+			hjse, 
+			mark,
+			pdf_url as pdfUrl,
+			start_addr as startAddr, 
+   			end_addr as endAddr,
+   			seat_category as seatCategory,
+   			ywsx,
+   			mxsx,
+   			passenger,
+   			fj_content as fjContent,
+   			train_num as trainNum,
+   			machine_code as machineCode, 
+   			machine_number as machineNumber, 
+   			tax_authorities as taxAuthorities, 
+   			tax_authorities_code as taxAuthoritiesCode, 
+   			car_code as carCode, 
+   			car_engine_code as carEngineCode, 
+   			car_model as carModel, 
+   			certificate_number as certificateNumber, 
+   			time_geton as timeGeton, 
+   			time_getoff as timeGetoff, 
+   			mileage, 
+   			place, 
+   			time, 
+   			name, 
+   			station_geton as stationGeton, 
+   			station_getoff as stationGetoff, 
+   			train_number as trainNumber, 
+   			seat, 
+   			category, 
+   			entrance, 
+   			exist, 
+   			user_name as userName, 
+   			user_id as userId, 
+   			agentcode, 
+   			issue_by as issueBy, 
+   			fare, 
+   			tax, 
+   			fuel_surcharge as fuelSurcharge, 
+   			caac_development_fund as caacDevelopmentFund, 
+   			insurance, 
+   			flights, 
+   			company_name as companyName, 
+   			company_tax_id as companyTaxId, 
+   			license_plate as licensePlate, 
+   			registration_number as registrationNumber, 
+   			store_name as storeName, 
+   			subtotal, 
+   			discount, 
+   			tips, 
+   			currency_code as currencyCode,
+   			is_change as isChange,
+   			icon,jym
+   			
+		from invoice_head h
+		where del_state='0' and bx_state=#{bxState}
+	  
+        and open_id=#{openId}
+      order by id desc
+	</select>
+	
+	<select id="sumje" resultType="com.lycheeframework.core.cmp.kit.Pages" parameterType="java.util.HashMap">
+	select sum(dkje)as string1 ,sum(dkwsje)as string2,sum(kpje)as string3 from invoice_head 
+	    <where>
+		  <include refid="where"/>
+		</where>
+	</select>
+	
+	<!-- 进项统计  返回时通过rzState区分 1：未认证  3：已认证  4：已转出 -->
+	<select id="jxtj" resultType="com.invoice.pojo.IncomeCount" parameterType="java.util.HashMap">
+	select service_type as fplx,count(1) as sl,sum(dkwsje) as dkwsje,sum(dkje) as dkje ,sum(kpje) as kpje,tax_attr as taxAttr,'1' as rzState from invoice_head where 1=1 and
+	 (rz_state = 1 or rz_state = 2) 
+	     and del_state='0' and service_type is not null
+		  <if test="rzState != null and ''!=rzState" >
+	         and  rz_state = #{rzState}
+	      </if>
+	      <if test="createTimeStart != null" >
+	        and kprq >= #{createTimeStart}
+	      </if>
+	      <if test="createTimeEnd != null" >
+	        and kprq <![CDATA[<=]]> #{createTimeEnd}
+	      </if>
+	      <if test="kjdkq != null" >
+	        and kjdkq = #{kjdkq}
+	      </if>
+	      GROUP BY service_type 
+	      union all
+	 select service_type as fplx,count(1) as sl,sum(dkwsje) as dkwsje,sum(dkje) as dkje ,sum(kpje) as kpje,tax_attr as taxAttr,'3' as rzState from invoice_head where 1=1 and
+	 (rz_state = 3 or rz_state = 4) 
+	     and del_state='0' and service_type is not null
+	      <if test="rzState != null and ''!=rzState" >
+	         and  rz_state = #{rzState}
+	      </if>
+	      <if test="createTimeStart != null" >
+	        and kprq >= #{createTimeStart}
+	      </if>
+	      <if test="createTimeEnd != null" >
+	        and kprq <![CDATA[<=]]> #{createTimeEnd}
+	      </if>
+	      <if test="kjdkq != null" >
+	        and kjdkq = #{kjdkq}
+	      </if>
+	      GROUP BY service_type 
+	      union all
+	 select service_type as fplx,count(1) as sl,sum(dkwsje) as dkwsje,sum(dkje) as dkje ,sum(kpje) as kpje,tax_attr as taxAttr,'4' as rzState from invoice_head where 1=1 and
+	 rz_state='4'
+	     and del_state='0' and service_type is not null
+		  <if test="rzState != null and ''!=rzState" >
+	         and  rz_state = #{rzState}
+	      </if>
+	      <if test="createTimeStart != null" >
+	        and kprq >= #{createTimeStart}
+	      </if>
+	      <if test="createTimeEnd != null" >
+	        and kprq <![CDATA[<=]]> #{createTimeEnd}
+	      </if>
+	      <if test="kjdkq != null" >
+	        and kjdkq = #{kjdkq}
+	      </if>
+	      GROUP BY service_type 
+	</select>
+	
+	
+	
+	<!-- 发票复查 -->
+	<select id="fpfc" resultType="com.zhys.po.InvoiceReview" parameterType="java.lang.String">
+	select id, 
+			fpdm, 
+			fphm, 
+			kprq, 
+			jym, 
+			hjje,
+			create_man createMan from invoice_head where id in (${value})
+	</select>
+	<!-- 黑名单 -->
+	<select id="hmd"  resultType="com.zhys.base.po.DataBase">
+	select * from data_base where parent_id =(select id  from data_base where code = 'blackList');
+	</select>
+	
+	<update id="updateRzState" parameterType="com.invoice.pojo.InvoiceHeadPoJo">
+	update invoice_head set rz_state = #{rzState}
+	<if test="kjdkq != null and kjdkq !=''" >
+       ,kjdkq = #{kjdkq}
+     </if>
+	
+	where id in (${ids})
+	</update>
+	
+	<update id="updateRzStateByNo" parameterType="com.invoice.pojo.InvoiceHeadPoJo">
+	update invoice_head set rz_state = #{rzState}
+	<if test="kjdkq != null and kjdkq !=''" >
+       , kjdkq = #{kjdkq}
+     </if>
+	
+	where  fpdm = #{fpdm} and fphm = #{fphm}
+	</update>
+	
+	<update id="updateRzStateAll" parameterType="com.invoice.pojo.InvoiceHeadPoJo">
+	update invoice_head set rz_state =#{rzState}
+	<if test="kjdkq != null and kjdkq !=''" >
+      , kjdkq = #{kjdkq}
+     </if>
+	
+	where special_type ='dl_kyfp'
+	</update>
+	
+	<!-- 抵扣汇总 -->
+	<select id="dkhz"  resultType="com.zhys.po.Dkhz" parameterType="com.zhys.po.Dkhz">
+	    select 
+	       (select ifnull(sum(dkwsje),0) from invoice_head where date_format(kprq,'%Y-%m')=#{yf} and (rz_state=3 or rz_state=4 ) and special_type <![CDATA[<>]]> 'dl_kyfp')as rzse,
+
+           (select ifnull(sum(dkwsje),0) from invoice_head where date_format(kprq,'%Y-%m')=#{yf} and  rz_state=3  and special_type ='dl_kyfp') as sbse,
+
+
+           (select ifnull(sum(dkwsje),0) from invoice_head  where date_format(kprq,'%Y-%m')=#{yf} and  rz_state=4) as zcse 
+	</select>
+	
+	<update id="updateRzrq" parameterType="com.zhys.po.TzsysEasInvoicereceive">
+	
+	update invoice_head set rzrq = #{bxTime} where id = #{invoiceId} and rzrq is null
+	
+	</update>
+	
+</mapper>

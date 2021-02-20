@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="business_matters">
+
+	<!--
+      - ===============================================
+      - 返回 BusinessMatters Entity
+      - @author 11734
+      - @date 2018-08-23
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.base.po.BusinessMatters"	   id="RM_BusinessMatters">
+		<id     property="id"         column="id"          jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="no"         column="no"          jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="name"       column="name"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="mark"       column="mark"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="parentId"   column="parent_id"   jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="delStatus"  column="del_status"  jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="isLast"  column="is_last"  jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="icon"  column="icon"  jdbcType="VARCHAR"     javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			no, 
+    			name, 
+    			mark, 
+    			parent_id, 
+    			del_status,
+    			is_last,
+    			icon
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     del_status=0
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="no != null and ''!=no" >
+			         and  no = #{no}
+			      </if>
+			                                 <if test="name != null and ''!=name" >
+			         and  name like '%${name}%'
+			      </if>
+			                                 <if test="mark != null and ''!=mark" >
+			         and  mark = #{mark}
+			      </if>
+			                                 <if test="parentId != null" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="delStatus != null and ''!=delStatus" >
+			         and  del_status = #{delStatus}
+			      </if>
+			      <if test="isLast != null and ''!=isLast" >
+			         and  is_last = #{isLast}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 BusinessMatters
+      - @author 11734
+      - @date 2018-08-23
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.base.po.BusinessMatters" useGeneratedKeys="true" keyProperty="id">
+		insert into business_matters (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{no}, 
+		    #{name}, 
+		    #{mark}, 
+		    #{parentId}, 
+		    0,
+		    #{isLast},
+		    #{icon}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 BusinessMatters
+      - @author 11734
+      - @date 2018-08-23
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.base.po.BusinessMatters">
+	      update business_matters
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="no != null and ''!=no" >
+			        no = #{no},
+			      </if>
+			                        <if test="name != null and ''!=name" >
+			        name = #{name},
+			      </if>
+			                        <if test="mark != null and ''!=mark" >
+			        mark = #{mark},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="delStatus != null and ''!=delStatus" >
+			        del_status = #{delStatus},
+			      </if>
+			      <if test="isLast != null and ''!=isLast" >
+			        is_last = #{isLast},
+			      </if>
+			      <if test="icon != null and ''!=icon" >
+			        icon = #{icon},
+			      </if>
+			                     </set>
+		    where id = #{id};
+		     
+		    
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 BusinessMatters 总数
+      - @author 11734
+      - @date 2018-08-23
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.base.po.BusinessMatters">
+		select count(*)
+		from business_matters
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 BusinessMatters 信息
+      - @author 11734
+      - @date 2018-08-23
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_BusinessMatters" parameterType="com.zhys.base.po.BusinessMatters">
+		select 
+        <include refid="sql"/>
+		from business_matters
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表BusinessMatters 信息
+      - @author 11734
+      - @date 2018-08-23
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_BusinessMatters" parameterType="com.zhys.base.po.BusinessMatters">
+		select 
+        <include refid="sql"/>
+        ,CONCAT((select name from business_matters where no=substring(m.no,1,LENGTH(m.no)-4) LIMIT 1),'-',
+        (select name from business_matters where no=substring(m.no,1,LENGTH(m.no)-2) LIMIT 1),'-',m.name) as name1
+		from business_matters m
+		<where>
+		  <include refid="where"/>
+		</where>  
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 BusinessMatters 分页信息
+      - @author 11734
+      - @date 2018-08-23
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_BusinessMatters" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from business_matters
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeStateById" parameterType="com.zhys.base.po.BusinessMatters">
+	 update business_matters set del_status=#{delStatus} where id=#{id}
+	</update>
+	
+	<update id="changeStateByIds" parameterType="java.util.HashMap">
+	 update business_matters set del_status=#{delStatus} where id in (${ids})
+	</update>
+</mapper>

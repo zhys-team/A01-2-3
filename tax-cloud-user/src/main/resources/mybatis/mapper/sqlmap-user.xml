@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+
+	<!--
+      - ===============================================
+      - 返回 User Entity
+      - @author 11734
+      - @date 2018-06-22
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.user.po.SysUsers"	   id="RM_User">
+		<id     property="id"        column="id"         jdbcType="BIGINT"     javaType="java.lang.Long"    />
+		<result property="pwd"  column="pwd"   jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="created"   column="created"    jdbcType="TIMESTAMP"  javaType="java.util.Date"    />
+		<result property="updated"   column="updated"    jdbcType="TIMESTAMP"  javaType="java.util.Date"    />
+		<result property="email"     column="email"      jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="userNo"    column="user_no"    jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="userName"  column="user_name"  jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="openId"    column="open_id"    jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="phone"     column="phone"      jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="delState"  column="del_state"  jdbcType="CHAR"       javaType="java.lang.String"  />
+		<result property="orgId"     column="org_id"     jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="deptId"    column="dept_id"    jdbcType="VARCHAR"    javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			pwd, 
+    			created, 
+    			updated, 
+    			email, 
+    			user_no, 
+    			user_name, 
+    			open_id, 
+    			phone, 
+    			del_state, 
+    			org_id, 
+    			dept_id
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="pwd != null and ''!=pwd" >
+			         and  pwd = #{pwd}
+			      </if>
+			                                 <if test="created != null and ''!=created" >
+			         and  created = #{created}
+			      </if>
+			                                 <if test="updated != null and ''!=updated" >
+			         and  updated = #{updated}
+			      </if>
+			                                 <if test="email != null and ''!=email" >
+			         and  email = #{email}
+			      </if>
+			                                 <if test="userNo != null and ''!=userNo" >
+			         and  user_no = #{userNo}
+			      </if>
+			                                 <if test="userName != null and ''!=userName" >
+			         and  user_name = #{userName}
+			      </if>
+			                                 <if test="openId != null and ''!=openId" >
+			         and  open_id = #{openId}
+			      </if>
+			                                 <if test="phone != null and ''!=phone" >
+			         and  phone = #{phone}
+			      </if>
+			                                 <if test="delState != null and ''!=delState" >
+			         and  del_state = #{delState}
+			      </if>
+			                                 <if test="orgId != null and ''!=orgId" >
+			         and  org_id = #{orgId}
+			      </if>
+			                                 <if test="deptId != null and ''!=deptId" >
+			         and  dept_id = #{deptId}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 User
+      - @author 11734
+      - @date 2018-06-22
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.user.po.SysUsers" useGeneratedKeys="true" keyProperty="id">
+		insert into user (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{pwd}, 
+		    #{created}, 
+		    #{updated}, 
+		    #{email}, 
+		    #{userNo}, 
+		    #{userName}, 
+		    #{openId}, 
+		    #{phone}, 
+		    #{delState}, 
+		    #{orgId}, 
+		    #{deptId}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 User
+      - @author 11734
+      - @date 2018-06-22
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.user.po.SysUsers">
+	      update user
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="pwd != null and ''!=pwd" >
+			        pwd = #{pwd},
+			      </if>
+			                        <if test="created != null and ''!=created" >
+			        created = #{created},
+			      </if>
+			                        <if test="updated != null and ''!=updated" >
+			        updated = #{updated},
+			      </if>
+			                        <if test="email != null and ''!=email" >
+			        email = #{email},
+			      </if>
+			                        <if test="userNo != null and ''!=userNo" >
+			        user_no = #{userNo},
+			      </if>
+			                        <if test="userName != null and ''!=userName" >
+			        user_name = #{userName},
+			      </if>
+			                        <if test="openId != null and ''!=openId" >
+			        open_id = #{openId},
+			      </if>
+			                        <if test="phone != null and ''!=phone" >
+			        phone = #{phone},
+			      </if>
+			                        <if test="delState != null and ''!=delState" >
+			        del_state = #{delState},
+			      </if>
+			                        <if test="orgId != null and ''!=orgId" >
+			        org_id = #{orgId},
+			      </if>
+			                        <if test="deptId != null and ''!=deptId" >
+			        dept_id = #{deptId},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 User 总数
+      - @author 11734
+      - @date 2018-06-22
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.user.po.SysUsers">
+		select count(*)
+		from user
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 User 信息
+      - @author 11734
+      - @date 2018-06-22
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_User" parameterType="com.zhys.user.po.SysUsers">
+		select 
+        <include refid="sql"/>
+		from user
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表User 信息
+      - @author 11734
+      - @date 2018-06-22
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_User" parameterType="com.zhys.user.po.SysUsers">
+		select 
+        <include refid="sql"/>
+		from user
+		<where>
+		  <include refid="where"/>
+		</where>
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 User 分页信息
+      - @author 11734
+      - @date 2018-06-22
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_User" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>
+        ,(select org_name from sys_orgs where id = u.org_id)as orgName		
+		from user u
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeStateById" parameterType="com.zhys.user.po.SysUsers">
+	   update user set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeStateByIds" parameterType="java.util.HashMap">
+	   update user set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

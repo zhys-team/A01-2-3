@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rule_match">
+
+	<!--
+      - ===============================================
+      - 返回 RuleMatch Entity
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.RuleMatch"	   id="RM_RuleMatch">
+		<id     property="id"         column="id"          jdbcType="BIGINT"     javaType="java.lang.Long"    />
+		<result property="name"       column="name"        jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="ruleType"   column="rule_type"   jdbcType="CHAR"       javaType="java.lang.String"  />
+		<result property="canDeduct"  column="can_deduct"  jdbcType="CHAR"       javaType="java.lang.String"  />
+		<result property="startDate"  column="start_date"  jdbcType="TIMESTAMP"  javaType="java.util.Date"    />
+		<result property="endDate"    column="end_date"    jdbcType="TIMESTAMP"  javaType="java.util.Date"    />
+		<result property="code"       column="code"        jdbcType="VARCHAR"    javaType="java.lang.String"  />
+	</resultMap>
+	
+	<resultMap  type="com.invoice.po.RuleMatch"	   id="RM_RuleMatch_map">
+		<id     property="id"         column="id"          jdbcType="BIGINT"     javaType="java.lang.Long"    />
+		<result property="name"       column="name"        jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="ruleType"   column="rule_type"   jdbcType="CHAR"       javaType="java.lang.String"  />
+		<result property="canDeduct"  column="can_deduct"  jdbcType="CHAR"       javaType="java.lang.String"  />
+		<result property="startDate"  column="start_date"  jdbcType="TIMESTAMP"  javaType="java.util.Date"    />
+		<result property="endDate"    column="end_date"    jdbcType="TIMESTAMP"  javaType="java.util.Date"    />
+		<result property="code"       column="code"        jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<collection  property="subs"  ofType="com.invoice.po.RuleMatchSub"  column="id"  select="rule_match_sub.queryList1"></collection>
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			name, 
+    			rule_type, 
+    			can_deduct, 
+    			start_date, 
+    			end_date,
+    			code
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="name != null and ''!=name" >
+			         and  name = #{name}
+			      </if>
+			                                 <if test="ruleType != null and ''!=ruleType" >
+			         and  rule_type = #{ruleType}
+			      </if>
+			                                 <if test="canDeduct != null and ''!=canDeduct" >
+			         and  can_deduct = #{canDeduct}
+			      </if>
+			                                 <if test="startDate != null" >
+			         and  start_date = #{startDate}
+			      </if>
+			                                 <if test="endDate != null" >
+			         and  end_date = #{endDate}
+			      </if>
+			      <if test="code != null and ''!=code" >
+			         and  code = #{code}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 RuleMatch
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.RuleMatch" useGeneratedKeys="true" keyProperty="id">
+		insert into rule_match (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{name}, 
+		    #{ruleType}, 
+		    #{canDeduct}, 
+		    #{startDate}, 
+		    #{endDate},
+		    #{code}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 RuleMatch
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.RuleMatch">
+	      update rule_match
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="name != null and ''!=name" >
+			        name = #{name},
+			      </if>
+			                        <if test="ruleType != null and ''!=ruleType" >
+			        rule_type = #{ruleType},
+			      </if>
+			                        <if test="canDeduct != null and ''!=canDeduct" >
+			        can_deduct = #{canDeduct},
+			      </if>
+			                        <if test="startDate != null" >
+			        start_date = #{startDate},
+			      </if>
+			                        <if test="endDate != null" >
+			        end_date = #{endDate},
+			      </if>
+			      <if test="code != null and ''!=code" >
+			           code = #{code},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 RuleMatch 总数
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.RuleMatch">
+		select count(*)
+		from rule_match
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 RuleMatch 信息
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_RuleMatch_map" parameterType="com.invoice.po.RuleMatch">
+		select 
+        <include refid="sql"/>
+		from rule_match
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表RuleMatch 信息
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_RuleMatch" parameterType="com.invoice.po.RuleMatch">
+		select 
+        <include refid="sql"/>
+		from rule_match
+		<where>
+		  <include refid="where"/>
+		</where>
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 RuleMatch 分页信息
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_RuleMatch" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from rule_match
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.RuleMatch">
+	 update rule_match set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update rule_match set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	<!--
+      - ===============================================
+      - 查询 RuleMatch 信息
+      - @author 11734
+      - @date 2019-04-22
+      - ===============================================
+    -->
+	<select id="queryByCondition" resultMap="RM_RuleMatch_map" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>
+		from rule_match 
+		where 1=1  
+         
+         and  start_date <![CDATA[<=]]> #{startDate}
+         and  end_date >= #{startDate}
+	</select>
+	<delete id="del" parameterType="com.invoice.po.RuleMatch">
+	delete from rule_match where id=#{id}
+	</delete>
+	
+	
+</mapper>

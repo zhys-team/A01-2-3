@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ea_head">
+
+	<!--
+      - ===============================================
+      - 返回 EaHead Entity
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.ea.po.EaHead"	   id="RM_EaHead">
+		<id     property="id"                    column="id"                      jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="eaOrgId"               column="ea_org_id"               jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="eaOrgName"             column="ea_org_name"             jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="feeName"               column="fee_name"                jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="feeId"                 column="fee_id"                  jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="createDate"            column="create_date"             jdbcType="DATE"     javaType="java.sql.Date"      />
+		<result property="eaManId"               column="ea_man_id"               jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="eaManName"             column="ea_man_name"             jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="eaManDeptId"           column="ea_man_dept_id"          jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="eaManDeptName"         column="ea_man_dept_name"        jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="feeBearOrgId"          column="fee_bear_org_id"         jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="feeBearOrgName"        column="fee_bear_org_name"       jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="feeBearDeptId"         column="fee_bear_dept_id"        jdbcType="BIGINT"   javaType="java.lang.Long"     />
+		<result property="feeBearDeptName"       column="fee_bear_dept_name"      jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="eaProjectId"           column="ea_project_id"           jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="eaProjectName"         column="ea_project_name"         jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="eaCause"               column="ea_cause"                jdbcType="VARCHAR"  javaType="java.lang.String"   />
+		<result property="workStartDate"         column="work_start_date"         jdbcType="DATE"     javaType="java.sql.Date"      />
+		<result property="workEndDate"           column="work_end_date"           jdbcType="DATE"     javaType="java.sql.Date"      />
+		<result property="workDays"              column="work_days"               jdbcType="FLOAT"    javaType="java.lang.Float"    />
+		<result property="accommodate"           column="accommodate"             jdbcType="CHAR"     javaType="java.lang.String"   />
+		<result property="travelAllowance"       column="travel_allowance"        jdbcType="FLOAT"    javaType="java.lang.Float"    />
+		<result property="travelAllowanceStand"  column="travel_allowance_stand"  jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="mealAllowance"         column="meal_allowance"          jdbcType="FLOAT"    javaType="java.lang.Float"    />
+		<result property="mealAllowanceStand"    column="meal_allowance_stand"    jdbcType="INTEGER"  javaType="java.lang.Integer"  />
+		<result property="subsidyAmount"         column="subsidy_amount"          jdbcType="FLOAT"    javaType="java.lang.Float"    />
+		<result property="eaAmount"              column="ea_amount"               jdbcType="FLOAT"    javaType="java.lang.Float"    />
+		<result property="delState"              column="del_state"               jdbcType="CHAR"     javaType="java.lang.String"   />
+	    <result property="ywsx"               column="ywsx"                jdbcType="VARCHAR"  javaType="java.lang.String"   />
+	    <result property="openId"               column="open_id"                jdbcType="VARCHAR"  javaType="java.lang.String"   />
+	    <result property="audit"              column="audit"               jdbcType="CHAR"     javaType="java.lang.String"   />
+	</resultMap>
+	
+	<resultMap id="eaHeadMap" extends="RM_EaHead"
+               type="com.zhys.ea.po.EaHead" >
+        <collection property="bodys" columnPrefix="body_"
+            resultMap="ea_body.RM_EaBody">
+        </collection>
+    </resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			ea_org_id, 
+    			ea_org_name, 
+    			fee_name, 
+    			fee_id, 
+    			create_date, 
+    			ea_man_id, 
+    			ea_man_name, 
+    			ea_man_dept_id, 
+    			ea_man_dept_name, 
+    			fee_bear_org_id, 
+    			fee_bear_org_name, 
+    			fee_bear_dept_id, 
+    			fee_bear_dept_name, 
+    			ea_project_id, 
+    			ea_project_name, 
+    			ea_cause, 
+    			work_start_date, 
+    			work_end_date, 
+    			work_days, 
+    			accommodate, 
+    			travel_allowance, 
+    			travel_allowance_stand, 
+    			meal_allowance, 
+    			meal_allowance_stand, 
+    			subsidy_amount, 
+    			ea_amount, 
+    			del_state,
+    			ywsx,
+    			open_id,
+    			audit
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     del_state='0'
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="eaOrgId != null and ''!=eaOrgId" >
+			         and  ea_org_id = #{eaOrgId}
+			      </if>
+			                                 <if test="eaOrgName != null and ''!=eaOrgName" >
+			         and  ea_org_name = #{eaOrgName}
+			      </if>
+			                                 <if test="feeName != null and ''!=feeName" >
+			         and  fee_name = #{feeName}
+			      </if>
+			                                 <if test="feeId != null and ''!=feeId" >
+			         and  fee_id = #{feeId}
+			      </if>
+			                                 <if test="createDate != null and ''!=createDate" >
+			         and  create_date = #{createDate}
+			      </if>
+			                                 <if test="eaManId != null and ''!=eaManId" >
+			         and  ea_man_id = #{eaManId}
+			      </if>
+			                                 <if test="eaManName != null and ''!=eaManName" >
+			         and  ea_man_name = #{eaManName}
+			      </if>
+			                                 <if test="eaManDeptId != null and ''!=eaManDeptId" >
+			         and  ea_man_dept_id = #{eaManDeptId}
+			      </if>
+			                                 <if test="eaManDeptName != null and ''!=eaManDeptName" >
+			         and  ea_man_dept_name = #{eaManDeptName}
+			      </if>
+			                                 <if test="feeBearOrgId != null and ''!=feeBearOrgId" >
+			         and  fee_bear_org_id = #{feeBearOrgId}
+			      </if>
+			                                 <if test="feeBearOrgName != null and ''!=feeBearOrgName" >
+			         and  fee_bear_org_name = #{feeBearOrgName}
+			      </if>
+			                                 <if test="feeBearDeptId != null and ''!=feeBearDeptId" >
+			         and  fee_bear_dept_id = #{feeBearDeptId}
+			      </if>
+			                                 <if test="feeBearDeptName != null and ''!=feeBearDeptName" >
+			         and  fee_bear_dept_name = #{feeBearDeptName}
+			      </if>
+			                                 <if test="eaProjectId != null and ''!=eaProjectId" >
+			         and  ea_project_id = #{eaProjectId}
+			      </if>
+			                                 <if test="eaProjectName != null and ''!=eaProjectName" >
+			         and  ea_project_name = #{eaProjectName}
+			      </if>
+			                                 <if test="eaCause != null and ''!=eaCause" >
+			         and  ea_cause = #{eaCause}
+			      </if>
+			                                 <if test="workStartDate != null and ''!=workStartDate" >
+			         and  work_start_date = #{workStartDate}
+			      </if>
+			                                 <if test="workEndDate != null and ''!=workEndDate" >
+			         and  work_end_date = #{workEndDate}
+			      </if>
+			                                 <if test="workDays != null and ''!=workDays" >
+			         and  work_days = #{workDays}
+			      </if>
+			                                 <if test="accommodate != null and ''!=accommodate" >
+			         and  accommodate = #{accommodate}
+			      </if>
+			                                 <if test="travelAllowance != null and ''!=travelAllowance" >
+			         and  travel_allowance = #{travelAllowance}
+			      </if>
+			                                 <if test="travelAllowanceStand != null and ''!=travelAllowanceStand" >
+			         and  travel_allowance_stand = #{travelAllowanceStand}
+			      </if>
+			                                 <if test="mealAllowance != null and ''!=mealAllowance" >
+			         and  meal_allowance = #{mealAllowance}
+			      </if>
+			                                 <if test="mealAllowanceStand != null and ''!=mealAllowanceStand" >
+			         and  meal_allowance_stand = #{mealAllowanceStand}
+			      </if>
+			                                 <if test="subsidyAmount != null and ''!=subsidyAmount" >
+			         and  subsidy_amount = #{subsidyAmount}
+			      </if>
+			                                 <if test="eaAmount != null and ''!=eaAmount" >
+			         and  ea_amount = #{eaAmount}
+			      </if>
+			                                 <if test="delState != null and ''!=delState" >
+			         and  del_state = #{delState}
+			         </if>
+			         <if test="ywsx != null and ''!=ywsx" >
+				         and  ywsx = #{ywsx}
+				      </if>
+				      <if test="openId != null and ''!=openId" >
+				         and  open_id = #{openId}
+				      </if>
+				      <if test="audit != null and ''!=audit" >
+				         and  audit = #{audit}
+				      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 EaHead
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.ea.po.EaHead" useGeneratedKeys="true" keyProperty="id">
+		insert into ea_head (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{eaOrgId}, 
+		    #{eaOrgName}, 
+		    #{feeName}, 
+		    #{feeId}, 
+		    #{createDate}, 
+		    #{eaManId}, 
+		    #{eaManName}, 
+		    #{eaManDeptId}, 
+		    #{eaManDeptName}, 
+		    #{feeBearOrgId}, 
+		    #{feeBearOrgName}, 
+		    #{feeBearDeptId}, 
+		    #{feeBearDeptName}, 
+		    #{eaProjectId}, 
+		    #{eaProjectName}, 
+		    #{eaCause}, 
+		    #{workStartDate}, 
+		    #{workEndDate}, 
+		    #{workDays}, 
+		    #{accommodate}, 
+		    #{travelAllowance}, 
+		    #{travelAllowanceStand}, 
+		    #{mealAllowance}, 
+		    #{mealAllowanceStand}, 
+		    #{subsidyAmount}, 
+		    #{eaAmount}, 
+		    0,
+		    #{ywsx},
+		    #{openId},
+		    #{audit}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 EaHead
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.ea.po.EaHead">
+	      update ea_head
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="eaOrgId != null and ''!=eaOrgId" >
+			        ea_org_id = #{eaOrgId},
+			      </if>
+			                        <if test="eaOrgName != null and ''!=eaOrgName" >
+			        ea_org_name = #{eaOrgName},
+			      </if>
+			                        <if test="feeName != null and ''!=feeName" >
+			        fee_name = #{feeName},
+			      </if>
+			                        <if test="feeId != null and ''!=feeId" >
+			        fee_id = #{feeId},
+			      </if>
+			                        <if test="createDate != null and ''!=createDate" >
+			        create_date = #{createDate},
+			      </if>
+			                        <if test="eaManId != null and ''!=eaManId" >
+			        ea_man_id = #{eaManId},
+			      </if>
+			                        <if test="eaManName != null and ''!=eaManName" >
+			        ea_man_name = #{eaManName},
+			      </if>
+			                        <if test="eaManDeptId != null and ''!=eaManDeptId" >
+			        ea_man_dept_id = #{eaManDeptId},
+			      </if>
+			                        <if test="eaManDeptName != null and ''!=eaManDeptName" >
+			        ea_man_dept_name = #{eaManDeptName},
+			      </if>
+			                        <if test="feeBearOrgId != null and ''!=feeBearOrgId" >
+			        fee_bear_org_id = #{feeBearOrgId},
+			      </if>
+			                        <if test="feeBearOrgName != null and ''!=feeBearOrgName" >
+			        fee_bear_org_name = #{feeBearOrgName},
+			      </if>
+			                        <if test="feeBearDeptId != null and ''!=feeBearDeptId" >
+			        fee_bear_dept_id = #{feeBearDeptId},
+			      </if>
+			                        <if test="feeBearDeptName != null and ''!=feeBearDeptName" >
+			        fee_bear_dept_name = #{feeBearDeptName},
+			      </if>
+			                        <if test="eaProjectId != null and ''!=eaProjectId" >
+			        ea_project_id = #{eaProjectId},
+			      </if>
+			                        <if test="eaProjectName != null and ''!=eaProjectName" >
+			        ea_project_name = #{eaProjectName},
+			      </if>
+			                        <if test="eaCause != null and ''!=eaCause" >
+			        ea_cause = #{eaCause},
+			      </if>
+			                        <if test="workStartDate != null and ''!=workStartDate" >
+			        work_start_date = #{workStartDate},
+			      </if>
+			                        <if test="workEndDate != null and ''!=workEndDate" >
+			        work_end_date = #{workEndDate},
+			      </if>
+			                        <if test="workDays != null and ''!=workDays" >
+			        work_days = #{workDays},
+			      </if>
+			                        <if test="accommodate != null and ''!=accommodate" >
+			        accommodate = #{accommodate},
+			      </if>
+			                        <if test="travelAllowance != null and ''!=travelAllowance" >
+			        travel_allowance = #{travelAllowance},
+			      </if>
+			                        <if test="travelAllowanceStand != null and ''!=travelAllowanceStand" >
+			        travel_allowance_stand = #{travelAllowanceStand},
+			      </if>
+			                        <if test="mealAllowance != null and ''!=mealAllowance" >
+			        meal_allowance = #{mealAllowance},
+			      </if>
+			                        <if test="mealAllowanceStand != null and ''!=mealAllowanceStand" >
+			        meal_allowance_stand = #{mealAllowanceStand},
+			      </if>
+			                        <if test="subsidyAmount != null and ''!=subsidyAmount" >
+			        subsidy_amount = #{subsidyAmount},
+			      </if>
+			                        <if test="eaAmount != null and ''!=eaAmount" >
+			        ea_amount = #{eaAmount},
+			      </if>
+			                        <if test="delState != null and ''!=delState" >
+			        del_state = #{delState},
+			      </if>
+			      <if test="ywsx != null and ''!=ywsx" >
+			        ywsx = #{ywsx},
+			      </if>
+			      <if test="openId != null and ''!=openId" >
+			        open_id = #{openId},
+			      </if>
+			      <if test="audit != null and ''!=audit" >
+			        audit = #{audit},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 EaHead 总数
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.ea.po.EaHead">
+		select count(*)
+		from ea_head
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 EaHead 信息
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<select id="query" resultMap="eaHeadMap" parameterType="com.zhys.ea.po.EaHead">
+		select 
+        h.id, 
+    			h.ea_org_id, 
+    			h.ea_org_name, 
+    			h.fee_name, 
+    			h.fee_id, 
+    			h.create_date, 
+    			h.ea_man_id, 
+    			h.ea_man_name, 
+    			h.ea_man_dept_id, 
+    			h.ea_man_dept_name, 
+    			h.fee_bear_org_id, 
+    			h.fee_bear_org_name, 
+    			h.fee_bear_dept_id, 
+    			h.fee_bear_dept_name, 
+    			h.ea_project_id, 
+    			h.ea_project_name, 
+    			h.ea_cause, 
+    			h.work_start_date, 
+    			h.work_end_date, 
+    			h.work_days, 
+    			h.accommodate, 
+    			h.travel_allowance, 
+    			h.travel_allowance_stand, 
+    			h.meal_allowance, 
+    			h.meal_allowance_stand, 
+    			h.subsidy_amount, 
+    			h.ea_amount, 
+    			h.del_state,
+    			h.ywsx,
+    			h.open_id,
+    			h.audit,
+                b.id body_id, 
+    			b.parent_id body_parent_id, 
+    			b.start_addr body_start_addr, 
+    			b.end_addr body_end_addr, 
+    			b.work_start_date body_work_start_date, 
+    			b.work_end_date body_work_end_date, 
+    			b.work_days body_work_days, 
+    			b.del_state body_del_state,
+    			b.detail_type body_detail_type, 
+    			b.vehicle body_vehicle, 
+    			b.cast body_cast, 
+    			b.currency body_currency, 
+    			b.exchange_rate body_exchange_rate, 
+    			b.currency_amount body_currency_amount, 
+    			b.mark body_mark,
+    			b.mxsx body_mxsx
+		from ea_head h
+		right join ea_body b on b.parent_id = h.id
+		where h.id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表EaHead 信息
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_EaHead" parameterType="com.zhys.ea.po.EaHead">
+		select 
+        <include refid="sql"/>
+		from ea_head
+		
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 EaHead 分页信息
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_EaHead" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from ea_head
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.zhys.ea.po.EaHead">
+	 update ea_head set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeAuditStateById" parameterType="com.zhys.ea.po.EaHead">
+	 update ea_head set audit=#{audit} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update ea_head set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

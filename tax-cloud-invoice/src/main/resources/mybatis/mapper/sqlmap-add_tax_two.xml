@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="add_tax_two">
+
+	<!--
+      - ===============================================
+      - 返回 AddTaxTwo Entity
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.AddTaxTwo"	   id="RM_AddTaxTwo">
+		<id     property="id"        column="id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="parentId"  column="parent_id"  jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="lc"        column="lc"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="hmc"       column="hmc"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="fs"        column="fs"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="je"        column="je"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="se"        column="se"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			parent_id, 
+    			lc, 
+    			hmc, 
+    			fs, 
+    			je, 
+    			se
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="lc != null and ''!=lc" >
+			         and  lc = #{lc}
+			      </if>
+			                                 <if test="hmc != null and ''!=hmc" >
+			         and  hmc = #{hmc}
+			      </if>
+			                                 <if test="fs != null and ''!=fs" >
+			         and  fs = #{fs}
+			      </if>
+			                                 <if test="je != null and ''!=je" >
+			         and  je = #{je}
+			      </if>
+			                                 <if test="se != null and ''!=se" >
+			         and  se = #{se}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 AddTaxTwo
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.AddTaxTwo" useGeneratedKeys="true" keyProperty="id">
+		insert into add_tax_two (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{parentId}, 
+		    #{lc}, 
+		    #{hmc}, 
+		    #{fs}, 
+		    #{je}, 
+		    #{se}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 AddTaxTwo
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.AddTaxTwo">
+	      update add_tax_two
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="lc != null and ''!=lc" >
+			        lc = #{lc},
+			      </if>
+			                        <if test="hmc != null and ''!=hmc" >
+			        hmc = #{hmc},
+			      </if>
+			                        <if test="fs != null and ''!=fs" >
+			        fs = #{fs},
+			      </if>
+			                        <if test="je != null and ''!=je" >
+			        je = #{je},
+			      </if>
+			                        <if test="se != null and ''!=se" >
+			        se = #{se},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxTwo 总数
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.AddTaxTwo">
+		select count(*)
+		from add_tax_two
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxTwo 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_AddTaxTwo" parameterType="com.invoice.po.AddTaxTwo">
+		select 
+        <include refid="sql"/>
+		from add_tax_two
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表AddTaxTwo 信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_AddTaxTwo" parameterType="com.invoice.po.AddTaxTwo">
+		select 
+        <include refid="sql"/>
+		from add_tax_two
+		
+	</select>
+
+    <select id="queryList1" resultMap="RM_AddTaxTwo" parameterType="Long">
+		select 
+        <include refid="sql"/>
+		from add_tax_two
+		where parent_id=#{id}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 AddTaxTwo 分页信息
+      - @author 11734
+      - @date 2018-10-10
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_AddTaxTwo" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from add_tax_two
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.invoice.po.AddTaxTwo">
+	 update add_tax_two set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update add_tax_two set del_state=#{delState} where id in (${ids})
+	</update>
+	
+	<delete id="del" parameterType="com.invoice.po.AddTaxMain">
+	 delete from  add_tax_two where parent_id=#{id}
+	</delete>
+</mapper>

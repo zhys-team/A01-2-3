@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="invoice_doubt">
+
+	<!--
+      - ===============================================
+      - 返回 InvoiceDoubt Entity
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<resultMap  type="com.invoice.po.InvoiceDoubt"	   id="RM_InvoiceDoubt">
+		<id     property="id"          column="id"           jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="fpdm"        column="fpdm"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="fphm"        column="fphm"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="kprq"        column="kprq"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="kpje"        column="kpje"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="jym"         column="jym"          jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="spfmc"       column="spfmc"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="kpfmc"       column="kpfmc"        jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="createMan"   column="create_man"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="createTime"  column="create_time"  jdbcType="TIMESTAMP"     javaType="java.util.Date"     />
+		<result property="state"       column="state"        jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="updateMan"   column="update_man"   jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="updateTime"  column="update_time"  jdbcType="TIMESTAMP"     javaType="java.util.Date"     />
+		<result property="orgId"       column="org_id"       jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="orgName"     column="org_name"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="reason"     column="reason"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="dealResult"     column="deal_result"     jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			fpdm, 
+    			fphm,
+    			kprq,
+    			kpje,
+    			jym, 
+    			spfmc, 
+    			kpfmc, 
+    			create_man, 
+    			create_time, 
+    			state, 
+    			update_man, 
+    			update_time, 
+    			org_id, 
+    			org_name,
+    			reason,
+    			deal_result
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="fpdm != null and ''!=fpdm" >
+			         and  fpdm = #{fpdm}
+			      </if>
+			                                 <if test="fphm != null and ''!=fphm" >
+			         and  fphm = #{fphm}
+			      </if>
+			                                 <if test="spfmc != null and ''!=spfmc" >
+			         and  spfmc = #{spfmc}
+			      </if>
+			                                 <if test="kpfmc != null and ''!=kpfmc" >
+			         and  kpfmc = #{kpfmc}
+			      </if>
+			                                 <if test="createMan != null and ''!=createMan" >
+			         and  create_man = #{createMan}
+			      </if>
+			                                 <if test="createTimeStart != null" >
+			        and date_format(create_time,'%Y-%m-%d') >= #{createTimeStart}
+			      </if>
+			      <if test="createTimeEnd != null" >
+			        and date_format(create_time,'%Y-%m-%d')  <![CDATA[<=]]> #{createTimeEnd}
+			      </if>
+			                                 <if test="state != null and ''!=state" >
+			         and  state = #{state}
+			      </if>
+			                                 <if test="updateMan != null and ''!=updateMan" >
+			         and  update_man = #{updateMan}
+			      </if>
+			                                 <if test="createTimeStart != null" >
+			        and update_time >= #{createTimeStart}
+			      </if>
+			      <if test="updateTimeEnd != null" >
+			        and update_time <![CDATA[<=]]> #{updateTimeEnd}
+			      </if>
+			                                 <if test="orgId != null and ''!=orgId" >
+			         and  org_id = #{orgId}
+			      </if>
+			                                 <if test="orgName != null and ''!=orgName" >
+			         and  org_name = #{orgName}
+			      </if>
+			      <if test="queryString1 != null and ''!=queryString1" >
+			        and ((fpdm like '%${queryString1}%') or (fphm like '%${queryString1}%')
+			             or (spfmc like '%${queryString1}%') or (kpfmc like '%${queryString1}%')
+			             or (create_man like '%${queryString1}%')
+			        )
+			      </if>
+		</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 InvoiceDoubt
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.invoice.po.InvoiceDoubt" useGeneratedKeys="true" keyProperty="id">
+		insert into invoice_doubt (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{fpdm}, 
+		    #{fphm},
+		    #{kprq},
+    	    #{kpje},
+    		#{jym}, 
+		    #{spfmc}, 
+		    #{kpfmc}, 
+		    #{createMan}, 
+		    #{createTime}, 
+		    #{state}, 
+		    #{updateMan}, 
+		    #{updateTime}, 
+		    #{orgId}, 
+		    #{orgName},
+		    #{reason},
+		    #{dealResult}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 InvoiceDoubt
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.invoice.po.InvoiceDoubt">
+	      update invoice_doubt
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="fpdm != null and ''!=fpdm" >
+			        fpdm = #{fpdm},
+			      </if>
+			                        <if test="fphm != null and ''!=fphm" >
+			        fphm = #{fphm},
+			      </if>
+			                        <if test="spfmc != null and ''!=spfmc" >
+			        spfmc = #{spfmc},
+			      </if>
+			                        <if test="kpfmc != null and ''!=kpfmc" >
+			        kpfmc = #{kpfmc},
+			      </if>
+			                        <if test="createMan != null and ''!=createMan" >
+			        create_man = #{createMan},
+			      </if>
+			                        <if test="createTime != null" >
+			        create_time = #{createTime},
+			      </if>
+			                        <if test="state != null and ''!=state" >
+			        state = #{state},
+			      </if>
+			                        <if test="updateMan != null and ''!=updateMan" >
+			        update_man = #{updateMan},
+			      </if>
+			                        <if test="updateTime != null " >
+			        update_time = #{updateTime},
+			      </if>
+			                        <if test="orgId != null and ''!=orgId" >
+			        org_id = #{orgId},
+			      </if>
+			                        <if test="orgName != null and ''!=orgName" >
+			        org_name = #{orgName},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 InvoiceDoubt 总数
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.invoice.po.InvoiceDoubt">
+		select count(*)
+		from invoice_doubt
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 InvoiceDoubt 信息
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_InvoiceDoubt" parameterType="com.invoice.po.InvoiceDoubt">
+		select 
+        <include refid="sql"/>
+		from invoice_doubt
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表InvoiceDoubt 信息
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_InvoiceDoubt" parameterType="com.invoice.po.InvoiceDoubt">
+		select 
+        <include refid="sql"/>
+		from invoice_doubt
+		
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 InvoiceDoubt 分页信息
+      - @author 11734
+      - @date 2018-05-29
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_InvoiceDoubt" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from invoice_doubt
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeStateById" parameterType="com.invoice.po.InvoiceDoubt">
+	 update invoice_doubt 
+	 <set>
+	 <if test="state != null and ''!=state" >
+        state = #{state},
+      </if>
+                      
+      <if test="updateTime != null " >
+        update_time = #{updateTime},
+      </if>
+	 </set>
+	  where id=#{id}
+	</update>
+	
+	<update id="changeStateByIds" parameterType="java.util.HashMap">
+	 update invoice_doubt
+	 <set>
+	 <if test="state != null and ''!=state" >
+			        state = #{state},
+			      </if>
+			                      
+			                        <if test="updateTime != null " >
+			        update_time = #{updateTime},
+			      </if>
+	 </set>
+	 
+	 where id in (${ids})
+	</update>
+</mapper>

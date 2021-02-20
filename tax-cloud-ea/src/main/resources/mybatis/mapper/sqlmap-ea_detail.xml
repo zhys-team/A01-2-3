@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ea_detail">
+
+	<!--
+      - ===============================================
+      - 返回 EaDetail Entity
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.ea.po.EaDetail"	   id="RM_EaDetail">
+		<id     property="id"              column="id"               jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="parentId"        column="parent_id"        jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="detailType"      column="detail_type"      jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="vehicle"         column="vehicle"          jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="cast"            column="cast"             jdbcType="FLOAT"    javaType="java.lang.Float"   />
+		<result property="currency"        column="currency"         jdbcType="CHAR"     javaType="java.lang.String"  />
+		<result property="exchangeRate"    column="exchange_rate"    jdbcType="FLOAT"    javaType="java.lang.Float"   />
+		<result property="currencyAmount"  column="currency_amount"  jdbcType="FLOAT"    javaType="java.lang.Float"   />
+		<result property="mark"            column="mark"             jdbcType="VARCHAR"  javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			parent_id, 
+    			detail_type, 
+    			vehicle, 
+    			cast, 
+    			currency, 
+    			exchange_rate, 
+    			currency_amount, 
+    			mark
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="parentId != null and ''!=parentId" >
+			         and  parent_id = #{parentId}
+			      </if>
+			                                 <if test="detailType != null and ''!=detailType" >
+			         and  detail_type = #{detailType}
+			      </if>
+			                                 <if test="vehicle != null and ''!=vehicle" >
+			         and  vehicle = #{vehicle}
+			      </if>
+			                                 <if test="cast != null and ''!=cast" >
+			         and  cast = #{cast}
+			      </if>
+			                                 <if test="currency != null and ''!=currency" >
+			         and  currency = #{currency}
+			      </if>
+			                                 <if test="exchangeRate != null and ''!=exchangeRate" >
+			         and  exchange_rate = #{exchangeRate}
+			      </if>
+			                                 <if test="currencyAmount != null and ''!=currencyAmount" >
+			         and  currency_amount = #{currencyAmount}
+			      </if>
+			                                 <if test="mark != null and ''!=mark" >
+			         and  mark = #{mark}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 EaDetail
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.ea.po.EaDetail" useGeneratedKeys="true" keyProperty="id">
+		insert into ea_detail (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{parentId}, 
+		    #{detailType}, 
+		    #{vehicle}, 
+		    #{cast}, 
+		    #{currency}, 
+		    #{exchangeRate}, 
+		    #{currencyAmount}, 
+		    #{mark}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 EaDetail
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.ea.po.EaDetail">
+	      update ea_detail
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="parentId != null and ''!=parentId" >
+			        parent_id = #{parentId},
+			      </if>
+			                        <if test="detailType != null and ''!=detailType" >
+			        detail_type = #{detailType},
+			      </if>
+			                        <if test="vehicle != null and ''!=vehicle" >
+			        vehicle = #{vehicle},
+			      </if>
+			                        <if test="cast != null and ''!=cast" >
+			        cast = #{cast},
+			      </if>
+			                        <if test="currency != null and ''!=currency" >
+			        currency = #{currency},
+			      </if>
+			                        <if test="exchangeRate != null and ''!=exchangeRate" >
+			        exchange_rate = #{exchangeRate},
+			      </if>
+			                        <if test="currencyAmount != null and ''!=currencyAmount" >
+			        currency_amount = #{currencyAmount},
+			      </if>
+			                        <if test="mark != null and ''!=mark" >
+			        mark = #{mark},
+			      </if>
+			                     </set>
+		    where id = #{id}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 EaDetail 总数
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.ea.po.EaDetail">
+		select count(*)
+		from ea_detail
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 EaDetail 信息
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_EaDetail" parameterType="com.zhys.ea.po.EaDetail">
+		select 
+        <include refid="sql"/>
+		from ea_detail
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表EaDetail 信息
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_EaDetail" parameterType="com.zhys.ea.po.EaDetail">
+		select 
+        <include refid="sql"/>
+		from ea_detail
+		
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 EaDetail 分页信息
+      - @author 11734
+      - @date 2018-07-20
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_EaDetail" parameterType="java.util.HashMap">
+		select 
+        <include refid="sql"/>		
+		from ea_detail
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeStateById" parameterType="com.zhys.ea.po.EaDetail">
+	 update ea_detail set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeStateByIds" parameterType="java.util.HashMap">
+	 update ea_detail set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>

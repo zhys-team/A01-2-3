@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="deduct_param_sub">
+
+	<!--
+      - ===============================================
+      - 返回 DeductParamSub Entity
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<resultMap  type="com.zhys.po.DeductParamSub"	   id="RM_DeductParamSub">
+		<id     property="id"              column="id"                jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="deductId"        column="deduct_id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="invoiceCode"     column="invoice_code"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="invoiceNumber"   column="invoice_number"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="validTax"        column="valid_tax"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="exportRejectNo"  column="export_reject_no"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="state"           column="state"             jdbcType="CHAR"     javaType="java.lang.String"  />
+	</resultMap>
+	
+	<resultMap  type="com.zhys.po.DeductRecord"	   id="RM_DeductRecord">
+	    <id     property="id"              column="id"                jdbcType="BIGINT"   javaType="java.lang.Long"    />
+	    <result property="taxNo"       column="tax_no"       jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="period"      column="period"       jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		<result property="deductType"  column="deduct_type"  jdbcType="CHAR"       javaType="java.lang.String"  />
+		<result property="createTime"  column="create_time"  jdbcType="TIMESTAMP"  javaType="java.util.Date"    />
+		<result property="requestId"   column="request_id"   jdbcType="VARCHAR"    javaType="java.lang.String"  />
+		
+		<result property="deductId"        column="deduct_id"         jdbcType="BIGINT"   javaType="java.lang.Long"    />
+		<result property="invoiceCode"     column="invoice_code"      jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="invoiceNumber"   column="invoice_number"    jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="validTax"        column="valid_tax"         jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="exportRejectNo"  column="export_reject_no"  jdbcType="VARCHAR"  javaType="java.lang.String"  />
+		<result property="state"           column="state"             jdbcType="CHAR"     javaType="java.lang.String"  />
+	</resultMap>
+
+    <!-- sql查询语句-->
+	<sql id="sql">
+				id, 
+    			deduct_id, 
+    			invoice_code, 
+    			invoice_number, 
+    			valid_tax, 
+    			export_reject_no, 
+    			state
+    	</sql>
+	
+	<!-- sql查询语句-->
+	<sql id="where">
+	     1=1
+		                                      <if test="id != null and ''!=id" >
+			         and  id = #{id}
+			      </if>
+			                                 <if test="deductId != null and ''!=deductId" >
+			         and  deduct_id = #{deductId}
+			      </if>
+			                                 <if test="invoiceCode != null and ''!=invoiceCode" >
+			         and  invoice_code = #{invoiceCode}
+			      </if>
+			                                 <if test="invoiceNumber != null and ''!=invoiceNumber" >
+			         and  invoice_number = #{invoiceNumber}
+			      </if>
+			                                 <if test="validTax != null and ''!=validTax" >
+			         and  valid_tax = #{validTax}
+			      </if>
+			                                 <if test="exportRejectNo != null and ''!=exportRejectNo" >
+			         and  export_reject_no = #{exportRejectNo}
+			      </if>
+			                                 <if test="state != null and ''!=state" >
+			         and  state = #{state}
+			      </if>
+			               	</sql>
+
+
+	<!--
+      - ===============================================
+      - 新增 DeductParamSub
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<insert id="create" parameterType="com.zhys.po.DeductParamSub" useGeneratedKeys="true" keyProperty="id">
+		insert into deduct_param_sub (
+         <include refid="sql"/>
+		) values (
+		    #{id}, 
+		    #{deductId}, 
+		    #{invoiceCode}, 
+		    #{invoiceNumber}, 
+		    #{validTax}, 
+		    #{exportRejectNo}, 
+		    #{state}
+		)
+	</insert>
+
+	<!--
+      - ===============================================
+      - 修改 DeductParamSub
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<update id="update" parameterType="com.zhys.po.DeductParamSub">
+	      update deduct_param_sub
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="deductId != null and ''!=deductId" >
+			        deduct_id = #{deductId},
+			      </if>
+			                        <if test="invoiceCode != null and ''!=invoiceCode" >
+			        invoice_code = #{invoiceCode},
+			      </if>
+			                        <if test="invoiceNumber != null and ''!=invoiceNumber" >
+			        invoice_number = #{invoiceNumber},
+			      </if>
+			                        <if test="validTax != null and ''!=validTax" >
+			        valid_tax = #{validTax},
+			      </if>
+			                        <if test="exportRejectNo != null and ''!=exportRejectNo" >
+			        export_reject_no = #{exportRejectNo},
+			      </if>
+			                        <if test="state != null and ''!=state" >
+			        state = #{state},
+			      </if>
+			                     </set>
+		    where deduct_id = #{deductId}
+	</update>
+	
+	<update id="updateMsg" parameterType="com.zhys.po.DeductParamSub">
+	      update deduct_param_sub
+	           <set>
+	                             <if test="id != null and ''!=id" >
+			        id = #{id},
+			      </if>
+			                        <if test="deductId != null and ''!=deductId" >
+			        deduct_id = #{deductId},
+			      </if>
+			                       
+			                        <if test="validTax != null and ''!=validTax" >
+			        valid_tax = #{validTax},
+			      </if>
+			                        <if test="exportRejectNo != null and ''!=exportRejectNo" >
+			        export_reject_no = #{exportRejectNo},
+			      </if>
+			                        <if test="state != null and ''!=state" >
+			        state = #{state},
+			      </if>
+			                     </set>
+		    where invoice_code = #{invoiceCode} and invoice_number = #{invoiceNumber}
+	</update>
+
+	<!--
+      - ===============================================
+      - 查询 DeductParamSub 总数
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<select id="count" resultType="java.lang.Integer" parameterType="com.zhys.po.DeductParamSub">
+		select count(*)
+		from deduct_param_sub
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 DeductParamSub 信息
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<select id="query" resultMap="RM_DeductParamSub" parameterType="com.zhys.po.DeductParamSub">
+		select 
+        <include refid="sql"/>
+		from deduct_param_sub
+		where id = #{id}
+	</select>
+	
+		<!--
+      - ===============================================
+      - 查询 列表DeductParamSub 信息
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<select id="queryList" resultMap="RM_DeductParamSub" parameterType="com.zhys.po.DeductParamSub">
+		select 
+        <include refid="sql"/>
+		from deduct_param_sub
+		where deduct_id = #{deductId}
+	</select>
+	
+	<select id="queryList1" resultMap="RM_DeductParamSub" parameterType="com.zhys.po.DeductParamSub">
+		select 
+        <include refid="sql"/>
+		from deduct_param_sub
+		where deduct_id = #{deductId}
+	</select>
+
+	<!--
+      - ===============================================
+      - 查询 DeductParamSub 分页信息
+      - @author 11734
+      - @date 2020-05-24
+      - ===============================================
+    -->
+	<select id="page" resultMap="RM_DeductRecord" parameterType="java.util.HashMap">
+		select sub.*,body.*  from deduct_param_sub sub  LEFT JOIN deduct_param_body body on sub.deduct_id=body.id
+		<where>
+		  <include refid="where"/>
+		</where> 
+	</select>
+	
+	<update id="changeDelStateById" parameterType="com.zhys.po.DeductParamSub">
+	 update deduct_param_sub set del_state=#{delState} where id=#{id}
+	</update>
+	
+	<update id="changeDelStateByIds" parameterType="java.util.HashMap">
+	 update deduct_param_sub set del_state=#{delState} where id in (${ids})
+	</update>
+</mapper>
