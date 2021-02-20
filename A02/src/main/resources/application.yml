@@ -26,8 +26,10 @@ spring:
 #    username: guoxin
 #    password: sc0j8i5K
     username: root
-    password: root
-    url: jdbc:mysql://127.0.0.1:3306/fin-tax?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+#    password: root
+    password: 123456
+#    url: jdbc:mysql://127.0.0.1:3306/fin-tax?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.1:3306/fin-tax2?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
 #    url: jdbc:mysql://127.0.0.1:3306/fin-tax?useUnicode=true&characterEncoding=utf-8&&allowMultiQueries=true
 #    username: root
 #    password: 123456

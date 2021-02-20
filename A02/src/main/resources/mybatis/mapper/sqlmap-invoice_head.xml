@@ -814,4 +814,9 @@
 		where  doc_num= #{docNum,jdbcType=VARCHAR}
 	</select>
 
+	<!--查询所有组织id-->
+	<select id="queryOrgIds" resultType="java.lang.String">
+		select MIN(org_id) as 'orgId'
+		FROM invoice_head GROUP BY org_id
+	</select>
 </mapper>

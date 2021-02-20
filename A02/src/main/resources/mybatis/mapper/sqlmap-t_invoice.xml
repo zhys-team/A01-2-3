@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="t_invoice" >
+    <!--
+    -通过 月份、组织 以及不同条件(如：内销，外销，红字发票)获取 不同种类的相关发票 包括含税，未税，税额，发票张数统计
+    -->
+    <select id="kphz" resultType="com.zhys.vo.InvoiceStatistical" parameterType="java.util.HashMap">
+        SELECT SUM(ZAMOUNT_HSJ) AS hsj,
+               SUM(ZAMOUNT_WSJ) AS wsj,
+               SUM(ZAMOUNT_SEJ) AS sej,
+               COUNT(*) AS pieces
+        FROM `t-invoice`
+        <where>
+            <if test="orgId != null and ''!=orgId" >
+                org_Id = #{orgId}
+            </if>
+            <if test="billGdate != null and ''!=billGdate" >
+                and  bill_Gdate like #{billGdate}
+            </if>
+            <if test="docStatus != null and ''!=docStatus" >
+                and  doc_Status = #{docStatus}
+            </if>
+            <if test="invoiceType != null and ''!=invoiceType" >
+                and  invoice_Type in (${invoiceType})
+            </if>
+            <if test="invoiceRed != null and ''!=invoiceRed" >
+                and  invoice_Red =#{invoiceRed}
+            </if>
+        </where>
+    </select>
+
+</mapper>

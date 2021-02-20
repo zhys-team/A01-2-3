@@ -30,7 +30,8 @@ spring:
 #        url: jdbc:mysql://192.168.1.26:3307/tax-cloud?useUnicode=true&characterEncoding=utf-8&&allowMultiQueries=true
         url: jdbc:mysql://127.0.0.1:3306/tax-cloud?useUnicode=true&characterEncoding=utf-8&&allowMultiQueries=true
         username: root
-        password: root
+#        password: root
+        password: 123456
         # 使用druid数据源
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
